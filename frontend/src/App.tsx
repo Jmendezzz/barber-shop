@@ -1,14 +1,12 @@
-import { Home } from "./components/ui/Home";
+import { Home } from "./components/ui/home/Home";
 import { Nav } from "./components/ui/Nav";
-const App=()=> {
-
+const App = () => {
   return (
-    <div >
-      <Nav/>
-      <Home/>
-
+    <div>
+      <Nav />
+      <Home />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
