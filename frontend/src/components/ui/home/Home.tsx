@@ -1,5 +1,6 @@
 import video from "../../../assets/videos/main-video.mp4";
 import { Location } from "./Location";
+import { Opinions } from "./Opinions";
 export const Home = () => {
   return (
     <section className="h-screen w-screen text-white font-bebas bg-black overflow-x-hidden relative">
@@ -30,7 +31,10 @@ export const Home = () => {
         </div>
 
         <div className="snap-center">
-          <Location></Location>
+          <Location/>
+        </div>
+        <div className="snap-center">
+          <Opinions/>
         </div>
 
       </main>
