@@ -1,8 +1,6 @@
-import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import backgroundImage from "../../../assets/images/LocationsBarberBackground.jpg";
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-
+import { Carousel } from "./Carousel";
+import { LocationItem } from "./LocationItem";
 type Location = {
   image: string;
   country: string;
@@ -50,90 +48,13 @@ const locations: Array<Location> = [
 ];
 
 export const Location = () => {
-  const [locationIndex, setLocationIndex] = useState<number>(0);
-
-  const rightHandler = () => {
-    if (locationIndex === locations.length - 1) {
-      setLocationIndex(0);
-      return;
-    }
-
-    setLocationIndex((currentLocation) => currentLocation + 1);
-  };
-  const leftHandler = () => {
-    if (locationIndex == 0) {
-      setLocationIndex(locations.length - 1);
-      return;
-    }
-    setLocationIndex((currentLocation) => currentLocation - 1);
-  };
-  useEffect(() => {
-    const interval = setInterval(() => {
-      rightHandler();
-    }, 5000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [rightHandler]);
-
   return (
     <section className="h-screen w-screen text-white font-bebas overflow-hidden flex flex-col gap-9 justify-center items-center relative">
       <div className="h-[200px] flex flex-col justify-end z-10">
         <h2 className="text-5xl">Nuestras sedes</h2>
       </div>
-
-      <motion.div
-        key={locationIndex}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="relative h-3/5 w-3/5 z-10 flex justify-center"
-      >
-        <img
-          className="h-full w-[90%] object-cover object-center select-none"
-          src={locations[locationIndex].image}
-          alt="Location"
-        />
-        <div className="absolute bottom-0 h-40 bg-black w-[90%] opacity-90 min-h-30">
-          <div className="p-5 text-justify w-full">
-            <motion.h2
-              className="text-3xl text-white"
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {locations[locationIndex].country},{" "}
-              {locations[locationIndex].city}
-            </motion.h2>
-            <motion.p
-              className="font-mono text-xs"
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {locations[locationIndex].direction}
-            </motion.p>
-            <motion.p
-              className="font-mono overscroll-y-auto select-none overflow-y-auto max-h-20 my-2"
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {locations[locationIndex].description}
-            </motion.p>
-          </div>
-        </div>
-
-        <AiOutlineLeft
-          onClick={leftHandler}
-          className="absolute top-2/4 left-0 text-yellow-300 text-5xl cursor-pointer font-extrabold transition-transform hover:scale-125 hover:-translate-z-1"
-        />
-        <AiOutlineRight
-          onClick={rightHandler}
-          className="absolute top-2/4 right-0 text-yellow-300 text-5xl cursor-pointer font-extrabold transition-transform hover:scale-125 hover:-translate-z-1 select-none"
-        />
-      </motion.div>
+      
+      <Carousel  renderItem={LocationItem} items={locations}/>
 
       <div className="absolute h-screen w-screen top-0 bottom-0">
         <img
