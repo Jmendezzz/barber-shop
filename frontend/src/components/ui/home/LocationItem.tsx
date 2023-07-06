@@ -24,7 +24,7 @@ export const LocationItem = (location:Location)=>{
           <div className="p-5 text-justify w-full">
             <motion.h2
               className="text-3xl text-white"
-              initial={{ opacity: 0, x: 100 }}
+              initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9 }}
             >
@@ -49,7 +49,7 @@ export const LocationItem = (location:Location)=>{
               className="font-mono overscroll-y-auto select-none overflow-y-auto max-h-20 my-2"
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.9}}
             >
               {location.description}
             </motion.p>

@@ -9,7 +9,8 @@ export default {
     extend: {
 
       fontFamily: {
-        bebas: ['Bebas Neue', 'sans-serif']
+        bebas: ['Bebas Neue', 'sans-serif'],
+        workSans: ['Work Sans', 'sans-serif']
       }
     }
   },
