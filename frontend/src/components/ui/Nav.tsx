@@ -1,5 +1,6 @@
 import logo from "../../assets/images/GerardBarberShopLogo.png";
 import { HiOutlineUserCircle } from "react-icons/hi";
+import {NavLink} from "react-router-dom";
 
 export const Nav = () => {
   return (
@@ -28,9 +29,9 @@ export const Nav = () => {
             </a>
           </li>
           <li className="w-32">
-            <a className=" hover:border-b-4 border-transparent hover:border-y-yellow-300 cursor-pointer">
+            <NavLink to="/barbers" className=" hover:border-b-4 border-transparent hover:border-y-yellow-300 cursor-pointer">
               Barberos
-            </a>
+            </NavLink>
           </li>
         </div>
 

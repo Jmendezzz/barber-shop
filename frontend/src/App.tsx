@@ -1,11 +1,18 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./components/ui/home/Home";
 import { Nav } from "./components/ui/Nav";
+import { Barbers } from "./components/barber/Barbers";
 const App = () => {
   return (
-    <div>
+    <BrowserRouter>
       <Nav />
-      <Home />
-    </div>
+      <Routes>
+
+        <Route path="/" element={<Home/>}/>
+        <Route path="/barbers" element={<Barbers/>}/>
+
+      </Routes>
+    </BrowserRouter>
   );
 };
 

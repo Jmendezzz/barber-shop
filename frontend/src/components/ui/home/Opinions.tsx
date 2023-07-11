@@ -6,6 +6,7 @@ import thirdClient from "../../../assets/images/client-3-image.jpg"
 
 import { Carousel } from "./Carousel";
 import { OpinionItem } from "./OpinionItem";
+import { Footer } from "../Footer";
 
 const opinions: Array<Opinion> = [
   {
@@ -36,7 +37,7 @@ const opinions: Array<Opinion> = [
 export const Opinions = () => {
   return (
     <section className="h-screen w-screen text-white font-bebas overflow-hidden flex flex-col gap-9 justify-center items-center relative">
-      <div className="h-[200px] flex flex-col justify-end z-10">
+      <div className="h-[300px] flex flex-col justify-end z-10">
         <h2 className="text-5xl">Opiniones de nuestros clientes</h2>
       </div>  
       <Carousel items={opinions} renderItem={OpinionItem}/>
@@ -47,6 +48,7 @@ export const Opinions = () => {
           className="h-full w-full object-cover object-center opacity-50"
         />
       </div>
+      <Footer/>
     </section>
   );
 };
