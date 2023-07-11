@@ -1,12 +1,18 @@
-import { Footer } from "./components/ui/Footer";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./components/ui/home/Home";
 import { Nav } from "./components/ui/Nav";
+import { Barbers } from "./components/barber/Barbers";
 const App = () => {
   return (
-    <div className="flex flex-col h-screen relative ">
+    <BrowserRouter>
       <Nav />
-      <Home />
-    </div>
+      <Routes>
+
+        <Route path="/" element={<Home/>}/>
+        <Route path="/barbers" element={<Barbers/>}/>
+
+      </Routes>
+    </BrowserRouter>
   );
 };
 
