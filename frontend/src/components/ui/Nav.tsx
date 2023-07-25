@@ -9,7 +9,7 @@ export const Nav = () => {
         <div className="flex-grow w-96"></div>
         <div className="flex items-center justify-evenly gap-x-10 w-[50%] [&>li>a]:transition-all">
           <li className="w-32">
-            <a className=" hover:border-b-4 border-transparent hover:border-y-yellow-300 cursor-pointer">
+            <a href="/" className=" hover:border-b-4 border-transparent hover:border-y-yellow-300 cursor-pointer">
               INICIO
             </a>
           </li>
@@ -20,7 +20,9 @@ export const Nav = () => {
           </li>
 
           <li>
-            <img src={logo}></img>
+            <a href="/">
+              <img src={logo}></img>
+            </a>
           </li>
 
           <li className="w-32">
