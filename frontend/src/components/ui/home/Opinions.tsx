@@ -36,19 +36,23 @@ const opinions: Array<Opinion> = [
 ];
 export const Opinions = () => {
   return (
-    <section className="h-screen w-screen text-white font-bebas overflow-hidden flex flex-col gap-9 justify-center items-center relative">
-      <div className="h-[300px] flex flex-col justify-end z-10">
-        <h2 className="text-5xl">Opiniones de nuestros clientes</h2>
-      </div>  
-      <Carousel items={opinions} renderItem={OpinionItem}/>
+    <section className="h-[120vh] w-screen text-white font-bebas overflow-hidden flex flex-col gap-9 justify-center items-center relative" >
+      <div className="h-[90%] w-screen text-white font-bebas overflow-hidden flex flex-col gap-9 justify-center items-center relative" >
+        <div className=" z-10">
+          <h2 className="text-5xl">Opiniones de nuestros clientes</h2>
+        </div>
+        <Carousel items={opinions} renderItem={OpinionItem} />
 
-      <div className=" absolute h-screen w-screen top-0 bottom-0 ">
-        <img
-          src={background}
-          className="h-full w-full object-cover object-center opacity-50"
-        />
+        <div className=" absolute h-screen w-screen top-0 bottom-0 ">
+          <img
+            src={background}
+            className="h-full w-full object-cover object-center opacity-50"
+          />
+        </div>
+
       </div>
-      <Footer/>
+
+      <Footer />
     </section>
   );
 };
