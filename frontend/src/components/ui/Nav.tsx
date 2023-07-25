@@ -9,6 +9,7 @@ export const Nav = () => {
         <div className="flex-grow w-96"></div>
         <div className="flex items-center justify-evenly gap-x-10 w-[50%] [&>li>a]:transition-all">
           <li className="w-32">
+
             <NavLink to={"/"} className=" hover:border-b-4 border-transparent hover:border-y-yellow-300 cursor-pointer">
               INICIO
             </NavLink>
@@ -20,7 +21,10 @@ export const Nav = () => {
           </li>
 
           <li>
-            <img src={logo} className="w-200px min-w-[160px]"></img>
+            <NavLink to={"/"} >
+              <img src={logo} className="w-200px min-w-[160px]" ></img>
+            </a>
+
           </li>
 
           <li className="w-32">
