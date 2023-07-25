@@ -1,9 +1,9 @@
 import logo from "../../assets/images/GerardBarberShopLogo.png";
 import { AiOutlineCopyrightCircle } from "react-icons/ai";
-export const Footer = () => {
+export const Footer = (): JSX.Element => {
   return (
-    <footer className="w-full backdrop-blur-lg overflow-hidden z-10 relative bottom-0 flex flex-col justify-center items-center gap-4 ">
-      <div className="flex justify-center w-full mt-7">
+    <footer className="w-full backdrop-blur-lg overflow-hidden z-10 flex flex-col justify-center items-center gap-4 ">
+      <div className="flex justify-center w-full mt-3">
         <img src={logo} />
       </div>
 
