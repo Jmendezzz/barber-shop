@@ -1,17 +1,21 @@
 package barber.gerard.backend.domain.models;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.time.LocalTime;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer extends  User{
-  private List<AppointmentReview> appointmentsHistory;
+public class CutService {
+  private Long id;
+  private String name;
+  private String description;
+  private Double price;
+  private LocalTime duration;
+
 }

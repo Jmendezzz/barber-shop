@@ -1,6 +1,5 @@
 package barber.gerard.backend.domain.models;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +11,11 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer extends  User{
-  private List<AppointmentReview> appointmentsHistory;
+public class Location {
+  private Long id;
+  private String name;
+  private String description;
+  private List<Admin> admins;
+  private Address address;
+
 }
