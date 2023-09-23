@@ -5,7 +5,6 @@ import barber.gerard.backend.infraestructure.ports.in.AdminInputPort;
 import barber.gerard.backend.infraestructure.ports.out.AdminRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -20,22 +19,22 @@ public class AdminService implements AdminInputPort {
   }
 
   @Override
-  public List<Admin> getAllAdmins(Admin admin) {
-    return null;
+  public List<Admin> getAllAdmins() {
+    return adminRepository.findAll();
   }
 
   @Override
   public Optional<Admin> getAdminById(Long id) {
-    return Optional.empty();
+    return adminRepository.findById(id);
   }
 
   @Override
   public Admin updateAdmin(Admin adminUpdated) {
-    return null;
+    return adminRepository.update(adminUpdated);
   }
 
   @Override
   public Admin deleteAdminById(Long id) {
-    return null;
+    return adminRepository.deleteById(id);
   }
 }

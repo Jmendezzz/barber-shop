@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface AdminInputPort {
   Admin createAdmin(Admin admin);
-  List<Admin> getAllAdmins(Admin admin);
+  List<Admin> getAllAdmins();
   Optional<Admin> getAdminById(Long id);
   Admin updateAdmin(Admin adminUpdated);
   Admin deleteAdminById(Long id);
