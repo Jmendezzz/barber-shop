@@ -25,21 +25,31 @@ public class AdminRepositoryImp implements AdminRepository {
 
   @Override
   public Optional<Admin> findById(Long id) {
-    return Optional.empty();
+    Optional<AdminEntity> adminEntity = jpaAdminRepository.findById(id);
+
+    return adminEntity
+            .map(adm-> adminMapper.entityToDomain(adm));
   }
 
   @Override
   public List<Admin> findAll() {
-    return null;
+    return adminMapper.entityListToDomainList(jpaAdminRepository.findAll());
   }
 
   @Override
-  public Optional<Admin> update(Admin adminUpdated) {
-    return Optional.empty();
+  public Admin update(Admin adminUpdated) {
+    AdminEntity adminEntity = adminMapper.domainToEntity(adminUpdated);
+    AdminEntity entityUpdated =  jpaAdminRepository.save(adminEntity);
+    return adminMapper.entityToDomain(entityUpdated);
   }
 
   @Override
   public Admin deleteById(Long id) {
-    return null;
+    Optional<AdminEntity> admin =  jpaAdminRepository.findById(id);
+    //TODO: Handle exception.
+    return admin
+            .map(adm -> adminMapper.entityToDomain(adm))
+            .orElseThrow(()-> new RuntimeException());
+
   }
 }
