@@ -17,7 +17,5 @@ import java.util.List;
 @Getter
 @Setter
 public class CustomerEntity extends UserEntity {
-  @OneToMany
-  private List<AppointmentReviewEntity> appointmentsHistory;
-
+  private  Integer points;
 }
