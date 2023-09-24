@@ -23,7 +23,7 @@ public class AdminController {
 
   @PostMapping("/create")
   public ResponseEntity<PublicAdminInfoDTO> createAdmin(@RequestBody CreateAdminDTO createAdminDTO){
-    Admin adminDomain = adminMapper.createAdminDTOToEntity(createAdminDTO);
+    Admin adminDomain = adminMapper.createAdminDTOToDomain(createAdminDTO);
     Admin adminCreated = adminInputPort.createAdmin(adminDomain);
 
     return new ResponseEntity<>(
@@ -53,7 +53,7 @@ public class AdminController {
 
   @PutMapping("/update")
   public ResponseEntity<PublicAdminInfoDTO> updateAdmin(@RequestBody UpdateAdminDTO updateAdminDTO){
-    Admin adminDomain = adminMapper.updateAdminDTOToEntity(updateAdminDTO);
+    Admin adminDomain = adminMapper.updateAdminDTOToDomain(updateAdminDTO);
     Admin adminUpdated = adminInputPort.updateAdmin(adminDomain);
 
     return new ResponseEntity<>(

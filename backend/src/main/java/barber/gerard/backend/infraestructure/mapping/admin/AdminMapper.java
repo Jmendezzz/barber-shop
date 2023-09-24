@@ -14,10 +14,9 @@ public interface AdminMapper {
   List<Admin> entityListToDomainList(List<AdminEntity> admins);
   AdminEntity domainToEntity(Admin admin);
   @Mapping(target = "password", source = "admin.nid")
-  @Mapping(target = "role", source = "java(import barber.gerard.backend.domain.enums.Role.ADMIN)")
-  Admin createAdminDTOToEntity(CreateAdminDTO admin);
-
-  Admin updateAdminDTOToEntity(UpdateAdminDTO admin);
+  @Mapping(target = "role", expression = "java(barber.gerard.backend.domain.enums.Role.ADMIN)")
+  Admin createAdminDTOToDomain(CreateAdminDTO admin);
+  Admin updateAdminDTOToDomain(UpdateAdminDTO admin);
   PublicAdminInfoDTO domainToPublicAdminInfoDTO(Admin admin);
   List<PublicAdminInfoDTO> domainListToPublicAdminInfoDTOList(List<Admin> admins);
 

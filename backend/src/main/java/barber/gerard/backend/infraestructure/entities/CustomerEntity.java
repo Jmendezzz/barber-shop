@@ -14,6 +14,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CustomerEntity extends UserEntity {
-
+  private  Integer points;
 
 }
