@@ -33,7 +33,7 @@ export const Home = () => {
         <div className="snap-center">
           <Location/>
         </div>
-        <div className="snap-center">
+        <div className="snap-start">
           <Opinions/>
         </div>
 
