@@ -1,5 +1,7 @@
 package barber.gerard.backend.infraestructure.mapping.admin;
 
+import barber.gerard.backend.domain.models.Location;
+
 import java.time.LocalDate;
 
 public record CreateAdminDTO(
@@ -8,8 +10,9 @@ public record CreateAdminDTO(
         String nid,
         String cellphoneNumber,
         LocalDate birthday,
-        String email
-        //TODO Location
+        String email,
+        //TODO: Ask if this is valid or create a DTO.
+        Location managedLocation
 
 ) {
 }
