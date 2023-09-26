@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LocationRepository {
-  Location save(Location admin);
+  Location save(Location location);
   Optional<Location> findById(Long id);
   List<Location> findAll();
-  Location update(Location locationUpdated);
+  Optional<Location> update(Location locationUpdated);
   Location deleteById(Long id);
 }
