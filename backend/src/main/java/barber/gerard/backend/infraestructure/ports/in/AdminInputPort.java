@@ -10,7 +10,7 @@ public interface AdminInputPort {
   Admin createAdmin(Admin admin);
   List<Admin> getAllAdmins();
   Optional<Admin> getAdminById(Long id);
-  Admin updateAdmin(Admin adminUpdated);
+  Optional<Admin> updateAdmin(Admin adminUpdated);
   Admin deleteAdminById(Long id);
 
 }

@@ -37,10 +37,17 @@ public class AdminRepositoryImp implements AdminRepository {
   }
 
   @Override
-  public Admin update(Admin adminUpdated) {
-    AdminEntity adminEntity = adminMapper.domainToEntity(adminUpdated);
-    AdminEntity entityUpdated =  jpaAdminRepository.save(adminEntity);
-    return adminMapper.entityToDomain(entityUpdated);
+  public Optional<Admin> update(Admin adminUpdated) {
+    if(jpaAdminRepository.existsById(adminUpdated.getId())){
+      AdminEntity adminEntity = adminMapper.domainToEntity(adminUpdated);
+      AdminEntity entityUpdated =  jpaAdminRepository.save(adminEntity);
+      return Optional.of(
+              adminMapper.entityToDomain(entityUpdated)
+      );
+    }else {
+      return Optional.empty();
+    }
+
   }
 
   @Override
