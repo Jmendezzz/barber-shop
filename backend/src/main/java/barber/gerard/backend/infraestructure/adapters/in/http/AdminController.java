@@ -46,19 +46,22 @@ public class AdminController {
     //TODO HANDLE EXCEPTION
     return admin
             .map(adm -> new ResponseEntity<>(
-                    adminMapper.domainToPublicAdminInfoDTO(adm),
-                    HttpStatus.OK))
+                          adminMapper.domainToPublicAdminInfoDTO(adm),
+                          HttpStatus.OK))
             .orElseThrow(()-> new RuntimeException("No se encontró el ADMIN"));
   }
 
   @PutMapping("/update")
   public ResponseEntity<PublicAdminInfoDTO> updateAdmin(@RequestBody UpdateAdminDTO updateAdminDTO){
-    Admin adminDomain = adminMapper.updateAdminDTOToDomain(updateAdminDTO);
-    Admin adminUpdated = adminInputPort.updateAdmin(adminDomain);
+    Admin adminDomainUpdated = adminMapper.updateAdminDTOToDomain(updateAdminDTO);
+    Optional<Admin> adminUpdated = adminInputPort.updateAdmin(adminDomainUpdated);
 
-    return new ResponseEntity<>(
-            adminMapper.domainToPublicAdminInfoDTO(adminUpdated),
-            HttpStatus.OK);
+    return adminUpdated
+            .map(adm -> new ResponseEntity<>(
+                          adminMapper.domainToPublicAdminInfoDTO(adm),
+                          HttpStatus.OK))
+            .orElseThrow(()-> new RuntimeException("No se encontro el ADMIN"));
+
   }
 
   @DeleteMapping("/delete/{id}")

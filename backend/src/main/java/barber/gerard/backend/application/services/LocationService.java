@@ -3,7 +3,9 @@ package barber.gerard.backend.application.services;
 import barber.gerard.backend.domain.models.Location;
 import barber.gerard.backend.infraestructure.ports.in.LocationInputPort;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 public class LocationService implements LocationInputPort {
   @Override
@@ -17,13 +19,13 @@ public class LocationService implements LocationInputPort {
   }
 
   @Override
-  public Location getLocationById(Long id) {
+  public Optional<Location> getLocationById(Long id) {
     return null;
   }
 
   @Override
-  public Location updateLocation(Location locationUpdated) {
-    return null;
+  public Optional<Location> updateLocation(Location locationUpdated) {
+    return Optional.empty();
   }
 
   @Override

@@ -29,7 +29,7 @@ public class AdminService implements AdminInputPort {
   }
 
   @Override
-  public Admin updateAdmin(Admin adminUpdated) {
+  public Optional<Admin> updateAdmin(Admin adminUpdated) {
     return adminRepository.update(adminUpdated);
   }
 
