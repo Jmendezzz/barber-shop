@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "address_location")
@@ -16,6 +17,7 @@ import lombok.Setter;
 @Setter
 public class AddressEntity {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @Column(length = 50, nullable = false)
   private String country;
@@ -23,6 +25,6 @@ public class AddressEntity {
   private String city;
   @Column(length = 50, nullable = false)
   private String description;
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   private CoordinateEntity location;
 }
