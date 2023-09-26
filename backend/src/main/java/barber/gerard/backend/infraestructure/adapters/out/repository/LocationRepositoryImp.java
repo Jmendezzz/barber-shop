@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @AllArgsConstructor
 public class LocationRepositoryImp implements LocationRepository {
-  //TODO: Mapper
   private JpaLocationRepository jpaLocationRepository;
   private LocationMapper locationMapper;
 
