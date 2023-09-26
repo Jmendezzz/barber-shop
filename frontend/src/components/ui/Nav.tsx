@@ -23,7 +23,7 @@ export const Nav = () => {
           <li>
             <NavLink to={"/"} >
               <img src={logo} className="w-200px min-w-[160px]" ></img>
-            </a>
+            </NavLink>
 
           </li>
 

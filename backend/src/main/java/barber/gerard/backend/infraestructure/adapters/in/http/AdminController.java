@@ -18,7 +18,6 @@ import java.util.Optional;
 @RequestMapping("/admins")
 public class AdminController {
   private AdminInputPort adminInputPort;
-
   private AdminMapper adminMapper;
 
   @PostMapping("/create")
