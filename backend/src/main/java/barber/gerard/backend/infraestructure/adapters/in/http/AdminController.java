@@ -30,7 +30,7 @@ public class AdminController {
             HttpStatus.CREATED);
   }
 
-  @GetMapping("/")
+  @GetMapping("")
   public ResponseEntity<List<PublicAdminInfoDTO>> getAllAdmins(){
     List<PublicAdminInfoDTO> admins = adminMapper.domainListToPublicAdminInfoDTOList(adminInputPort.getAllAdmins());
     return new ResponseEntity<>(

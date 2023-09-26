@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 
@@ -17,13 +18,14 @@ import java.util.List;
 @Setter
 public class LocationEntity {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @Column(length = 50, nullable = false)
   private String name;
   @Column(length = 200, nullable = false)
   private String description;
-  @OneToMany
+  @OneToMany(cascade = CascadeType.REMOVE)
   private List<AdminEntity> admins;
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   private AddressEntity address;
 }

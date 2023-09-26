@@ -6,6 +6,6 @@ public record CreateAddressDTO(
         String country,
         String city,
         String description,
-        CreateCoordinateDTO coordinate
+        CreateCoordinateDTO location
 ) {
 }

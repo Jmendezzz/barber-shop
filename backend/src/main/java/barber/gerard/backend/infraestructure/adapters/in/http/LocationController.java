@@ -30,7 +30,7 @@ public class LocationController {
 
   }
 
-  @GetMapping("/")
+  @GetMapping("")
   public ResponseEntity<List<Location>> getAllLocations(){
     return new ResponseEntity<>(
             locationInputPort.getAllLocations(),

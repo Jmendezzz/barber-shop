@@ -6,11 +6,12 @@ import barber.gerard.backend.infraestructure.mapping.admin.AdminMapper;
 import barber.gerard.backend.infraestructure.ports.out.AdminRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Repository
 @AllArgsConstructor
 public class AdminRepositoryImp implements AdminRepository {
   private JpaAdminRepository jpaAdminRepository;
