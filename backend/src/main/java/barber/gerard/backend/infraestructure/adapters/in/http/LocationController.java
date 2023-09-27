@@ -18,6 +18,7 @@ import java.util.Optional;
 public class LocationController {
   private LocationInputPort locationInputPort;
   private LocationMapper locationMapper;
+  //TODO Handle exceptions
 
   @PostMapping("/create")
   public ResponseEntity<Location> createLocation(@RequestBody CreateLocationDTO createLocationDTO){
@@ -68,6 +69,5 @@ public class LocationController {
             HttpStatus.OK
     );
   }
-
 
 }
