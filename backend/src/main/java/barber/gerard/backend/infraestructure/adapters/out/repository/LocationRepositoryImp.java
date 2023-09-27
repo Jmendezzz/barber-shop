@@ -5,13 +5,14 @@ import barber.gerard.backend.infraestructure.entities.LocationEntity;
 import barber.gerard.backend.infraestructure.mapping.location.LocationMapper;
 import barber.gerard.backend.infraestructure.ports.out.LocationRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 @AllArgsConstructor
 public class LocationRepositoryImp implements LocationRepository {
-  //TODO: Mapper
   private JpaLocationRepository jpaLocationRepository;
   private LocationMapper locationMapper;
 
