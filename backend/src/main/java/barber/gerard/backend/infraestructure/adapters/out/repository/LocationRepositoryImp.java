@@ -50,6 +50,8 @@ public class LocationRepositoryImp implements LocationRepository {
 
   @Override
   public Location deleteById(Long id) {
+    jpaLocationRepository.deleteById(id);
+    //TODO Return Location
     return null;
   }
 }
