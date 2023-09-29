@@ -24,7 +24,7 @@ public class LocationEntity {
   private String name;
   @Column(length = 200, nullable = false)
   private String description;
-  @OneToMany(cascade = CascadeType.REMOVE)
+  @OneToMany(mappedBy = "managedLocation",targetEntity = AdminEntity.class ,cascade = CascadeType.REMOVE)
   private List<AdminEntity> admins;
   @OneToOne(cascade = CascadeType.ALL)
   private AddressEntity address;

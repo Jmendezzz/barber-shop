@@ -3,6 +3,7 @@ package barber.gerard.backend.infraestructure.adapters.out.repository;
 import barber.gerard.backend.domain.models.Admin;
 import barber.gerard.backend.infraestructure.entities.AdminEntity;
 import barber.gerard.backend.infraestructure.mapping.admin.AdminMapper;
+import barber.gerard.backend.infraestructure.mapping.config.CycleAvoidingMappingContext;
 import barber.gerard.backend.infraestructure.ports.out.AdminRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -19,9 +20,9 @@ public class AdminRepositoryImp implements AdminRepository {
 
   @Override
   public Admin save(Admin admin) {
-    AdminEntity adminEntity = adminMapper.domainToEntity(admin);
+    AdminEntity adminEntity = adminMapper.domainToEntity(admin, new CycleAvoidingMappingContext());
     AdminEntity entitySaved =  jpaAdminRepository.save(adminEntity);
-    return adminMapper.entityToDomain(entitySaved);
+    return adminMapper.entityToDomain(entitySaved, new CycleAvoidingMappingContext());
   }
 
   @Override
@@ -29,21 +30,21 @@ public class AdminRepositoryImp implements AdminRepository {
     Optional<AdminEntity> adminEntity = jpaAdminRepository.findById(id);
 
     return adminEntity
-            .map(adm-> adminMapper.entityToDomain(adm));
+            .map(adm-> adminMapper.entityToDomain(adm, new CycleAvoidingMappingContext()));
   }
 
   @Override
   public List<Admin> findAll() {
-    return adminMapper.entityListToDomainList(jpaAdminRepository.findAll());
+    return adminMapper.entityListToDomainList(jpaAdminRepository.findAll(), new CycleAvoidingMappingContext());
   }
 
   @Override
   public Optional<Admin> update(Admin adminUpdated) {
     if(jpaAdminRepository.existsById(adminUpdated.getId())){
-      AdminEntity adminEntity = adminMapper.domainToEntity(adminUpdated);
+      AdminEntity adminEntity = adminMapper.domainToEntity(adminUpdated, new CycleAvoidingMappingContext());
       AdminEntity entityUpdated =  jpaAdminRepository.save(adminEntity);
       return Optional.of(
-              adminMapper.entityToDomain(entityUpdated)
+              adminMapper.entityToDomain(entityUpdated, new CycleAvoidingMappingContext())
       );
     }else {
       return Optional.empty();
@@ -56,7 +57,7 @@ public class AdminRepositoryImp implements AdminRepository {
     Optional<AdminEntity> admin =  jpaAdminRepository.findById(id);
     //TODO: Handle exception.
     return admin
-            .map(adm -> adminMapper.entityToDomain(adm))
+            .map(adm -> adminMapper.entityToDomain(adm, new CycleAvoidingMappingContext()))
             .orElseThrow(()-> new RuntimeException());
 
   }
