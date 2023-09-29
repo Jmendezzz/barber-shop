@@ -2,6 +2,7 @@ package barber.gerard.backend.infraestructure.adapters.in.http;
 
 import barber.gerard.backend.domain.models.Location;
 import barber.gerard.backend.infraestructure.mapping.location.CreateLocationDTO;
+import barber.gerard.backend.infraestructure.mapping.location.LocationDTO;
 import barber.gerard.backend.infraestructure.mapping.location.LocationMapper;
 import barber.gerard.backend.infraestructure.mapping.location.UpdateLocationDTO;
 import barber.gerard.backend.infraestructure.ports.in.LocationInputPort;
@@ -21,51 +22,52 @@ public class LocationController {
   //TODO Handle exceptions
 
   @PostMapping("/create")
-  public ResponseEntity<Location> createLocation(@RequestBody CreateLocationDTO createLocationDTO){
+  public ResponseEntity<LocationDTO> createLocation(@RequestBody CreateLocationDTO createLocationDTO){
     Location location = locationMapper.createLocationDTOToDomain(createLocationDTO);
     Location locationCreated = locationInputPort.createLocation(location);
 
     return new ResponseEntity<>(
-            locationCreated,
+            locationMapper.entityToDTO(locationCreated),
             HttpStatus.CREATED);
 
   }
 
   @GetMapping("")
-  public ResponseEntity<List<Location>> getAllLocations(){
+  public ResponseEntity<List<LocationDTO>> getAllLocations(){
+    List<LocationDTO> locations =  locationMapper.entityListToDTOList(locationInputPort.getAllLocations());
     return new ResponseEntity<>(
-            locationInputPort.getAllLocations(),
+            locations,
             HttpStatus.OK
     );
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Location> getLocationById(@PathVariable Long id){
+  public ResponseEntity<LocationDTO> getLocationById(@PathVariable Long id){
     Optional<Location> location = locationInputPort.getLocationById(id);
     return location
             .map(loc -> new ResponseEntity<>(
-                          loc,
+                          locationMapper.entityToDTO(loc),
                           HttpStatus.OK))
             .orElseThrow(()-> new RuntimeException("No se encontró la sede"));
 
   }
 
   @PutMapping("/update")
-  public ResponseEntity<Location> updateLocation(@RequestBody UpdateLocationDTO updateLocationDTO){
+  public ResponseEntity<LocationDTO> updateLocation(@RequestBody UpdateLocationDTO updateLocationDTO){
     Location locationDomainUpdated = locationMapper.updateLocationDTOToDomain(updateLocationDTO);
     Optional<Location> locationUpdated = locationInputPort.updateLocation(locationDomainUpdated);
     return locationUpdated
             .map(loc -> new ResponseEntity<>(
-                          loc,
+                          locationMapper.entityToDTO(loc),
                           HttpStatus.OK))
             .orElseThrow(()-> new RuntimeException("No se encontró la sede"));
   }
 
   @DeleteMapping("/delete/{id}")
-  public ResponseEntity<Location> deleteLocation(@PathVariable Long id){
+  public ResponseEntity<LocationDTO> deleteLocation(@PathVariable Long id){
     Location locationDeleted = locationInputPort.deleteLocationById(id);
     return new ResponseEntity<>(
-            locationDeleted,
+            locationMapper.entityToDTO(locationDeleted),
             HttpStatus.OK
     );
   }
