@@ -7,11 +7,12 @@ import java.time.LocalDate;
 public record CreateBarberDTO(
         String firstName,
         String lastName,
-        //TODO: NID???
+        String nid,
         String cellphoneNumber,
         LocalDate birthday,
         String email,
-        Location managedLocation
+        Location location,
+        int yearsExperience
 
 ) {
 }
