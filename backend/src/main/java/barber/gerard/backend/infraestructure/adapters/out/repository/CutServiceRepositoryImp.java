@@ -6,10 +6,14 @@ import barber.gerard.backend.infraestructure.entities.CutServiceEntity;
 import barber.gerard.backend.infraestructure.entities.LocationEntity;
 import barber.gerard.backend.infraestructure.mapping.cutService.CutServiceMapper;
 import barber.gerard.backend.infraestructure.ports.out.CutServiceRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
+@AllArgsConstructor
 public class CutServiceRepositoryImp implements CutServiceRepository {
     private JpaCutServiceRepository jpaCutServiceRepository;
     private CutServiceMapper cutServiceMapper;
