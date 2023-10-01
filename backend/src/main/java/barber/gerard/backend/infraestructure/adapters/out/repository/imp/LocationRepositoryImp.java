@@ -1,7 +1,9 @@
-package barber.gerard.backend.infraestructure.adapters.out.repository;
+package barber.gerard.backend.infraestructure.adapters.out.repository.imp;
 
 import barber.gerard.backend.domain.models.Location;
+import barber.gerard.backend.infraestructure.adapters.out.repository.JpaLocationRepository;
 import barber.gerard.backend.infraestructure.entities.LocationEntity;
+import barber.gerard.backend.infraestructure.mapping.config.CycleAvoidingMappingContext;
 import barber.gerard.backend.infraestructure.mapping.location.LocationMapper;
 import barber.gerard.backend.infraestructure.ports.out.LocationRepository;
 import lombok.AllArgsConstructor;
@@ -18,9 +20,9 @@ public class LocationRepositoryImp implements LocationRepository {
 
   @Override
   public Location save(Location location) {
-    LocationEntity locationEntity = locationMapper.domainToEntity(location);
+    LocationEntity locationEntity = locationMapper.domainToEntity(location, new CycleAvoidingMappingContext());
     LocationEntity locationSaved = jpaLocationRepository.save(locationEntity);
-    return locationMapper.entityToDomain(locationSaved);
+    return locationMapper.entityToDomain(locationSaved, new CycleAvoidingMappingContext());
   }
 
   @Override
@@ -28,21 +30,21 @@ public class LocationRepositoryImp implements LocationRepository {
     Optional<LocationEntity> locationEntity = jpaLocationRepository.findById(id);
 
     return locationEntity
-            .map(loc -> locationMapper.entityToDomain(loc));
+            .map(loc -> locationMapper.entityToDomain(loc, new CycleAvoidingMappingContext()));
   }
 
   @Override
   public List<Location> findAll() {
     List<LocationEntity> locationEntities = jpaLocationRepository.findAll();
-    return locationMapper.entityListToDomainList(locationEntities);
+    return locationMapper.entityListToDomainList(locationEntities, new CycleAvoidingMappingContext());
   }
 
   @Override
   public Optional<Location> update(Location locationUpdated) {
     if(jpaLocationRepository.existsById(locationUpdated.getId())){
-      LocationEntity locationEntity = locationMapper.domainToEntity(locationUpdated);
+      LocationEntity locationEntity = locationMapper.domainToEntity(locationUpdated, new CycleAvoidingMappingContext());
       LocationEntity entityUpdated = jpaLocationRepository.save(locationEntity);
-      return Optional.of(locationMapper.entityToDomain(entityUpdated));
+      return Optional.of(locationMapper.entityToDomain(entityUpdated, new CycleAvoidingMappingContext()));
     }else{
       return Optional.empty();
     }

@@ -1,6 +1,7 @@
-package barber.gerard.backend.infraestructure.adapters.out.repository;
+package barber.gerard.backend.infraestructure.adapters.out.repository.imp;
 
 import barber.gerard.backend.domain.models.Admin;
+import barber.gerard.backend.infraestructure.adapters.out.repository.JpaAdminRepository;
 import barber.gerard.backend.infraestructure.entities.AdminEntity;
 import barber.gerard.backend.infraestructure.mapping.admin.AdminMapper;
 import barber.gerard.backend.infraestructure.mapping.config.CycleAvoidingMappingContext;
