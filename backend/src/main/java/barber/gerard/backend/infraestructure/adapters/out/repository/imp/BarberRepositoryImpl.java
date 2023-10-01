@@ -1,6 +1,7 @@
-package barber.gerard.backend.infraestructure.adapters.out.repository;
+package barber.gerard.backend.infraestructure.adapters.out.repository.imp;
 
 import barber.gerard.backend.domain.models.Barber;
+import barber.gerard.backend.infraestructure.adapters.out.repository.JpaBarberRepository;
 import barber.gerard.backend.infraestructure.entities.BarberEntity;
 import barber.gerard.backend.infraestructure.mapping.barber.BarberMapper;
 import barber.gerard.backend.infraestructure.ports.out.BarberRepository;
