@@ -32,7 +32,7 @@ public class CustomerController {
                 .orElseThrow(()-> new RuntimeException("No se encontró el CLIENTE"));
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<PublicCustomerInfoDTO>> getAllCustomers(){
         List<PublicCustomerInfoDTO> customers = customerMapper.domainListToPublicCustomerInfoDTOList(customerInputPort.getAllCustomers());
         return new ResponseEntity<>(
@@ -59,7 +59,7 @@ public class CustomerController {
                 .orElseThrow(()-> new RuntimeException("No se encontró el CLIENTE"));
     }
 
-    @DeleteMapping("/delte/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<PublicCustomerInfoDTO> deleteCustomerById(@PathVariable Long id){
         Customer customerDeleted = customerInputPort.deleteCustomerById(id);
         return new ResponseEntity<>(
