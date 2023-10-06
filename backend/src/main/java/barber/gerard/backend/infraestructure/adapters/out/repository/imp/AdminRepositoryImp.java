@@ -6,6 +6,8 @@ import barber.gerard.backend.infraestructure.entities.AdminEntity;
 import barber.gerard.backend.infraestructure.mapping.admin.AdminMapper;
 import barber.gerard.backend.infraestructure.mapping.config.CycleAvoidingMappingContext;
 import barber.gerard.backend.infraestructure.ports.out.AdminRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,8 @@ import java.util.Optional;
 public class AdminRepositoryImp implements AdminRepository {
   private JpaAdminRepository jpaAdminRepository;
   private AdminMapper adminMapper;
+  @PersistenceContext
+  private EntityManager entityManager;
 
   @Override
   public Admin save(Admin admin) {
