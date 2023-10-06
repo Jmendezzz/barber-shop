@@ -1,5 +1,7 @@
 package barber.gerard.backend.infraestructure.mapping.admin;
 
+import barber.gerard.backend.infraestructure.mapping.location.LocationDTO;
+
 import java.time.LocalDate;
 
 public record UpdateAdminDTO (
@@ -9,7 +11,9 @@ public record UpdateAdminDTO (
         String nid,
         String cellphoneNumber,
         LocalDate birthday,
-        String email
+        String email,
+        String password,
+        LocationDTO managedLocation
 
 ){
 }
