@@ -23,6 +23,7 @@ public interface AdminMapper {
   @Mapping(target = "password", source = "admin.nid")
   @Mapping(target = "role", expression = "java(setAdminRole())")
   Admin createAdminDTOToDomain(CreateAdminDTO admin);
+  @Mapping(target = "role", expression = "java(setAdminRole())")
   Admin updateAdminDTOToDomain(UpdateAdminDTO admin);
   PublicAdminInfoDTO domainToPublicAdminInfoDTO(Admin admin);
   List<PublicAdminInfoDTO> domainListToPublicAdminInfoDTOList(List<Admin> admins);

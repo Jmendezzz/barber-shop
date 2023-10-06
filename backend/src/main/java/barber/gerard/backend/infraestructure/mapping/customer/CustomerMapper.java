@@ -17,6 +17,7 @@ public interface CustomerMapper {
     @Mapping(target = "password", source = "customer.nid")
     @Mapping(target = "role", expression = "java(setCustomerRole())")
     Customer createCustomerDTOToDomain(CreateCustomerDTO customer);
+    @Mapping(target = "role", expression = "java(setCustomerRole())")
     Customer updateCustomerDTOToDomain(UpdateCustomerDTO customer);
     List<PublicCustomerInfoDTO> domainListToPublicCustomerInfoDTOList(List<Customer> customers);
 
