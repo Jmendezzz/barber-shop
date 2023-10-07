@@ -8,13 +8,12 @@ import barber.gerard.backend.infraestructure.ports.out.BarberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class BarberRepositoryImpl implements BarberRepository {
+public class BarberRepositoryImp implements BarberRepository {
     private JpaBarberRepository jpaBarberRepository;
     private BarberMapper barberMapper;
 
