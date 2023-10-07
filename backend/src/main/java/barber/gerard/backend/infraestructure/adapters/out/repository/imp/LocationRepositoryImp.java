@@ -6,6 +6,8 @@ import barber.gerard.backend.infraestructure.entities.LocationEntity;
 import barber.gerard.backend.infraestructure.mapping.config.CycleAvoidingMappingContext;
 import barber.gerard.backend.infraestructure.mapping.location.LocationMapper;
 import barber.gerard.backend.infraestructure.ports.out.LocationRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +19,8 @@ import java.util.Optional;
 public class LocationRepositoryImp implements LocationRepository {
   private JpaLocationRepository jpaLocationRepository;
   private LocationMapper locationMapper;
-
+  @PersistenceContext
+  private EntityManager entityManager;
   @Override
   public Location save(Location location) {
     LocationEntity locationEntity = locationMapper.domainToEntity(location, new CycleAvoidingMappingContext());
@@ -54,6 +57,16 @@ public class LocationRepositoryImp implements LocationRepository {
   public Location deleteById(Long id) {
     jpaLocationRepository.deleteById(id);
     //TODO Return Location
+    return null;
+  }
+
+  @Override
+  public Location assignEmplooyeLocation(Long locationId,Long employeeId) {
+    entityManager.createNativeQuery("INSERT INTO employee_location values(:1,:2)")
+                  .setParameter(1,locationId)
+                  .setParameter(2, employeeId);
+
+
     return null;
   }
 }
