@@ -1,8 +1,6 @@
 package barber.gerard.backend.infraestructure.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,11 +9,15 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customer_points")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class CustomerEntity extends UserEntity {
-  private  Integer points;
+public class CustomerEntity {
+  @Id
+  private Long id;
+  @ManyToOne
+  private UserEntity user;
+  private Integer points;
 }

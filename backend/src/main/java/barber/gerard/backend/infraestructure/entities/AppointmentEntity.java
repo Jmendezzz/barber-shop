@@ -24,7 +24,7 @@ public class AppointmentEntity {
   @ManyToOne
   private CutServiceEntity cutService;
   @ManyToOne
-  private CustomerEntity customer;
+  private UserEntity customer;
   private LocalDateTime date;
   private Status status;
 
