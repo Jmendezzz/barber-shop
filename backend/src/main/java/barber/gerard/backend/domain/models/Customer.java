@@ -13,5 +13,5 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Customer extends  User{
-  private List<AppointmentReview> appointmentsHistory;
+   private Integer points;
 }
