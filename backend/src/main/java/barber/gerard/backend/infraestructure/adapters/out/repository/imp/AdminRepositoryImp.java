@@ -28,9 +28,10 @@ public class AdminRepositoryImp implements AdminRepository {
 
   @Override
   public Admin save(Admin admin) {
-    Admin adminSaved = (Admin) userRepository.save(admin);
-    Location location = locationRepository.assignEmplooyeLocation(admin.getId(),
-                                                                  admin.getManagedLocation().getId());
+    System.out.println(admin);
+    Admin adminSaved = adminMapper.userToAdmin(userRepository.save(admin));
+    Location location = locationRepository.assignEmplooyeLocation(admin.getManagedLocation().getId(),
+                                                                  adminSaved.getId());
     adminSaved.setManagedLocation(location);
 
     return adminSaved;
