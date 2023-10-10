@@ -14,10 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CustomerEntity {
-  @Id
-  private Long id;
-  @ManyToOne
-  private UserEntity user;
+public class CustomerEntity extends UserEntity{
   private Integer points;
 }

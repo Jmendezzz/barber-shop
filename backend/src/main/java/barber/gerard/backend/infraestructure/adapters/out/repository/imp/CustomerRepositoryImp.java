@@ -5,6 +5,7 @@ import barber.gerard.backend.infraestructure.adapters.out.repository.JpaCustomer
 import barber.gerard.backend.infraestructure.entities.CustomerEntity;
 import barber.gerard.backend.infraestructure.mapping.customer.CustomerMapper;
 import barber.gerard.backend.infraestructure.ports.out.CustomerRepository;
+import barber.gerard.backend.infraestructure.ports.out.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,8 @@ import java.util.Optional;
 public class CustomerRepositoryImp implements CustomerRepository {
     private JpaCustomerRepository jpaCustomerRepository;
     private CustomerMapper customerMapper;
+    private UserRepository userRepository;
+
 
     @Override
     public Customer save(Customer customer) {
