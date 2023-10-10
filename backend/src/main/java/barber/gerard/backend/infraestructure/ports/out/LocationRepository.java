@@ -11,4 +11,5 @@ public interface LocationRepository {
   Optional<Location> update(Location locationUpdated);
   Location deleteById(Long id);
   Location assignEmplooyeLocation(Long locationId,Long employeeId);
+  Optional<Location> findLocationByEmployeeId(Long employeeId);
 }
