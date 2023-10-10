@@ -73,4 +73,13 @@ public class LocationRepositoryImp implements LocationRepository {
     //TODO return Location
     return null;
   }
+
+  @Override
+  public Optional<Location> findLocationByEmployeeId(Long employeeId) {
+    Long locationId = (long) entityManager.createNativeQuery("SELECT location_id FROM employee_location WHERE employee_id=?")
+            .setParameter(1,employeeId)
+            .executeUpdate();
+    return findById(locationId);
+  }
+
 }

@@ -2,6 +2,7 @@ package barber.gerard.backend.infraestructure.adapters.out.repository.imp;
 
 import barber.gerard.backend.domain.models.Admin;
 import barber.gerard.backend.domain.models.Location;
+import barber.gerard.backend.domain.models.User;
 import barber.gerard.backend.infraestructure.adapters.out.repository.JpaAdminRepository;
 import barber.gerard.backend.infraestructure.entities.AdminEntity;
 import barber.gerard.backend.infraestructure.mapping.admin.AdminMapper;
@@ -28,7 +29,6 @@ public class AdminRepositoryImp implements AdminRepository {
 
   @Override
   public Admin save(Admin admin) {
-    System.out.println(admin);
     Admin adminSaved = adminMapper.userToAdmin(userRepository.save(admin));
     Location location = locationRepository.assignEmplooyeLocation(admin.getManagedLocation().getId(),
                                                                   adminSaved.getId());
@@ -39,10 +39,15 @@ public class AdminRepositoryImp implements AdminRepository {
 
   @Override
   public Optional<Admin> findById(Long id) {
-    Optional<AdminEntity> adminEntity = jpaAdminRepository.findById(id);
-
-    return adminEntity
-            .map(adm-> adminMapper.entityToDomain(adm, new CycleAvoidingMappingContext()));
+    Optional<User> userEntity = userRepository.findById(id);
+    if(userEntity.isPresent()){
+      Admin adminEntity = adminMapper.userToAdmin(userEntity.get());
+      Optional<Location> adminManagedLocation = locationRepository.findLocationByEmployeeId(adminEntity.getId());
+      adminManagedLocation.ifPresent(adminEntity::setManagedLocation);
+      return Optional.of(adminEntity);
+    }else{
+      return Optional.empty();
+    }
   }
 
   @Override
