@@ -1,17 +1,19 @@
 package barber.gerard.backend.infraestructure.adapters.out.repository.imp;
 
 import barber.gerard.backend.domain.models.Admin;
+import barber.gerard.backend.domain.models.Location;
+import barber.gerard.backend.domain.models.User;
 import barber.gerard.backend.infraestructure.adapters.out.repository.JpaAdminRepository;
 import barber.gerard.backend.infraestructure.entities.AdminEntity;
 import barber.gerard.backend.infraestructure.mapping.admin.AdminMapper;
 import barber.gerard.backend.infraestructure.mapping.config.CycleAvoidingMappingContext;
 import barber.gerard.backend.infraestructure.ports.out.AdminRepository;
+import barber.gerard.backend.infraestructure.ports.out.LocationRepository;
+import barber.gerard.backend.infraestructure.ports.out.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -20,22 +22,32 @@ import java.util.Optional;
 public class AdminRepositoryImp implements AdminRepository {
   private JpaAdminRepository jpaAdminRepository;
   private AdminMapper adminMapper;
+  private UserRepository userRepository;
+  private LocationRepository locationRepository;
   @PersistenceContext
   private EntityManager entityManager;
 
   @Override
   public Admin save(Admin admin) {
-    AdminEntity adminEntity = adminMapper.domainToEntity(admin, new CycleAvoidingMappingContext());
-    AdminEntity entitySaved =  jpaAdminRepository.save(adminEntity);
-    return adminMapper.entityToDomain(entitySaved, new CycleAvoidingMappingContext());
+    Admin adminSaved = adminMapper.userToAdmin(userRepository.save(admin));
+    Location location = locationRepository.assignEmplooyeLocation(admin.getManagedLocation().getId(),
+                                                                  adminSaved.getId());
+    adminSaved.setManagedLocation(location);
+
+    return adminSaved;
   }
 
   @Override
   public Optional<Admin> findById(Long id) {
-    Optional<AdminEntity> adminEntity = jpaAdminRepository.findById(id);
-
-    return adminEntity
-            .map(adm-> adminMapper.entityToDomain(adm, new CycleAvoidingMappingContext()));
+    Optional<User> userEntity = userRepository.findById(id);
+    if(userEntity.isPresent()){
+      Admin adminEntity = adminMapper.userToAdmin(userEntity.get());
+      Optional<Location> adminManagedLocation = locationRepository.findLocationByEmployeeId(adminEntity.getId());
+      adminManagedLocation.ifPresent(adminEntity::setManagedLocation);
+      return Optional.of(adminEntity);
+    }else{
+      return Optional.empty();
+    }
   }
 
   @Override

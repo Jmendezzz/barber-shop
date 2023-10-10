@@ -6,6 +6,10 @@ import barber.gerard.backend.infraestructure.entities.LocationEntity;
 import barber.gerard.backend.infraestructure.mapping.config.CycleAvoidingMappingContext;
 import barber.gerard.backend.infraestructure.mapping.location.LocationMapper;
 import barber.gerard.backend.infraestructure.ports.out.LocationRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -13,11 +17,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Transactional
 @AllArgsConstructor
 public class LocationRepositoryImp implements LocationRepository {
   private JpaLocationRepository jpaLocationRepository;
   private LocationMapper locationMapper;
-
+  @PersistenceContext
+  private EntityManager entityManager;
   @Override
   public Location save(Location location) {
     LocationEntity locationEntity = locationMapper.domainToEntity(location, new CycleAvoidingMappingContext());
@@ -56,4 +62,24 @@ public class LocationRepositoryImp implements LocationRepository {
     //TODO Return Location
     return null;
   }
+
+  @Override
+  public Location assignEmplooyeLocation(Long locationId,Long employeeId) {
+     entityManager.createNativeQuery("INSERT INTO employee_location (employee_id,location_id) VALUES(?,?)")
+                  .setParameter(1,employeeId)
+                  .setParameter(2, locationId)
+                  .executeUpdate();
+
+    //TODO return Location
+    return null;
+  }
+
+  @Override
+  public Optional<Location> findLocationByEmployeeId(Long employeeId) {
+    Long locationId = (long) entityManager.createNativeQuery("SELECT location_id FROM employee_location WHERE employee_id=?")
+            .setParameter(1,employeeId)
+            .executeUpdate();
+    return findById(locationId);
+  }
+
 }

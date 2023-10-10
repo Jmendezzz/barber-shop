@@ -3,6 +3,7 @@ package barber.gerard.backend.infraestructure.mapping.admin;
 
 import barber.gerard.backend.domain.enums.Role;
 import barber.gerard.backend.domain.models.Admin;
+import barber.gerard.backend.domain.models.User;
 import barber.gerard.backend.infraestructure.entities.AdminEntity;
 import barber.gerard.backend.infraestructure.mapping.config.CycleAvoidingMappingContext;
 import org.mapstruct.Context;
@@ -19,6 +20,7 @@ public interface AdminMapper {
                              @Context CycleAvoidingMappingContext cycleAvoidingMappingContext);
   List<Admin> entityListToDomainList(List<AdminEntity> admins,
                                      @Context CycleAvoidingMappingContext cycleAvoidingMappingContext);
+  Admin userToAdmin(User user);
 
   @Mapping(target = "password", source = "admin.nid")
   @Mapping(target = "role", expression = "java(setAdminRole())")
