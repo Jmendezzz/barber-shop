@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Where;
 
 import java.util.List;
 
@@ -24,8 +25,14 @@ public class LocationEntity {
   private String name;
   @Column(length = 200, nullable = false)
   private String description;
-  @OneToMany(mappedBy = "managedLocation",targetEntity = AdminEntity.class ,cascade = CascadeType.REMOVE)
-  private List<AdminEntity> admins;
+  @OneToMany
+  @JoinTable(
+          name = "employee_location", // Nombre de la tabla intermedia
+          joinColumns = @JoinColumn(name = "location_id"), // Clave foránea de LocationEntity
+          inverseJoinColumns = @JoinColumn(name = "employee_id") // Clave foránea de UserEntity
+  )
+  @Where(clause = "role = 'ADMIN'") // Filtrar por rol de ADMIN a los Users
+  private List<UserEntity> admins;
   @OneToOne(cascade = CascadeType.ALL)
   private AddressEntity address;
 }
