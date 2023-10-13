@@ -21,6 +21,8 @@ public interface AdminMapper {
   List<Admin> entityListToDomainList(List<AdminEntity> admins,
                                      @Context CycleAvoidingMappingContext cycleAvoidingMappingContext);
   Admin userToAdmin(User user);
+  List<Admin> userListToAdminList(List<User> users);
+  User adminToUser(Admin admin);
 
   @Mapping(target = "password", source = "admin.nid")
   @Mapping(target = "role", expression = "java(setAdminRole())")

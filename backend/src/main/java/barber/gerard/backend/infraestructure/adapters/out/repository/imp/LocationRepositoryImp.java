@@ -62,24 +62,38 @@ public class LocationRepositoryImp implements LocationRepository {
     //TODO Return Location
     return null;
   }
+  @Override
+  public Optional<Location> findLocationByEmployeeId(Long employeeId) {
+    Long locationId = (long) entityManager.createNativeQuery("SELECT location_id FROM employee_location WHERE employee_id=?")
+                                          .setParameter(1,employeeId)
+                                          .getSingleResult();
+    return findById(locationId);
+  }
 
   @Override
+  public void updateEmployeeLocation(Long employeeId, Long updatedLocationId) {
+    removeEmployeeLocation(employeeId);
+    assignEmplooyeLocation(updatedLocationId,employeeId);
+  }
+
+  @Override
+  public boolean removeEmployeeLocation(Long employeeId) {
+    //TODO: Transaction..
+    entityManager.createNativeQuery("DELETE FROM employee_location WHERE employee_id = ? ")
+            .setParameter(1,employeeId)
+            .executeUpdate();
+    return true;
+  }
+  @Override
   public Location assignEmplooyeLocation(Long locationId,Long employeeId) {
-     entityManager.createNativeQuery("INSERT INTO employee_location (employee_id,location_id) VALUES(?,?)")
-                  .setParameter(1,employeeId)
-                  .setParameter(2, locationId)
-                  .executeUpdate();
+    entityManager.createNativeQuery("INSERT INTO employee_location (employee_id,location_id) VALUES(?,?)")
+            .setParameter(1,employeeId)
+            .setParameter(2, locationId)
+            .executeUpdate();
 
     //TODO return Location
     return null;
   }
 
-  @Override
-  public Optional<Location> findLocationByEmployeeId(Long employeeId) {
-    Long locationId = (long) entityManager.createNativeQuery("SELECT location_id FROM employee_location WHERE employee_id=?")
-            .setParameter(1,employeeId)
-            .executeUpdate();
-    return findById(locationId);
-  }
 
 }

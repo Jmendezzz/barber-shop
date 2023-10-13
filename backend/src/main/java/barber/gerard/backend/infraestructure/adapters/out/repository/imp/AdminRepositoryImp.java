@@ -1,5 +1,6 @@
 package barber.gerard.backend.infraestructure.adapters.out.repository.imp;
 
+import barber.gerard.backend.domain.enums.Role;
 import barber.gerard.backend.domain.models.Admin;
 import barber.gerard.backend.domain.models.Location;
 import barber.gerard.backend.domain.models.User;
@@ -41,10 +42,10 @@ public class AdminRepositoryImp implements AdminRepository {
   public Optional<Admin> findById(Long id) {
     Optional<User> userEntity = userRepository.findById(id);
     if(userEntity.isPresent()){
-      Admin adminEntity = adminMapper.userToAdmin(userEntity.get());
-      Optional<Location> adminManagedLocation = locationRepository.findLocationByEmployeeId(adminEntity.getId());
-      adminManagedLocation.ifPresent(adminEntity::setManagedLocation);
-      return Optional.of(adminEntity);
+      Admin adminDomain = adminMapper.userToAdmin(userEntity.get());
+      adminDomain.setManagedLocation(getAdminLocation(adminDomain));
+
+      return Optional.of(adminDomain);
     }else{
       return Optional.empty();
     }
@@ -52,30 +53,45 @@ public class AdminRepositoryImp implements AdminRepository {
 
   @Override
   public List<Admin> findAll() {
-    return adminMapper.entityListToDomainList(jpaAdminRepository.findAll(), new CycleAvoidingMappingContext());
+    List<Admin> admins = adminMapper.userListToAdminList(userRepository.findByRole(Role.ADMIN));
+    admins.parallelStream()
+            .forEach(admin->admin.setManagedLocation(getAdminLocation(admin)));
+
+    return admins;
   }
 
   @Override
   public Optional<Admin> update(Admin adminUpdated) {
-    if(jpaAdminRepository.existsById(adminUpdated.getId())){
-      AdminEntity adminEntity = adminMapper.domainToEntity(adminUpdated, new CycleAvoidingMappingContext());
-      AdminEntity entityUpdated =  jpaAdminRepository.save(adminEntity);
-      return Optional.of(
-              adminMapper.entityToDomain(entityUpdated, new CycleAvoidingMappingContext())
-      );
+    if(userRepository.existsById(adminUpdated.getId())){
+      Optional<User> userUpdated = userRepository.update(adminMapper.adminToUser(adminUpdated));
+      updateAdminLocation(adminUpdated);
+
+      return userUpdated.map(u-> adminMapper.userToAdmin(u));
     }else {
       return Optional.empty();
     }
-
   }
 
   @Override
   public Admin deleteById(Long id) {
-    Optional<AdminEntity> admin =  jpaAdminRepository.findById(id);
+    Optional<AdminEntity> admin = jpaAdminRepository.findById(id);
     //TODO: Handle exception.
     return admin
             .map(adm -> adminMapper.entityToDomain(adm, new CycleAvoidingMappingContext()))
             .orElseThrow(()-> new RuntimeException());
 
+  }
+
+  private Location getAdminLocation(Admin admin){
+    Optional<Location> adminManagedLocation = locationRepository.findLocationByEmployeeId(admin.getId());
+    return adminManagedLocation.orElse(null);
+  }
+  private void updateAdminLocation(Admin admin){
+    if(admin.getManagedLocation() != null){
+      locationRepository.updateEmployeeLocation(admin.getId(),
+                                                admin.getManagedLocation().getId());
+    }else{
+      locationRepository.removeEmployeeLocation(admin.getId());
+    }
   }
 }

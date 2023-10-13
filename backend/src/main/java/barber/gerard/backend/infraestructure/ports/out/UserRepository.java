@@ -1,6 +1,6 @@
 package barber.gerard.backend.infraestructure.ports.out;
 
-import barber.gerard.backend.domain.models.Admin;
+import barber.gerard.backend.domain.enums.Role;
 import barber.gerard.backend.domain.models.User;
 import java.util.List;
 import java.util.Optional;
@@ -11,4 +11,7 @@ public interface UserRepository {
   List<User> findAll();
   Optional<User> update(User userUpdated);
   User deleteById(Long id);
+  List<User> findByRole(Role role);
+  boolean existsById(Long id);
+
 }

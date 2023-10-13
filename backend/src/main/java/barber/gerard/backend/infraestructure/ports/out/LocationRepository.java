@@ -12,4 +12,6 @@ public interface LocationRepository {
   Location deleteById(Long id);
   Location assignEmplooyeLocation(Long locationId,Long employeeId);
   Optional<Location> findLocationByEmployeeId(Long employeeId);
+  boolean removeEmployeeLocation(Long employeeId);
+  void updateEmployeeLocation(Long employeeId, Long updatedLocationId);
 }
