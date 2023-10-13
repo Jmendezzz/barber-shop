@@ -1,5 +1,6 @@
 package barber.gerard.backend.infraestructure.adapters.out.repository.imp;
 
+import barber.gerard.backend.domain.enums.Role;
 import barber.gerard.backend.domain.models.User;
 import barber.gerard.backend.infraestructure.adapters.out.repository.JpaUserRepository;
 import barber.gerard.backend.infraestructure.entities.UserEntity;
@@ -52,5 +53,15 @@ public class UserRepositoryImp implements UserRepository {
     jpaUserRepository.deleteById(id);
     //TODO: Return User Deleted
     return null;
+  }
+
+  @Override
+  public List<User> findByRole(Role role) {
+    return userMapper.entityListToDomainList(jpaUserRepository.findByRole(role));
+  }
+
+  @Override
+  public boolean existsById(Long id) {
+    return jpaUserRepository.existsById(id);
   }
 }
