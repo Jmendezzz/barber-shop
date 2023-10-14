@@ -41,9 +41,9 @@ public class AdminRepositoryImp implements AdminRepository {
 
   @Override
   public Optional<Admin> findById(Long id) {
-    Optional<User> userEntity = userRepository.findById(id);
-    if(userEntity.isPresent()){
-      Admin adminDomain = adminMapper.userToAdmin(userEntity.get());
+    Optional<User> user = userRepository.findById(id);
+    if(user.isPresent()){
+      Admin adminDomain = adminMapper.userToAdmin(user.get());
       adminDomain.setManagedLocation(getAdminLocation(adminDomain));
 
       return Optional.of(adminDomain);
