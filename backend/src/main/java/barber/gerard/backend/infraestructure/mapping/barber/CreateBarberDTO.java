@@ -11,8 +11,6 @@ public record CreateBarberDTO(
         String cellphoneNumber,
         LocalDate birthday,
         String email,
-        Location location,
-        int yearsExperience
-
+        Location location
 ) {
 }
