@@ -14,7 +14,5 @@ import java.util.List;
 @NoArgsConstructor
 public class Barber extends  User{
   private Location location;
-  private int yearsExperience;
-  private List<AppointmentReview> appointmentsHistory;
   private Double rating;
 }

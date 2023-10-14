@@ -8,6 +8,6 @@ public record UpdateBarberDTO(
         String lastName,
         String cellphoneNumber,
         String email,
-        Location managedLocation
+        Location location
 ) {
 }
