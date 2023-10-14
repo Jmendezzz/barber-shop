@@ -31,10 +31,11 @@ public class AdminRepositoryImp implements AdminRepository {
   @Override
   public Admin save(Admin admin) {
     Admin adminSaved = adminMapper.userToAdmin(userRepository.save(admin));
-    Location location = locationRepository.assignEmplooyeLocation(admin.getManagedLocation().getId(),
-                                                                  adminSaved.getId());
-    adminSaved.setManagedLocation(location);
-
+    if(admin.getManagedLocation() != null){
+      Location location = locationRepository.assignEmplooyeLocation(admin.getManagedLocation().getId(),
+              adminSaved.getId());
+      adminSaved.setManagedLocation(location);
+    }
     return adminSaved;
   }
 
@@ -74,12 +75,10 @@ public class AdminRepositoryImp implements AdminRepository {
 
   @Override
   public Admin deleteById(Long id) {
-    Optional<AdminEntity> admin = jpaAdminRepository.findById(id);
-    //TODO: Handle exception.
-    return admin
-            .map(adm -> adminMapper.entityToDomain(adm, new CycleAvoidingMappingContext()))
-            .orElseThrow(()-> new RuntimeException());
-
+    locationRepository.removeEmployeeLocation(id);
+    userRepository.deleteById(id);
+    //TODO: Return admin.
+    return null;
   }
 
   private Location getAdminLocation(Admin admin){

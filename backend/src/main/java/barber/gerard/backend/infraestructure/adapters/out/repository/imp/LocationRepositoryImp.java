@@ -7,6 +7,7 @@ import barber.gerard.backend.infraestructure.mapping.config.CycleAvoidingMapping
 import barber.gerard.backend.infraestructure.mapping.location.LocationMapper;
 import barber.gerard.backend.infraestructure.ports.out.LocationRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
@@ -64,10 +65,14 @@ public class LocationRepositoryImp implements LocationRepository {
   }
   @Override
   public Optional<Location> findLocationByEmployeeId(Long employeeId) {
-    Long locationId = (long) entityManager.createNativeQuery("SELECT location_id FROM employee_location WHERE employee_id=?")
-                                          .setParameter(1,employeeId)
-                                          .getSingleResult();
-    return findById(locationId);
+    try{
+      Long locationId = (long) entityManager.createNativeQuery("SELECT location_id FROM employee_location WHERE employee_id=?")
+              .setParameter(1,employeeId)
+              .getSingleResult();
+      return findById(locationId);
+    }catch (NoResultException ex){
+      return Optional.empty();
+    }
   }
 
   @Override
