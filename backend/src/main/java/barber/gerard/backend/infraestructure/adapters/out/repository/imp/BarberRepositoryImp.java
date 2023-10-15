@@ -1,12 +1,10 @@
 package barber.gerard.backend.infraestructure.adapters.out.repository.imp;
 
 import barber.gerard.backend.domain.enums.Role;
-import barber.gerard.backend.domain.models.Admin;
 import barber.gerard.backend.domain.models.Barber;
 import barber.gerard.backend.domain.models.Location;
 import barber.gerard.backend.domain.models.User;
 import barber.gerard.backend.infraestructure.adapters.out.repository.JpaBarberRepository;
-import barber.gerard.backend.infraestructure.entities.BarberEntity;
 import barber.gerard.backend.infraestructure.mapping.barber.BarberMapper;
 import barber.gerard.backend.infraestructure.ports.out.BarberRepository;
 import barber.gerard.backend.infraestructure.ports.out.LocationRepository;
@@ -17,8 +15,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
-
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
