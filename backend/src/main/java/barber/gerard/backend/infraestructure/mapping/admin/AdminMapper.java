@@ -14,12 +14,6 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface AdminMapper {
-  Admin entityToDomain(AdminEntity admin,
-                       @Context CycleAvoidingMappingContext cycleAvoidingMappingContext);
-  AdminEntity domainToEntity(Admin admin,
-                             @Context CycleAvoidingMappingContext cycleAvoidingMappingContext);
-  List<Admin> entityListToDomainList(List<AdminEntity> admins,
-                                     @Context CycleAvoidingMappingContext cycleAvoidingMappingContext);
   Admin userToAdmin(User user);
   List<Admin> userListToAdminList(List<User> users);
   User adminToUser(Admin admin);

@@ -20,7 +20,7 @@ public class AppointmentEntity {
   @Id
   private Long id;
   @ManyToOne
-  private BarberEntity barber;
+  private UserEntity barber;
   @ManyToOne
   private CutServiceEntity cutService;
   @ManyToOne

@@ -3,16 +3,12 @@ package barber.gerard.backend.infraestructure.mapping.barber;
 import barber.gerard.backend.domain.enums.Role;
 import barber.gerard.backend.domain.models.Barber;
 import barber.gerard.backend.domain.models.User;
-import barber.gerard.backend.infraestructure.entities.BarberEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface BarberMapper {
-    Barber entityToDomain(BarberEntity barber);
-    List<Barber> entityListToDomainList(List<BarberEntity> barbers);
-    BarberEntity domainToEntity(Barber barber);
     Barber userToBarber(User user);
     User barberToUser(Barber barber);
     List<Barber> usertListToBarberList(List<User> users);
