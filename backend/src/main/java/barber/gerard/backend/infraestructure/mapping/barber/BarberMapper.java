@@ -14,11 +14,13 @@ public interface BarberMapper {
     List<Barber> entityListToDomainList(List<BarberEntity> barbers);
     BarberEntity domainToEntity(Barber barber);
     Barber userToBarber(User user);
+    User barberToUser(Barber barber);
     List<Barber> usertListToBarberList(List<User> users);
     @Mapping(target = "password", source = "barber.nid")
     @Mapping(target = "role", expression = "java(setBarberRole())")
     @Mapping(target = "rating", expression = "java(setDefaultRating())")
     Barber createBarberDTOToDomain(CreateBarberDTO barber);
+    @Mapping(target = "role", expression = "java(setBarberRole())")
     Barber updateBarberDTOToDomain(UpdateBarberDTO barber);
     PublicBarberInfoDTO domainToPublicBarberInfoDTO(Barber barber);
     List<PublicBarberInfoDTO> domainListToPublicBarberInfoDTOList(List<Barber> barbers);

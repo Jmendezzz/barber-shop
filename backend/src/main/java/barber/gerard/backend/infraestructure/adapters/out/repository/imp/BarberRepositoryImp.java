@@ -12,6 +12,7 @@ import barber.gerard.backend.infraestructure.ports.out.BarberRepository;
 import barber.gerard.backend.infraestructure.ports.out.LocationRepository;
 import barber.gerard.backend.infraestructure.ports.out.UserRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -72,10 +73,17 @@ public class BarberRepositoryImp implements BarberRepository {
 
     @Override
     public Optional<Barber> update(Barber barberUpdated) {
-        if (jpaBarberRepository.existsById(barberUpdated.getId())){
-            BarberEntity barberEntity = barberMapper.domainToEntity(barberUpdated);
-            BarberEntity entityUpdated = jpaBarberRepository.save(barberEntity);
-            return Optional.of(barberMapper.entityToDomain(entityUpdated));
+        if (userRepository.existsById(barberUpdated.getId())){
+            Barber barber = userRepository.update(barberMapper.userToBarber(barberUpdated))
+                                        .map(u->barberMapper.userToBarber(u))
+                                        .get();
+            updateBarberLocation(barberUpdated);
+            updateBarberRating(barberUpdated);
+
+            barber.setLocation(getBarberLocation(barber));
+            barber.setRating(getBarberRating(barber.getId()));
+
+            return Optional.of(barber);
         }else{
             return Optional.empty();
         }
@@ -83,25 +91,50 @@ public class BarberRepositoryImp implements BarberRepository {
 
     @Override
     public Barber deleteById(Long id) {
-        Optional<BarberEntity> barber = jpaBarberRepository.findById(id);
-        return barber.map(barb -> barberMapper.entityToDomain(barb))
-                .orElseThrow(() -> new RuntimeException());
+        locationRepository.removeEmployeeLocation(id);
+        deleteBarberRating(id);
+        userRepository.deleteById(id);
+
+        //TODO: Return Barber.
+        return null;
     }
 
+    private void updateBarberLocation(Barber barber){
+        if(barber.getLocation() != null){
+            locationRepository.updateEmployeeLocation(barber.getId(),barber.getLocation().getId());
+        }else {
+            locationRepository.removeEmployeeLocation(barber.getId());
+        }
+    }
     private void saveBarberRating(Barber barber){
         entityManager.createNativeQuery("INSERT INTO barber_rating(barber_id,rating) VALUES(?,?)")
-                     .setParameter(1,barber.getId())
-                     .setParameter(2,barber.getRating())
-                     .executeUpdate();
+                                         .setParameter(1,barber.getId())
+                                         .setParameter(2,barber.getRating())
+                                         .executeUpdate();
     }
+    private void deleteBarberRating(Long barberId){
+        entityManager.createNativeQuery("DELETE FROM barber_rating WHERE barber_id = ?")
+                                        .setParameter(1,barberId)
+                                        .executeUpdate();
+    }
+    private void updateBarberRating(Barber barber){
+        deleteBarberRating(barber.getId());
+        saveBarberRating(barber);
+    }
+
     private Location getBarberLocation(Barber barber){
         Optional<Location> adminManagedLocation = locationRepository.findLocationByEmployeeId(barber.getId());
         return adminManagedLocation.orElse(null);
     }
 
     private Double getBarberRating(Long barberId){
-        return (Double) entityManager.createNativeQuery("SELECT rating FROM barber_rating WHERE barber_id = ?")
-                                     .setParameter(1,barberId)
-                                     .getSingleResult();
+        try {
+            return (Double) entityManager.createNativeQuery("SELECT rating FROM barber_rating WHERE barber_id = ?")
+                    .setParameter(1,barberId)
+                    .getSingleResult();
+        }catch (NoResultException ex){
+            return null;
+        }
+
     }
 }

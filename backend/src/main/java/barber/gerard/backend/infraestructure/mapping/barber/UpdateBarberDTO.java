@@ -1,13 +1,18 @@
 package barber.gerard.backend.infraestructure.mapping.barber;
+import barber.gerard.backend.infraestructure.mapping.location.LocationDTO;
 
-import barber.gerard.backend.domain.models.Location;
+import java.time.LocalDate;
 
 public record UpdateBarberDTO(
         Long id,
         String firstName,
         String lastName,
+        String nid,
         String cellphoneNumber,
+        LocalDate birthday,
         String email,
-        Location location
+        String password,
+        Double rating,
+        LocationDTO location
 ) {
 }
