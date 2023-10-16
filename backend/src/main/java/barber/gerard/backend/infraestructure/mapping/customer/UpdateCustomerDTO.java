@@ -10,6 +10,7 @@ public record UpdateCustomerDTO(
         String cellphoneNumber,
         LocalDate birthday,
         String email,
-        String password
+        String password,
+        Integer points
 ) {
 }

@@ -1,7 +1,5 @@
 package barber.gerard.backend.infraestructure.mapping.customer;
 
-import barber.gerard.backend.domain.models.Location;
-
 import java.time.LocalDate;
 
 public record CreateCustomerDTO(
@@ -10,6 +8,5 @@ public record CreateCustomerDTO(
         String nid,
         String cellphoneNumber,
         LocalDate birthday,
-        String email,
-        Integer points
+        String email
 ){}

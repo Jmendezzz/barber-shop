@@ -7,6 +7,7 @@ public record PublicCustomerInfoDTO(
         String firstName,
         String lastName,
         String cellphoneNumber,
-        LocalDate birthday
+        LocalDate birthday,
+        Integer points
 ) {
 }
