@@ -4,7 +4,6 @@ import barber.gerard.backend.domain.enums.Role;
 import barber.gerard.backend.domain.models.Barber;
 import barber.gerard.backend.domain.models.Location;
 import barber.gerard.backend.domain.models.User;
-import barber.gerard.backend.infraestructure.adapters.out.repository.JpaBarberRepository;
 import barber.gerard.backend.infraestructure.mapping.barber.BarberMapper;
 import barber.gerard.backend.infraestructure.ports.out.BarberRepository;
 import barber.gerard.backend.infraestructure.ports.out.LocationRepository;
@@ -22,7 +21,6 @@ import java.util.Optional;
 @Transactional
 @AllArgsConstructor
 public class BarberRepositoryImp implements BarberRepository {
-    private JpaBarberRepository jpaBarberRepository;
     private BarberMapper barberMapper;
     private UserRepository userRepository;
     private LocationRepository locationRepository;

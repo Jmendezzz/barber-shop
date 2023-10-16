@@ -3,8 +3,6 @@ package barber.gerard.backend.infraestructure.adapters.out.repository.imp;
 import barber.gerard.backend.domain.enums.Role;
 import barber.gerard.backend.domain.models.Customer;
 import barber.gerard.backend.domain.models.User;
-import barber.gerard.backend.infraestructure.adapters.out.repository.JpaCustomerRepository;
-import barber.gerard.backend.infraestructure.entities.CustomerEntity;
 import barber.gerard.backend.infraestructure.mapping.customer.CustomerMapper;
 import barber.gerard.backend.infraestructure.ports.out.CustomerRepository;
 import barber.gerard.backend.infraestructure.ports.out.UserRepository;
@@ -21,7 +19,6 @@ import java.util.Optional;
 @Transactional
 @AllArgsConstructor
 public class CustomerRepositoryImp implements CustomerRepository {
-    private JpaCustomerRepository jpaCustomerRepository;
     private CustomerMapper customerMapper;
     private UserRepository userRepository;
     @PersistenceContext
