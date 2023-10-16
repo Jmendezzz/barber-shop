@@ -9,7 +9,6 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "customer_points")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
