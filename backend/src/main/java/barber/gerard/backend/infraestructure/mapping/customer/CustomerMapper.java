@@ -3,7 +3,6 @@ package barber.gerard.backend.infraestructure.mapping.customer;
 import barber.gerard.backend.domain.enums.Role;
 import barber.gerard.backend.domain.models.Customer;
 import barber.gerard.backend.domain.models.User;
-import barber.gerard.backend.infraestructure.entities.CustomerEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
