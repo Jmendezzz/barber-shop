@@ -4,7 +4,7 @@ import barber.gerard.backend.domain.enums.Role;
 import barber.gerard.backend.domain.models.Barber;
 import barber.gerard.backend.domain.models.Location;
 import barber.gerard.backend.domain.models.User;
-import barber.gerard.backend.infraestructure.mapping.barber.BarberMapper;
+import barber.gerard.backend.infraestructure.commons.mapping.barber.BarberMapper;
 import barber.gerard.backend.infraestructure.ports.out.BarberRepository;
 import barber.gerard.backend.infraestructure.ports.out.LocationRepository;
 import barber.gerard.backend.infraestructure.ports.out.UserRepository;

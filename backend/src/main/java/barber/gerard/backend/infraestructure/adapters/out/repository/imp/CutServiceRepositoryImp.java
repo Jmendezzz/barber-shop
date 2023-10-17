@@ -2,10 +2,8 @@ package barber.gerard.backend.infraestructure.adapters.out.repository.imp;
 
 import barber.gerard.backend.domain.models.CutService;
 import barber.gerard.backend.infraestructure.adapters.out.repository.JpaCutServiceRepository;
-import barber.gerard.backend.infraestructure.entities.AdminEntity;
 import barber.gerard.backend.infraestructure.entities.CutServiceEntity;
-import barber.gerard.backend.infraestructure.entities.LocationEntity;
-import barber.gerard.backend.infraestructure.mapping.cutService.CutServiceMapper;
+import barber.gerard.backend.infraestructure.commons.mapping.cutService.CutServiceMapper;
 import barber.gerard.backend.infraestructure.ports.out.CutServiceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;

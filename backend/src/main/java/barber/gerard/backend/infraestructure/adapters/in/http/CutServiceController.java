@@ -1,12 +1,9 @@
 package barber.gerard.backend.infraestructure.adapters.in.http;
 
 import barber.gerard.backend.domain.models.CutService;
-import barber.gerard.backend.domain.models.Location;
-import barber.gerard.backend.infraestructure.mapping.cutService.CreateCutServiceDTO;
-import barber.gerard.backend.infraestructure.mapping.cutService.CutServiceMapper;
-import barber.gerard.backend.infraestructure.mapping.cutService.UpdateCutServiceDTO;
-import barber.gerard.backend.infraestructure.mapping.location.CreateLocationDTO;
-import barber.gerard.backend.infraestructure.mapping.location.UpdateLocationDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.cutService.CreateCutServiceDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.cutService.CutServiceMapper;
+import barber.gerard.backend.infraestructure.commons.mapping.cutService.UpdateCutServiceDTO;
 import barber.gerard.backend.infraestructure.ports.in.CutServiceInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

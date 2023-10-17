@@ -1,10 +1,10 @@
 package barber.gerard.backend.infraestructure.adapters.in.http;
 
 import barber.gerard.backend.domain.models.Location;
-import barber.gerard.backend.infraestructure.mapping.location.CreateLocationDTO;
-import barber.gerard.backend.infraestructure.mapping.location.LocationDTO;
-import barber.gerard.backend.infraestructure.mapping.location.LocationMapper;
-import barber.gerard.backend.infraestructure.mapping.location.UpdateLocationDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.location.CreateLocationDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.location.LocationDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.location.LocationMapper;
+import barber.gerard.backend.infraestructure.commons.mapping.location.UpdateLocationDTO;
 import barber.gerard.backend.infraestructure.ports.in.LocationInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

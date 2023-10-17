@@ -1,10 +1,11 @@
 package barber.gerard.backend.infraestructure.adapters.in.http;
 
 import barber.gerard.backend.domain.models.Admin;
-import barber.gerard.backend.infraestructure.mapping.admin.AdminMapper;
-import barber.gerard.backend.infraestructure.mapping.admin.CreateAdminDTO;
-import barber.gerard.backend.infraestructure.mapping.admin.PublicAdminInfoDTO;
-import barber.gerard.backend.infraestructure.mapping.admin.UpdateAdminDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.admin.AdminMapper;
+import barber.gerard.backend.infraestructure.commons.mapping.admin.CreateAdminDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.admin.PublicAdminInfoDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.admin.UpdateAdminDTO;
+import barber.gerard.backend.infraestructure.commons.validator.ObjectValidator;
 import barber.gerard.backend.infraestructure.ports.in.AdminInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,11 @@ import java.util.Optional;
 public class AdminController {
   private AdminInputPort adminInputPort;
   private AdminMapper adminMapper;
+  private ObjectValidator objectValidator;
 
   @PostMapping("/create")
   public ResponseEntity<PublicAdminInfoDTO> createAdmin(@RequestBody CreateAdminDTO createAdminDTO){
+    objectValidator.validate(createAdminDTO);
     Admin adminDomain = adminMapper.createAdminDTOToDomain(createAdminDTO);
     Admin adminCreated = adminInputPort.createAdmin(adminDomain);
 
