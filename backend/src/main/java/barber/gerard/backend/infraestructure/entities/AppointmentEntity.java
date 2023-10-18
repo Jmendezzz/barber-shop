@@ -26,6 +26,7 @@ public class AppointmentEntity {
   @ManyToOne
   private UserEntity customer;
   private LocalDateTime date;
+  @Enumerated(EnumType.STRING)
   private Status status;
 
 }
