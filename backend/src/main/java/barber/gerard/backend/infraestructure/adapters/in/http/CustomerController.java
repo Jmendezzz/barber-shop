@@ -1,10 +1,10 @@
 package barber.gerard.backend.infraestructure.adapters.in.http;
 
 import barber.gerard.backend.domain.models.Customer;
-import barber.gerard.backend.infraestructure.mapping.customer.CreateCustomerDTO;
-import barber.gerard.backend.infraestructure.mapping.customer.CustomerMapper;
-import barber.gerard.backend.infraestructure.mapping.customer.PublicCustomerInfoDTO;
-import barber.gerard.backend.infraestructure.mapping.customer.UpdateCustomerDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.customer.CreateCustomerDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.customer.CustomerMapper;
+import barber.gerard.backend.infraestructure.commons.mapping.customer.PublicCustomerInfoDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.customer.UpdateCustomerDTO;
 import barber.gerard.backend.infraestructure.ports.in.CustomerInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -3,7 +3,7 @@ package barber.gerard.backend.infraestructure.adapters.out.repository.imp;
 import barber.gerard.backend.domain.enums.Role;
 import barber.gerard.backend.domain.models.Customer;
 import barber.gerard.backend.domain.models.User;
-import barber.gerard.backend.infraestructure.mapping.customer.CustomerMapper;
+import barber.gerard.backend.infraestructure.commons.mapping.customer.CustomerMapper;
 import barber.gerard.backend.infraestructure.ports.out.CustomerRepository;
 import barber.gerard.backend.infraestructure.ports.out.UserRepository;
 import jakarta.persistence.EntityManager;

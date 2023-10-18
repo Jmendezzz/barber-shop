@@ -1,10 +1,10 @@
 package barber.gerard.backend.infraestructure.adapters.in.http;
 
 import barber.gerard.backend.domain.models.Barber;
-import barber.gerard.backend.infraestructure.mapping.barber.BarberMapper;
-import barber.gerard.backend.infraestructure.mapping.barber.CreateBarberDTO;
-import barber.gerard.backend.infraestructure.mapping.barber.PublicBarberInfoDTO;
-import barber.gerard.backend.infraestructure.mapping.barber.UpdateBarberDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.barber.BarberMapper;
+import barber.gerard.backend.infraestructure.commons.mapping.barber.CreateBarberDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.barber.PublicBarberInfoDTO;
+import barber.gerard.backend.infraestructure.commons.mapping.barber.UpdateBarberDTO;
 import barber.gerard.backend.infraestructure.ports.in.BarberInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

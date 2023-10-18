@@ -5,7 +5,7 @@ import barber.gerard.backend.domain.models.Admin;
 import barber.gerard.backend.domain.models.Location;
 import barber.gerard.backend.domain.models.User;
 import barber.gerard.backend.infraestructure.adapters.out.repository.JpaAdminRepository;
-import barber.gerard.backend.infraestructure.mapping.admin.AdminMapper;
+import barber.gerard.backend.infraestructure.commons.mapping.admin.AdminMapper;
 import barber.gerard.backend.infraestructure.ports.out.AdminRepository;
 import barber.gerard.backend.infraestructure.ports.out.LocationRepository;
 import barber.gerard.backend.infraestructure.ports.out.UserRepository;
