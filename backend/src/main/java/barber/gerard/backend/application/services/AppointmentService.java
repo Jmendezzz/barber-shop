@@ -5,7 +5,6 @@ import barber.gerard.backend.infraestructure.ports.in.AppointmentInputPort;
 import barber.gerard.backend.infraestructure.ports.out.AppointmentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
