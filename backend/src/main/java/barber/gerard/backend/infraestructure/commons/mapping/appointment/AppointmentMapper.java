@@ -20,4 +20,6 @@ public interface AppointmentMapper {
   default Status setBookedStatus(){
     return Status.BOOKED;
   }
+
+  Appointment updateAppointmentDTOToDomain(UpdateAppointmentDTO updateAppointmentDTO);
 }
