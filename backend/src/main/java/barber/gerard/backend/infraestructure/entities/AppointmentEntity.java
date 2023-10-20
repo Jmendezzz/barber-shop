@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @Setter
 public class AppointmentEntity {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @ManyToOne
   private UserEntity barber;

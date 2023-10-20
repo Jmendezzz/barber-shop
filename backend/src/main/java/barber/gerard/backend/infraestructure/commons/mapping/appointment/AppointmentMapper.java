@@ -16,10 +16,12 @@ public interface AppointmentMapper {
 
   @Mapping(target = "status", expression = "java(setBookedStatus())")
   Appointment createAppointmentDTOToDomain(CreateAppointmentDTO createAppointmentDTO);
-
+  Appointment updateAppointmentDTOToDomain(UpdateAppointmentDTO updateAppointmentDTO);
+  Appointment appointmentDTOToDomain(AppointmentDTO appointmentDTO);
+  AppointmentDTO domainToAppointmentDTO(Appointment appointment);
+  List<AppointmentDTO> domainListToAppointmentDTOList(List<Appointment> appointments);
   default Status setBookedStatus(){
     return Status.BOOKED;
   }
 
-  Appointment updateAppointmentDTOToDomain(UpdateAppointmentDTO updateAppointmentDTO);
 }
