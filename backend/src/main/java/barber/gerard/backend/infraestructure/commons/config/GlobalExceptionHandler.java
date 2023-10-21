@@ -1,6 +1,7 @@
 package barber.gerard.backend.infraestructure.commons.config;
 
 import barber.gerard.backend.infraestructure.commons.exceptions.ExceptionResponse;
+import barber.gerard.backend.infraestructure.commons.exceptions.LocationException;
 import barber.gerard.backend.infraestructure.commons.exceptions.ObjectNotValidException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,6 +20,15 @@ public class GlobalExceptionHandler  {
     exceptionResponse.setTimestamp(LocalDateTime.now());
 
     return ResponseEntity.badRequest().body(exceptionResponse);
+  }
+
+  @ExceptionHandler(LocationException.class)
+  public ResponseEntity<ExceptionResponse> handleLocationException(LocationException exception){
+    ExceptionResponse exceptionResponse = new ExceptionResponse();
+    exceptionResponse.setMessage(exception.getMessage());
+    exceptionResponse.setTimestamp(LocalDateTime.now());
+
+    return ResponseEntity.status(exception.getHttpStatus()).body(exceptionResponse);
   }
 
 

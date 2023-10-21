@@ -1,6 +1,8 @@
 package barber.gerard.backend.infraestructure.adapters.in.http;
 
 import barber.gerard.backend.domain.models.Location;
+import barber.gerard.backend.infraestructure.commons.exceptions.LocationException;
+import barber.gerard.backend.infraestructure.commons.exceptions.messages.LocationExceptionMessage;
 import barber.gerard.backend.infraestructure.commons.mapping.location.CreateLocationDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.location.LocationDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.location.LocationMapper;
@@ -48,7 +50,7 @@ public class LocationController {
             .map(loc -> new ResponseEntity<>(
                           locationMapper.entityToDTO(loc),
                           HttpStatus.OK))
-            .orElseThrow(()-> new RuntimeException("No se encontró la sede"));
+            .orElseThrow(()-> new LocationException(LocationExceptionMessage.LOCATION_NOT_FOUND, HttpStatus.NOT_FOUND));
 
   }
 
@@ -60,7 +62,7 @@ public class LocationController {
             .map(loc -> new ResponseEntity<>(
                           locationMapper.entityToDTO(loc),
                           HttpStatus.OK))
-            .orElseThrow(()-> new RuntimeException("No se encontró la sede"));
+            .orElseThrow(()-> new LocationException(LocationExceptionMessage.LOCATION_NOT_FOUND, HttpStatus.NOT_FOUND));
   }
 
   @DeleteMapping("/delete/{id}")
