@@ -1,6 +1,8 @@
 package barber.gerard.backend.infraestructure.commons.validator.messages;
 
-public class AdminValidatorMessage {
+public class UserValidatorMessage {
+  public static final String ID_NOT_NULL = "El ID es obligatorio.";
+
   public static final String NAME_NOT_NULL = "El nombre es obligatorio.";
   public static final String NAME_SIZE = "El nombre debe tener entre 3 y 50 caracteres.";
 
@@ -18,4 +20,7 @@ public class AdminValidatorMessage {
 
   public static final String EMAIL_NOT_NULL = "El email es obligatorio.";
   public static final String EMAIL_NOT_VALID = "El email no es válido.";
+
+  public static final String PASSWORD_NOT_NULL = "La contraseña es obligatoria.";
+  public static final String PASSWORD_SIZE = "La contraseña debe tener entre 8 y 50 caracteres.";
 }

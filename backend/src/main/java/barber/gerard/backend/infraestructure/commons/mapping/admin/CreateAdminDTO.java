@@ -4,10 +4,9 @@ import barber.gerard.backend.infraestructure.commons.mapping.location.LocationDT
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 
-import static barber.gerard.backend.infraestructure.commons.validator.messages.AdminValidatorMessage.*;
+import static barber.gerard.backend.infraestructure.commons.validator.messages.UserValidatorMessage.*;
 
 public record CreateAdminDTO(
-
         @NotBlank(message = NAME_NOT_NULL)
         @Size(min = 3, max = 50, message = NAME_SIZE)
         String firstName,
@@ -27,6 +26,5 @@ public record CreateAdminDTO(
         @Email(message = EMAIL_NOT_VALID)
         String email,
         LocationDTO managedLocation
-
 ) {
 }
