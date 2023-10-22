@@ -1,5 +1,6 @@
 package barber.gerard.backend.infraestructure.commons.config;
 
+import barber.gerard.backend.infraestructure.commons.exceptions.CustomHttpException;
 import barber.gerard.backend.infraestructure.commons.exceptions.ExceptionResponse;
 import barber.gerard.backend.infraestructure.commons.exceptions.LocationException;
 import barber.gerard.backend.infraestructure.commons.exceptions.ObjectNotValidException;
@@ -22,7 +23,7 @@ public class GlobalExceptionHandler  {
     return ResponseEntity.badRequest().body(exceptionResponse);
   }
 
-  @ExceptionHandler(LocationException.class)
+  @ExceptionHandler(CustomHttpException.class)
   public ResponseEntity<ExceptionResponse> handleLocationException(LocationException exception){
     ExceptionResponse exceptionResponse = new ExceptionResponse();
     exceptionResponse.setMessage(exception.getMessage());
@@ -30,6 +31,4 @@ public class GlobalExceptionHandler  {
 
     return ResponseEntity.status(exception.getHttpStatus()).body(exceptionResponse);
   }
-
-
 }
