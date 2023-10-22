@@ -1,6 +1,7 @@
 package barber.gerard.backend.infraestructure.adapters.in.http;
 
 import barber.gerard.backend.domain.models.Barber;
+import barber.gerard.backend.infraestructure.commons.exceptions.BarberException;
 import barber.gerard.backend.infraestructure.commons.mapping.barber.BarberMapper;
 import barber.gerard.backend.infraestructure.commons.mapping.barber.CreateBarberDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.barber.PublicBarberInfoDTO;
@@ -11,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+
+import static barber.gerard.backend.infraestructure.commons.exceptions.messages.BarberExceptionMessage.BARBER_NOT_FOUND;
 
 @RestController
 @AllArgsConstructor
@@ -42,7 +45,7 @@ public class BarberController {
                 .map(barber -> new ResponseEntity<>(
                         barberMapper.domainToPublicBarberInfoDTO(barber),
                         HttpStatus.OK))
-                .orElseThrow(()-> new RuntimeException("No se encontró el BARBER"));
+                .orElseThrow(()-> new BarberException(BARBER_NOT_FOUND, HttpStatus.NOT_FOUND));
     }
 
     @PutMapping("/update")
@@ -52,7 +55,7 @@ public class BarberController {
                 .map(barber -> new ResponseEntity<>(
                         barberMapper.domainToPublicBarberInfoDTO(barber),
                         HttpStatus.OK))
-                .orElseThrow(()-> new RuntimeException("No se encontró el BARBER"));
+                .orElseThrow(()-> new BarberException(BARBER_NOT_FOUND, HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/delete/{id}")

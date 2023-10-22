@@ -1,6 +1,7 @@
 package barber.gerard.backend.infraestructure.adapters.in.http;
 
 import barber.gerard.backend.domain.models.Appointment;
+import barber.gerard.backend.infraestructure.commons.exceptions.AppointmentException;
 import barber.gerard.backend.infraestructure.commons.mapping.appointment.AppointmentDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.appointment.AppointmentMapper;
 import barber.gerard.backend.infraestructure.commons.mapping.appointment.CreateAppointmentDTO;
@@ -12,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
+
+import static barber.gerard.backend.infraestructure.commons.exceptions.messages.AppointmentExceptionMessage.APPOINTMENT_NOT_FOUND;
 
 @RestController
 @AllArgsConstructor
@@ -48,7 +51,7 @@ public class AppointmentController {
     return appointment.map(app -> new ResponseEntity<>(
                                     appointmentMapper.domainToAppointmentDTO(app),
                                     HttpStatus.OK))
-            .orElseThrow(()-> new RuntimeException("No se encontró el APPOINTMENT"));
+            .orElseThrow(()-> new AppointmentException(APPOINTMENT_NOT_FOUND,HttpStatus.NOT_FOUND));
   }
   @PutMapping("/update")
   public ResponseEntity<AppointmentDTO> updateAppointment(@RequestBody UpdateAppointmentDTO updateAppointmentDTO){
@@ -58,7 +61,7 @@ public class AppointmentController {
     return appointment.map(app-> new ResponseEntity<>(
                                     appointmentMapper.domainToAppointmentDTO(app),
                                     HttpStatus.OK))
-            .orElseThrow(()-> new RuntimeException("No se encontró el APPOINTMENT"));
+            .orElseThrow(()-> new AppointmentException(APPOINTMENT_NOT_FOUND,HttpStatus.NOT_FOUND));
   }
 
   @DeleteMapping("delete/{id}")

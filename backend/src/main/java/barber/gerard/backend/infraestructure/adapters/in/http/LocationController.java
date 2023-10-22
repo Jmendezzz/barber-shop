@@ -2,7 +2,6 @@ package barber.gerard.backend.infraestructure.adapters.in.http;
 
 import barber.gerard.backend.domain.models.Location;
 import barber.gerard.backend.infraestructure.commons.exceptions.LocationException;
-import barber.gerard.backend.infraestructure.commons.exceptions.messages.LocationExceptionMessage;
 import barber.gerard.backend.infraestructure.commons.mapping.location.CreateLocationDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.location.LocationDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.location.LocationMapper;
@@ -14,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
+
+import static barber.gerard.backend.infraestructure.commons.exceptions.messages.LocationExceptionMessage.LOCATION_NOT_FOUND;
 
 @AllArgsConstructor
 @RestController
@@ -50,7 +51,7 @@ public class LocationController {
             .map(loc -> new ResponseEntity<>(
                           locationMapper.entityToDTO(loc),
                           HttpStatus.OK))
-            .orElseThrow(()-> new LocationException(LocationExceptionMessage.LOCATION_NOT_FOUND, HttpStatus.NOT_FOUND));
+            .orElseThrow(()-> new LocationException(LOCATION_NOT_FOUND, HttpStatus.NOT_FOUND));
 
   }
 
@@ -62,7 +63,7 @@ public class LocationController {
             .map(loc -> new ResponseEntity<>(
                           locationMapper.entityToDTO(loc),
                           HttpStatus.OK))
-            .orElseThrow(()-> new LocationException(LocationExceptionMessage.LOCATION_NOT_FOUND, HttpStatus.NOT_FOUND));
+            .orElseThrow(()-> new LocationException(LOCATION_NOT_FOUND, HttpStatus.NOT_FOUND));
   }
 
   @DeleteMapping("/delete/{id}")
