@@ -58,6 +58,8 @@ public class AdminController {
 
   @PutMapping("/update")
   public ResponseEntity<PublicAdminInfoDTO> updateAdmin(@RequestBody UpdateAdminDTO updateAdminDTO){
+    objectValidator.validate(updateAdminDTO);
+
     Admin adminDomainUpdated = adminMapper.updateAdminDTOToDomain(updateAdminDTO);
     Optional<Admin> adminUpdated = adminInputPort.updateAdmin(adminDomainUpdated);
 

@@ -6,6 +6,7 @@ import barber.gerard.backend.infraestructure.commons.mapping.barber.BarberMapper
 import barber.gerard.backend.infraestructure.commons.mapping.barber.CreateBarberDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.barber.PublicBarberInfoDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.barber.UpdateBarberDTO;
+import barber.gerard.backend.infraestructure.commons.validator.ObjectValidator;
 import barber.gerard.backend.infraestructure.ports.in.BarberInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,11 +22,15 @@ import static barber.gerard.backend.infraestructure.commons.exceptions.messages.
 public class BarberController {
     private BarberInputPort barberInputPort;
     private BarberMapper barberMapper;
+    private ObjectValidator objectValidator;
 
     @PostMapping("/create")
     public ResponseEntity<PublicBarberInfoDTO> createBarber(@RequestBody CreateBarberDTO createBarberDTO){
+        objectValidator.validate(createBarberDTO);
+
         Barber barberDomain = barberMapper.createBarberDTOToDomain(createBarberDTO);
         Barber barberCreated = barberInputPort.createBarber(barberDomain);
+
         return new ResponseEntity<>(
                 barberMapper.domainToPublicBarberInfoDTO(barberCreated),
                 HttpStatus.CREATED);
@@ -50,7 +55,10 @@ public class BarberController {
 
     @PutMapping("/update")
     public ResponseEntity<PublicBarberInfoDTO> updateBarber(@RequestBody UpdateBarberDTO updateBarberDTO){
+        objectValidator.validate(updateBarberDTO);
+
         Barber barberDomainUpdated = barberMapper.updateBarberDTOToDomain(updateBarberDTO);
+
         return barberInputPort.updateBarber(barberDomainUpdated)
                 .map(barber -> new ResponseEntity<>(
                         barberMapper.domainToPublicBarberInfoDTO(barber),

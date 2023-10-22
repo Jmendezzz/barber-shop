@@ -16,7 +16,7 @@ public class GlobalExceptionHandler  {
   @ExceptionHandler(ObjectNotValidException.class)
   public ResponseEntity<ExceptionResponse> handleObjectNotValidException(ObjectNotValidException exception){
     ExceptionResponse exceptionResponse = new ExceptionResponse();
-    exceptionResponse.setMessage(exception.getErrorMessages().toString());
+    exceptionResponse.setMessage(String.join("|",exception.getErrorMessages()));
     exceptionResponse.setTimestamp(LocalDateTime.now());
 
     return ResponseEntity.badRequest().body(exceptionResponse);
