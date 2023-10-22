@@ -1,6 +1,7 @@
 package barber.gerard.backend.infraestructure.adapters.in.http;
 
 import barber.gerard.backend.domain.models.Admin;
+import barber.gerard.backend.infraestructure.commons.exceptions.AdminException;
 import barber.gerard.backend.infraestructure.commons.mapping.admin.AdminMapper;
 import barber.gerard.backend.infraestructure.commons.mapping.admin.CreateAdminDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.admin.PublicAdminInfoDTO;
@@ -13,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
+
+import static barber.gerard.backend.infraestructure.commons.exceptions.messages.AdminExceptionMessage.ADMIN_NOT_FOUND;
 
 @RestController
 @AllArgsConstructor
@@ -50,7 +53,7 @@ public class AdminController {
             .map(adm -> new ResponseEntity<>(
                           adminMapper.domainToPublicAdminInfoDTO(adm),
                           HttpStatus.OK))
-            .orElseThrow(()-> new RuntimeException("No se encontró el ADMIN"));
+            .orElseThrow(()-> new AdminException(ADMIN_NOT_FOUND,HttpStatus.NOT_FOUND));
   }
 
   @PutMapping("/update")
@@ -62,7 +65,7 @@ public class AdminController {
             .map(adm -> new ResponseEntity<>(
                           adminMapper.domainToPublicAdminInfoDTO(adm),
                           HttpStatus.OK))
-            .orElseThrow(()-> new RuntimeException("No se encontro el ADMIN"));
+            .orElseThrow(()-> new AdminException(ADMIN_NOT_FOUND,HttpStatus.NOT_FOUND));
 
   }
 

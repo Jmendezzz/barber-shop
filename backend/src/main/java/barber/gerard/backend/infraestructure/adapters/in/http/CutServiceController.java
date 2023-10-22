@@ -1,6 +1,7 @@
 package barber.gerard.backend.infraestructure.adapters.in.http;
 
 import barber.gerard.backend.domain.models.CutService;
+import barber.gerard.backend.infraestructure.commons.exceptions.CutServiceException;
 import barber.gerard.backend.infraestructure.commons.mapping.cutService.CreateCutServiceDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.cutService.CutServiceMapper;
 import barber.gerard.backend.infraestructure.commons.mapping.cutService.UpdateCutServiceDTO;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
+import static barber.gerard.backend.infraestructure.commons.exceptions.messages.CutServiceExceptionMessage.CUT_SERVICE_NOT_FOUND;
 
 @RestController
 @AllArgsConstructor
@@ -43,7 +46,7 @@ public class CutServiceController {
                 .map(cut -> new ResponseEntity<>(
                         cut,
                         HttpStatus.OK))
-                .orElseThrow(()-> new RuntimeException("No se encontró el servicio de corte"));
+                .orElseThrow(()-> new CutServiceException(CUT_SERVICE_NOT_FOUND, HttpStatus.NOT_FOUND));
 
     }
 
@@ -55,7 +58,7 @@ public class CutServiceController {
                 .map(loc -> new ResponseEntity<>(
                         loc,
                         HttpStatus.OK))
-                .orElseThrow(()-> new RuntimeException("No se encontró la servicio de corte"));
+                .orElseThrow(()-> new CutServiceException(CUT_SERVICE_NOT_FOUND, HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/delete/{id}")
