@@ -19,7 +19,7 @@ public record CreateAdminDTO(
         @NotBlank(message = CELLPHONE_NUMBER_NOT_NULL)
         @Size(min = 10, max = 10, message = CELLPHONE_NUMBER_SIZE)
         String cellphoneNumber,
-        @NotBlank(message = BIRTHDAY_NOT_NULL)
+        @NotNull(message = BIRTHDAY_NOT_NULL)
         @Past(message = BIRTHDAY_NOT_FUTURE)
         LocalDate birthday,
         @NotBlank(message = EMAIL_NOT_NULL)

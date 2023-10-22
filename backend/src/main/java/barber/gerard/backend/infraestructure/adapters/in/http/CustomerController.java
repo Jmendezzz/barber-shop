@@ -6,6 +6,7 @@ import barber.gerard.backend.infraestructure.commons.mapping.customer.CreateCust
 import barber.gerard.backend.infraestructure.commons.mapping.customer.CustomerMapper;
 import barber.gerard.backend.infraestructure.commons.mapping.customer.PublicCustomerInfoDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.customer.UpdateCustomerDTO;
+import barber.gerard.backend.infraestructure.commons.validator.ObjectValidator;
 import barber.gerard.backend.infraestructure.ports.in.CustomerInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,10 +23,14 @@ import static barber.gerard.backend.infraestructure.commons.exceptions.messages.
 public class CustomerController {
     private CustomerInputPort customerInputPort;
     private CustomerMapper customerMapper;
+    private ObjectValidator objectValidator;
     @PostMapping("/create")
     public ResponseEntity<PublicCustomerInfoDTO> createCustomer(@RequestBody CreateCustomerDTO createCustomerDTO){
+        objectValidator.validate(createCustomerDTO);
+
         Customer customerDomain = customerMapper.createCustomerDTOToDomain(createCustomerDTO);
         Customer customerCreated = customerInputPort.createCustomer(customerDomain);
+
         return new ResponseEntity<>(
                 customerMapper.domainToPublicCustomerInfoDTO(customerCreated),
                 HttpStatus.CREATED);
@@ -51,8 +56,11 @@ public class CustomerController {
 
     @PutMapping("/update")
     public ResponseEntity<PublicCustomerInfoDTO> updateCustomer(@RequestBody UpdateCustomerDTO updateCustomerDTO){
+        objectValidator.validate(updateCustomerDTO);
+
         Customer customerDomainUpdated = customerMapper.updateCustomerDTOToDomain(updateCustomerDTO);
         Optional<Customer> customerUpdated = customerInputPort.updateCustomer(customerDomainUpdated);
+
         return customerUpdated.map(cust -> new ResponseEntity<>(
                 customerMapper.domainToPublicCustomerInfoDTO(cust),
                 HttpStatus.OK))
