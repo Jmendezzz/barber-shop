@@ -1,7 +1,6 @@
-package barber.gerard.backend.infraestructure.commons.config;
+package barber.gerard.backend.infraestructure.commons.exceptions.config;
 
 import barber.gerard.backend.infraestructure.commons.exceptions.CustomHttpException;
-import barber.gerard.backend.infraestructure.commons.exceptions.ExceptionResponse;
 import barber.gerard.backend.infraestructure.commons.exceptions.LocationException;
 import barber.gerard.backend.infraestructure.commons.exceptions.ObjectNotValidException;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,7 @@ public class GlobalExceptionHandler  {
   }
 
   @ExceptionHandler(CustomHttpException.class)
-  public ResponseEntity<ExceptionResponse> handleLocationException(LocationException exception){
+  public ResponseEntity<ExceptionResponse> handleHttpException(CustomHttpException exception){
     ExceptionResponse exceptionResponse = new ExceptionResponse();
     exceptionResponse.setMessage(exception.getMessage());
     exceptionResponse.setTimestamp(LocalDateTime.now());

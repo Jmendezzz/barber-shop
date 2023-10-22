@@ -1,4 +1,4 @@
-package barber.gerard.backend.infraestructure.commons.exceptions;
+package barber.gerard.backend.infraestructure.commons.exceptions.config;
 
 import lombok.Data;
 
