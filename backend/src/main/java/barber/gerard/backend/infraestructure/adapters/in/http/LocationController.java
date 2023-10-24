@@ -6,6 +6,7 @@ import barber.gerard.backend.infraestructure.commons.mapping.location.CreateLoca
 import barber.gerard.backend.infraestructure.commons.mapping.location.LocationDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.location.LocationMapper;
 import barber.gerard.backend.infraestructure.commons.mapping.location.UpdateLocationDTO;
+import barber.gerard.backend.infraestructure.commons.validator.ObjectValidator;
 import barber.gerard.backend.infraestructure.ports.in.LocationInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,10 +23,11 @@ import static barber.gerard.backend.infraestructure.commons.exceptions.messages.
 public class LocationController {
   private LocationInputPort locationInputPort;
   private LocationMapper locationMapper;
-  //TODO Handle exceptions
-
+  private ObjectValidator objectValidator;
   @PostMapping("/create")
   public ResponseEntity<LocationDTO> createLocation(@RequestBody CreateLocationDTO createLocationDTO){
+    objectValidator.validate(createLocationDTO);
+
     Location location = locationMapper.createLocationDTOToDomain(createLocationDTO);
     Location locationCreated = locationInputPort.createLocation(location);
 
