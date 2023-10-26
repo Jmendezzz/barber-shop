@@ -4,7 +4,7 @@ import barber.gerard.backend.domain.models.Appointment;
 import barber.gerard.backend.infraestructure.adapters.out.repository.JpaAppointmentRepository;
 import barber.gerard.backend.infraestructure.commons.mapping.appointment.AppointmentMapper;
 import barber.gerard.backend.infraestructure.entities.AppointmentEntity;
-import barber.gerard.backend.infraestructure.ports.out.AppointmentRepository;
+import barber.gerard.backend.application.ports.out.AppointmentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 

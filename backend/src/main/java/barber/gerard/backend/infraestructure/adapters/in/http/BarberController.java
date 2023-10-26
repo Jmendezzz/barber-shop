@@ -7,7 +7,7 @@ import barber.gerard.backend.infraestructure.commons.mapping.barber.CreateBarber
 import barber.gerard.backend.infraestructure.commons.mapping.barber.PublicBarberInfoDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.barber.UpdateBarberDTO;
 import barber.gerard.backend.infraestructure.commons.validator.ObjectValidator;
-import barber.gerard.backend.infraestructure.ports.in.BarberInputPort;
+import barber.gerard.backend.application.ports.in.BarberInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

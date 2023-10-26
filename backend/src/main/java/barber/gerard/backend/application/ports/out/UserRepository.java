@@ -1,4 +1,4 @@
-package barber.gerard.backend.infraestructure.ports.out;
+package barber.gerard.backend.application.ports.out;
 
 import barber.gerard.backend.domain.enums.Role;
 import barber.gerard.backend.domain.models.User;
