@@ -1,8 +1,8 @@
 package barber.gerard.backend.application.services;
 
 import barber.gerard.backend.domain.models.Appointment;
-import barber.gerard.backend.infraestructure.ports.in.AppointmentInputPort;
-import barber.gerard.backend.infraestructure.ports.out.AppointmentRepository;
+import barber.gerard.backend.application.ports.in.AppointmentInputPort;
+import barber.gerard.backend.application.ports.out.AppointmentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;

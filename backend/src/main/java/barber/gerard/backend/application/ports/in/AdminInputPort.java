@@ -1,4 +1,4 @@
-package barber.gerard.backend.infraestructure.ports.in;
+package barber.gerard.backend.application.ports.in;
 
 import barber.gerard.backend.domain.models.Admin;
 

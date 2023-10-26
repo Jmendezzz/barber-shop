@@ -5,7 +5,7 @@ import barber.gerard.backend.domain.models.User;
 import barber.gerard.backend.infraestructure.adapters.out.repository.JpaUserRepository;
 import barber.gerard.backend.infraestructure.entities.UserEntity;
 import barber.gerard.backend.infraestructure.commons.mapping.user.UserMapper;
-import barber.gerard.backend.infraestructure.ports.out.UserRepository;
+import barber.gerard.backend.application.ports.out.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import java.util.List;

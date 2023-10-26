@@ -5,7 +5,7 @@ import barber.gerard.backend.infraestructure.adapters.out.repository.JpaLocation
 import barber.gerard.backend.infraestructure.entities.LocationEntity;
 import barber.gerard.backend.infraestructure.commons.mapping.config.CycleAvoidingMappingContext;
 import barber.gerard.backend.infraestructure.commons.mapping.location.LocationMapper;
-import barber.gerard.backend.infraestructure.ports.out.LocationRepository;
+import barber.gerard.backend.application.ports.out.LocationRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;

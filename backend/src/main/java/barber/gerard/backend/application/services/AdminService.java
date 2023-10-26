@@ -1,8 +1,8 @@
 package barber.gerard.backend.application.services;
 
 import barber.gerard.backend.domain.models.Admin;
-import barber.gerard.backend.infraestructure.ports.in.AdminInputPort;
-import barber.gerard.backend.infraestructure.ports.out.AdminRepository;
+import barber.gerard.backend.application.ports.in.AdminInputPort;
+import barber.gerard.backend.application.ports.out.AdminRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;

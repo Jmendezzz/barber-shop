@@ -7,7 +7,7 @@ import barber.gerard.backend.infraestructure.commons.mapping.admin.CreateAdminDT
 import barber.gerard.backend.infraestructure.commons.mapping.admin.PublicAdminInfoDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.admin.UpdateAdminDTO;
 import barber.gerard.backend.infraestructure.commons.validator.ObjectValidator;
-import barber.gerard.backend.infraestructure.ports.in.AdminInputPort;
+import barber.gerard.backend.application.ports.in.AdminInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
