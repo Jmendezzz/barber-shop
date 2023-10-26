@@ -6,7 +6,8 @@ import barber.gerard.backend.infraestructure.commons.mapping.appointment.Appoint
 import barber.gerard.backend.infraestructure.commons.mapping.appointment.AppointmentMapper;
 import barber.gerard.backend.infraestructure.commons.mapping.appointment.CreateAppointmentDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.appointment.UpdateAppointmentDTO;
-import barber.gerard.backend.infraestructure.ports.in.AppointmentInputPort;
+import barber.gerard.backend.infraestructure.commons.validator.ObjectValidator;
+import barber.gerard.backend.application.ports.in.AppointmentInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +21,13 @@ import static barber.gerard.backend.infraestructure.commons.exceptions.messages.
 @AllArgsConstructor
 @RequestMapping("/appointments")
 public class AppointmentController {
-
   private AppointmentInputPort appointmentInputPort;
   private AppointmentMapper appointmentMapper;
+  private ObjectValidator objectValidator;
   @PostMapping("/create")
   public ResponseEntity<AppointmentDTO> createAppointment(@RequestBody CreateAppointmentDTO createAppointmentDTO){
-    System.out.println(createAppointmentDTO);
+    objectValidator.validate(createAppointmentDTO);
     Appointment appointment = appointmentMapper.createAppointmentDTOToDomain(createAppointmentDTO);
-    System.out.println(appointment);
     Appointment appointmentCreated = appointmentInputPort.createAppointment(appointment);
 
     return new ResponseEntity<>(
@@ -55,6 +55,8 @@ public class AppointmentController {
   }
   @PutMapping("/update")
   public ResponseEntity<AppointmentDTO> updateAppointment(@RequestBody UpdateAppointmentDTO updateAppointmentDTO){
+    objectValidator.validate(updateAppointmentDTO);
+     
     Appointment appointmentDomainUpdated = appointmentMapper.updateAppointmentDTOToDomain(updateAppointmentDTO);
     Optional<Appointment> appointment = appointmentInputPort.updateAppointment(appointmentDomainUpdated);
 
