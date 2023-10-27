@@ -5,7 +5,7 @@ import barber.gerard.backend.infraestructure.commons.exceptions.CutServiceExcept
 import barber.gerard.backend.infraestructure.commons.mapping.cutService.CreateCutServiceDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.cutService.CutServiceMapper;
 import barber.gerard.backend.infraestructure.commons.mapping.cutService.UpdateCutServiceDTO;
-import barber.gerard.backend.application.ports.in.CutServiceInputPort;
+import barber.gerard.backend.application.ports.in.services.CutServiceInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

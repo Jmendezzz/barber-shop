@@ -1,7 +1,7 @@
 package barber.gerard.backend.application.services;
 
 import barber.gerard.backend.domain.models.CutService;
-import barber.gerard.backend.application.ports.in.CutServiceInputPort;
+import barber.gerard.backend.application.ports.in.services.CutServiceInputPort;
 import barber.gerard.backend.application.ports.out.CutServiceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

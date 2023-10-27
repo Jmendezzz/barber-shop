@@ -1,4 +1,4 @@
-package barber.gerard.backend.application.ports.in;
+package barber.gerard.backend.application.ports.in.services;
 
 import barber.gerard.backend.domain.models.Admin;
 import barber.gerard.backend.domain.models.CutService;

@@ -7,7 +7,7 @@ import barber.gerard.backend.infraestructure.commons.mapping.appointment.Appoint
 import barber.gerard.backend.infraestructure.commons.mapping.appointment.CreateAppointmentDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.appointment.UpdateAppointmentDTO;
 import barber.gerard.backend.infraestructure.commons.validator.ObjectValidator;
-import barber.gerard.backend.application.ports.in.AppointmentInputPort;
+import barber.gerard.backend.application.ports.in.services.AppointmentInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

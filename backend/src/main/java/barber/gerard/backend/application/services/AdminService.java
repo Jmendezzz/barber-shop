@@ -1,7 +1,8 @@
 package barber.gerard.backend.application.services;
 
+import barber.gerard.backend.application.ports.in.constraints.LocationConstraint;
 import barber.gerard.backend.domain.models.Admin;
-import barber.gerard.backend.application.ports.in.AdminInputPort;
+import barber.gerard.backend.application.ports.in.services.AdminInputPort;
 import barber.gerard.backend.application.ports.out.AdminRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AdminService implements AdminInputPort {
   private AdminRepository adminRepository;
+  private LocationConstraint locationConstraint;
   @Override
   public Admin createAdmin(Admin admin) {
+    locationConstraint.doesLocationExist(admin.getManagedLocation().getId());
+
     return adminRepository.save(admin);
   }
 
@@ -30,6 +34,8 @@ public class AdminService implements AdminInputPort {
 
   @Override
   public Optional<Admin> updateAdmin(Admin adminUpdated) {
+    locationConstraint.doesLocationExist(adminUpdated.getManagedLocation().getId());
+
     return adminRepository.update(adminUpdated);
   }
 

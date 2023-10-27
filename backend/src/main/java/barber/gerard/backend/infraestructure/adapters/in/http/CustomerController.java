@@ -7,7 +7,7 @@ import barber.gerard.backend.infraestructure.commons.mapping.customer.CustomerMa
 import barber.gerard.backend.infraestructure.commons.mapping.customer.PublicCustomerInfoDTO;
 import barber.gerard.backend.infraestructure.commons.mapping.customer.UpdateCustomerDTO;
 import barber.gerard.backend.infraestructure.commons.validator.ObjectValidator;
-import barber.gerard.backend.application.ports.in.CustomerInputPort;
+import barber.gerard.backend.application.ports.in.services.CustomerInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
