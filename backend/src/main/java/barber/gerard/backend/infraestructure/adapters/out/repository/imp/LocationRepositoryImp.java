@@ -63,6 +63,11 @@ public class LocationRepositoryImp implements LocationRepository {
     return null;
   }
   @Override
+  public boolean locationExistsById(Long locationId) {
+    return jpaLocationRepository.existsById(locationId);
+  }
+
+  @Override
   public Optional<Location> findLocationByEmployeeId(Long employeeId) {
     try{
       Long locationId = (long) entityManager.createNativeQuery("SELECT location_id FROM employee_location WHERE employee_id=?")

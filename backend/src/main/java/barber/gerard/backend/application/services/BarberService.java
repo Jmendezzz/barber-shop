@@ -1,7 +1,8 @@
 package barber.gerard.backend.application.services;
 
+import barber.gerard.backend.application.ports.in.constraints.LocationConstraint;
 import barber.gerard.backend.domain.models.Barber;
-import barber.gerard.backend.application.ports.in.BarberInputPort;
+import barber.gerard.backend.application.ports.in.services.BarberInputPort;
 import barber.gerard.backend.application.ports.out.BarberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,13 @@ import java.util.Optional;
 @AllArgsConstructor
 public class BarberService implements BarberInputPort {
     private BarberRepository barberRepository;
+    private LocationConstraint locationConstraint;
+
 
     @Override
     public Barber createBarber(Barber barber) {
+        locationConstraint.doesLocationExist(barber.getLocation().getId());
+
         return barberRepository.save(barber);
     }
 
@@ -31,6 +36,8 @@ public class BarberService implements BarberInputPort {
 
     @Override
     public Optional<Barber> updateBarber(Barber barberUpdated) {
+        locationConstraint.doesLocationExist(barberUpdated.getLocation().getId());
+
         return barberRepository.update(barberUpdated);
     }
 
