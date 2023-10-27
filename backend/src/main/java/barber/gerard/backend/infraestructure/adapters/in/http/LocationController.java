@@ -7,7 +7,7 @@ import barber.gerard.backend.infraestructure.commons.mapping.location.LocationDT
 import barber.gerard.backend.infraestructure.commons.mapping.location.LocationMapper;
 import barber.gerard.backend.infraestructure.commons.mapping.location.UpdateLocationDTO;
 import barber.gerard.backend.infraestructure.commons.validator.ObjectValidator;
-import barber.gerard.backend.application.ports.in.LocationInputPort;
+import barber.gerard.backend.application.ports.in.services.LocationInputPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

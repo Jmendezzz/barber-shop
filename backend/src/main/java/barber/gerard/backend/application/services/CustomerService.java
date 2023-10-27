@@ -1,7 +1,7 @@
 package barber.gerard.backend.application.services;
 
 import barber.gerard.backend.domain.models.Customer;
-import barber.gerard.backend.application.ports.in.CustomerInputPort;
+import barber.gerard.backend.application.ports.in.services.CustomerInputPort;
 import barber.gerard.backend.application.ports.out.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
