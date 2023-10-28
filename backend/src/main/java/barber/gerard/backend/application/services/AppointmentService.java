@@ -1,5 +1,6 @@
 package barber.gerard.backend.application.services;
 
+import barber.gerard.backend.application.ports.in.constraints.AppointmentConstraint;
 import barber.gerard.backend.domain.models.Appointment;
 import barber.gerard.backend.application.ports.in.services.AppointmentInputPort;
 import barber.gerard.backend.application.ports.out.AppointmentRepository;
@@ -12,8 +13,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AppointmentService implements AppointmentInputPort {
   private AppointmentRepository appointmentRepository;
+  private AppointmentConstraint appointmentConstraint;
   @Override
   public Appointment createAppointment(Appointment appointment) {
+    appointmentConstraint.validateAppointmentDateTime(appointment.getDate());
+
     return appointmentRepository.save(appointment);
   }
 
