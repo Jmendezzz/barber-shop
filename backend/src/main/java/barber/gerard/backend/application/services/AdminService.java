@@ -1,6 +1,7 @@
 package barber.gerard.backend.application.services;
 
 import barber.gerard.backend.application.ports.in.constraints.LocationConstraint;
+import barber.gerard.backend.application.ports.in.constraints.UserConstraint;
 import barber.gerard.backend.domain.models.Admin;
 import barber.gerard.backend.application.ports.in.services.AdminInputPort;
 import barber.gerard.backend.application.ports.out.AdminRepository;
@@ -15,9 +16,15 @@ import java.util.Optional;
 public class AdminService implements AdminInputPort {
   private AdminRepository adminRepository;
   private LocationConstraint locationConstraint;
+  private UserConstraint userConstraint;
   @Override
   public Admin createAdmin(Admin admin) {
-    locationConstraint.doesLocationExist(admin.getManagedLocation().getId());
+    if(admin.getManagedLocation() != null){
+      locationConstraint.doesLocationExist(admin.getManagedLocation().getId());
+    }
+    userConstraint.validateUserEmail(admin.getEmail());
+    userConstraint.validateUserNid(admin.getNid());
+    userConstraint.validateCellphone(admin.getCellphoneNumber());
 
     return adminRepository.save(admin);
   }

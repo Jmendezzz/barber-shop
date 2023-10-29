@@ -13,5 +13,6 @@ public interface UserRepository {
   User deleteById(Long id);
   List<User> findByRole(Role role);
   boolean existsById(Long id);
+  Optional<User> findByAnyField(String field, String value);
 
 }

@@ -6,6 +6,9 @@ import barber.gerard.backend.infraestructure.adapters.out.repository.JpaUserRepo
 import barber.gerard.backend.infraestructure.entities.UserEntity;
 import barber.gerard.backend.infraestructure.commons.mapping.user.UserMapper;
 import barber.gerard.backend.application.ports.out.UserRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -16,6 +19,8 @@ import java.util.Optional;
 public class UserRepositoryImp implements UserRepository {
   private JpaUserRepository jpaUserRepository;
   private UserMapper userMapper;
+  @PersistenceContext
+  private EntityManager entityManager;
 
   @Override
   public User save(User user) {
@@ -63,5 +68,17 @@ public class UserRepositoryImp implements UserRepository {
   @Override
   public boolean existsById(Long id) {
     return jpaUserRepository.existsById(id);
+  }
+
+  @Override
+  public Optional<User> findByAnyField(String field, String value) {
+    try{
+      UserEntity userEntity = entityManager.createQuery("SELECT u FROM UserEntity u WHERE u."+field+" = :value", UserEntity.class)
+              .setParameter("value", value)
+              .getSingleResult();
+      return Optional.of(userMapper.entityToDomain(userEntity));
+    }catch (NoResultException e) {
+      return Optional.empty();
+    }
   }
 }
