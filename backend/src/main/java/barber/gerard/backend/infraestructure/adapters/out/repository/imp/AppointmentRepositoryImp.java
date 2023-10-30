@@ -62,7 +62,7 @@ public class AppointmentRepositoryImp implements AppointmentRepository {
   }
 
   @Override
-  public List<Appointment> findByAnyField(String fieldName, String fieldValue) {
+  public <T> List<Appointment> findByAnyField(String fieldName, T fieldValue) {
     List<AppointmentEntity> appointmentEntities = entityManager.createQuery("SELECT a FROM AppointmentEntity a WHERE a."+fieldName+" = :fieldValue", AppointmentEntity.class)
                                                                 .setParameter("fieldValue", fieldValue)
                                                                 .getResultList();

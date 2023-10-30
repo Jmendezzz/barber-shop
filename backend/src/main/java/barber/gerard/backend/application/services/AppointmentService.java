@@ -6,6 +6,7 @@ import barber.gerard.backend.domain.models.Appointment;
 import barber.gerard.backend.application.ports.in.services.AppointmentInputPort;
 import barber.gerard.backend.application.ports.out.AppointmentRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -46,17 +47,19 @@ public class AppointmentService implements AppointmentInputPort {
   }
 
   @Override
+  @Scheduled(cron = "0 */5 * * * *")
   public void cancelUnconfirmedAppointments() {
+    System.out.println("executing cron job");
     List<Appointment> appointmentsToCancel = getAppointmentsToCancel();
 
     appointmentsToCancel.forEach(appointment -> {
       appointment.setStatus(Status.CANCELED);
       appointmentRepository.update(appointment);
     });
-    
   }
+
   private List<Appointment> getAppointmentsToCancel(){
-    List<Appointment> appointments = appointmentRepository.findByAnyField("status", "BOOKED");
+    List<Appointment> appointments = appointmentRepository.findByAnyField("status", Status.BOOKED);
     LocalDateTime localDateTimeToCancel = LocalDateTime.now().minusHours(1).minusMinutes(30);
     return appointments.stream()
                         .filter(appointment-> appointment.getDate().isBefore(localDateTimeToCancel))
