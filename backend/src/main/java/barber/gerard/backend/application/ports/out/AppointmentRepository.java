@@ -2,6 +2,7 @@ package barber.gerard.backend.application.ports.out;
 
 import barber.gerard.backend.domain.models.Appointment;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,5 +12,7 @@ public interface AppointmentRepository {
   List<Appointment> findAll();
   Optional<Appointment> update(Appointment appointment);
   Appointment delete(Long id);
+  List<Appointment> findByAnyField(String fieldName, String fieldValue);
+  List<Appointment> finByDateRange(LocalDateTime startDate, LocalDateTime endDate);
 
 }

@@ -1,13 +1,17 @@
 package barber.gerard.backend.application.services;
 
 import barber.gerard.backend.application.ports.in.constraints.AppointmentConstraint;
+import barber.gerard.backend.domain.enums.Status;
 import barber.gerard.backend.domain.models.Appointment;
 import barber.gerard.backend.application.ports.in.services.AppointmentInputPort;
 import barber.gerard.backend.application.ports.out.AppointmentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -39,5 +43,23 @@ public class AppointmentService implements AppointmentInputPort {
   @Override
   public Appointment deleteAppointmentById(Long id) {
     return appointmentRepository.delete(id);
+  }
+
+  @Override
+  public void cancelUnconfirmedAppointments() {
+    List<Appointment> appointmentsToCancel = getAppointmentsToCancel();
+
+    appointmentsToCancel.forEach(appointment -> {
+      appointment.setStatus(Status.CANCELED);
+      appointmentRepository.update(appointment);
+    });
+    
+  }
+  private List<Appointment> getAppointmentsToCancel(){
+    List<Appointment> appointments = appointmentRepository.findByAnyField("status", "BOOKED");
+    LocalDateTime localDateTimeToCancel = LocalDateTime.now().minusHours(1).minusMinutes(30);
+    return appointments.stream()
+                        .filter(appointment-> appointment.getDate().isBefore(localDateTimeToCancel))
+                        .collect(Collectors.toList());
   }
 }
