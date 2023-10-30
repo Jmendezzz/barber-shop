@@ -5,9 +5,12 @@ import barber.gerard.backend.infraestructure.adapters.out.repository.JpaAppointm
 import barber.gerard.backend.infraestructure.commons.mapping.appointment.AppointmentMapper;
 import barber.gerard.backend.infraestructure.entities.AppointmentEntity;
 import barber.gerard.backend.application.ports.out.AppointmentRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +19,8 @@ import java.util.Optional;
 public class AppointmentRepositoryImp implements AppointmentRepository {
   private JpaAppointmentRepository jpaAppointmentRepository;
   private AppointmentMapper appointmentMapper;
+  @PersistenceContext
+  private EntityManager entityManager;
   @Override
   public Appointment save(Appointment appointment) {
     AppointmentEntity appointmentEntity = appointmentMapper.domainToEntity(appointment);
@@ -54,5 +59,22 @@ public class AppointmentRepositoryImp implements AppointmentRepository {
     AppointmentEntity appointmentEntity = jpaAppointmentRepository.findById(id).get();
     jpaAppointmentRepository.deleteById(id);
     return appointmentMapper.entityToDomain(appointmentEntity);
+  }
+
+  @Override
+  public List<Appointment> findByAnyField(String fieldName, String fieldValue) {
+    List<AppointmentEntity> appointmentEntities = entityManager.createQuery("SELECT a FROM AppointmentEntity a WHERE a."+fieldName+" = :fieldValue", AppointmentEntity.class)
+                                                                .setParameter("fieldValue", fieldValue)
+                                                                .getResultList();
+    return appointmentMapper.entityListToDomainList(appointmentEntities);
+  }
+
+  @Override
+  public List<Appointment> finByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
+    List<AppointmentEntity> appointmentEntities = entityManager.createQuery("SELECT a FROM AppointmentEntity a WHERE a.date BETWEEN :startDate AND :endDate", AppointmentEntity.class)
+                                                                .setParameter("startDate", startDate)
+                                                                .setParameter("endDate", endDate)
+                                                                .getResultList();
+    return appointmentMapper.entityListToDomainList(appointmentEntities);
   }
 }
