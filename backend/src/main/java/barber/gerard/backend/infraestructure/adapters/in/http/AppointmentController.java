@@ -75,4 +75,25 @@ public class AppointmentController {
             HttpStatus.OK
     );
   }
+
+  @PostMapping("/accept")
+  public ResponseEntity<AppointmentDTO> acceptAppointment(@RequestBody AppointmentDTO appointmentDTO){
+    Appointment appointment = appointmentMapper.appointmentDTOToDomain(appointmentDTO);
+    Appointment appointmentAccepted = appointmentInputPort.acceptAppointment(appointment);
+
+    return new ResponseEntity<>(
+            appointmentMapper.domainToAppointmentDTO(appointmentAccepted),
+            HttpStatus.OK
+    );
+  }
+  @PostMapping("/reject")
+  public ResponseEntity<AppointmentDTO> rejectAppointment(@RequestBody AppointmentDTO appointmentDTO){
+    Appointment appointment = appointmentMapper.appointmentDTOToDomain(appointmentDTO);
+    Appointment appointmentRejected = appointmentInputPort.rejectAppointment(appointment);
+
+    return new ResponseEntity<>(
+            appointmentMapper.domainToAppointmentDTO(appointmentRejected),
+            HttpStatus.OK
+    );
+  }
 }

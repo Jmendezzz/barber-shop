@@ -5,5 +5,6 @@ import barber.gerard.backend.infraestructure.commons.exceptions.AppointmentExcep
 import java.time.LocalDateTime;
 
 public interface AppointmentConstraint {
+  void doesAppointmentExist(Long appointmentId) throws AppointmentException;
   void validateAppointmentDateTime(LocalDateTime dateTime) throws AppointmentException;
 }

@@ -49,13 +49,28 @@ public class AppointmentService implements AppointmentInputPort {
   @Override
   @Scheduled(cron = "0 */5 * * * *")
   public void cancelUnconfirmedAppointments() {
-    System.out.println("executing cron job");
     List<Appointment> appointmentsToCancel = getAppointmentsToCancel();
-
     appointmentsToCancel.forEach(appointment -> {
       appointment.setStatus(Status.CANCELED);
       appointmentRepository.update(appointment);
     });
+  }
+
+  @Override
+  public Appointment acceptAppointment(Appointment appointment) {
+    appointmentConstraint.doesAppointmentExist(appointment.getId());
+
+    appointment.setStatus(Status.ACCEPTED);
+    return appointmentRepository.update(appointment).get();
+    //TODO: Notifications
+  }
+
+  @Override
+  public Appointment rejectAppointment(Appointment appointment) {
+    appointmentConstraint.doesAppointmentExist(appointment.getId());
+
+    appointment.setStatus(Status.REJECTED);
+    return appointmentRepository.update(appointment).get();
   }
 
   private List<Appointment> getAppointmentsToCancel(){
