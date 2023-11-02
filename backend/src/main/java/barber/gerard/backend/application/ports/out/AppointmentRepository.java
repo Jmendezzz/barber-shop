@@ -15,4 +15,5 @@ public interface AppointmentRepository {
   <T> List<Appointment> findByAnyField (String fieldName, T fieldValue);
   List<Appointment> finByDateRange(LocalDateTime startDate, LocalDateTime endDate);
 
+  boolean appointmentExistsById(Long appointmentId);
 }

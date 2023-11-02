@@ -77,4 +77,9 @@ public class AppointmentRepositoryImp implements AppointmentRepository {
                                                                 .getResultList();
     return appointmentMapper.entityListToDomainList(appointmentEntities);
   }
+
+  @Override
+  public boolean appointmentExistsById(Long appointmentId) {
+    return jpaAppointmentRepository.existsById(appointmentId);
+  }
 }

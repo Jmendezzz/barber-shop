@@ -12,5 +12,7 @@ public interface AppointmentInputPort {
   Optional<Appointment> updateAppointment(Appointment appointmentUpdated);
   Appointment deleteAppointmentById(Long id);
   void cancelUnconfirmedAppointments();
+  Appointment acceptAppointment(Appointment appointment);
+  Appointment rejectAppointment(Appointment appointment);
 
 }

@@ -1,6 +1,7 @@
 package barber.gerard.backend.application.constraints;
 
 import barber.gerard.backend.application.ports.in.constraints.AppointmentConstraint;
+import barber.gerard.backend.application.ports.out.AppointmentRepository;
 import barber.gerard.backend.infraestructure.commons.exceptions.AppointmentException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,10 +15,22 @@ import static barber.gerard.backend.infraestructure.commons.exceptions.messages.
 @Component
 @AllArgsConstructor
 public class AppointmentConstraintImp implements AppointmentConstraint {
+  private final AppointmentRepository appointmentRepository;
   private final int MINIMUM_APPOINTMENT_RESERVATION_ADVANCE_HOURS = 2;
   private final LocalTime OPENING_TIME = LocalTime.of(10,0);
   private final LocalTime CLOSING_TIME = LocalTime.of(19,0);
 
+
+  @Override
+  public void doesAppointmentExist(Long appointmentId) throws AppointmentException {
+    if (appointmentId == null) {
+      throw new AppointmentException(APPOINTMENT_NOT_FOUND, HttpStatus.BAD_REQUEST);
+    }
+    if(!appointmentRepository.appointmentExistsById(appointmentId)){
+      throw new AppointmentException(APPOINTMENT_NOT_FOUND, HttpStatus.NOT_FOUND);
+    }
+
+  }
 
   @Override
   public void validateAppointmentDateTime(LocalDateTime dateTime) throws AppointmentException {
