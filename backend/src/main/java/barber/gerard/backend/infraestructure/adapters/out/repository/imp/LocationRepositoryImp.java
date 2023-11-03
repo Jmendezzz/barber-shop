@@ -46,6 +46,16 @@ public class LocationRepositoryImp implements LocationRepository {
   }
 
   @Override
+  public List<Location> findPaginated(int page, int size) {
+    List<LocationEntity> locationEntities = entityManager.createQuery("SELECT l FROM LocationEntity l", LocationEntity.class)
+            .setFirstResult((page-1)*size)
+            .setMaxResults(size)
+            .getResultList();
+
+    return locationMapper.entityListToDomainList(locationEntities, new CycleAvoidingMappingContext());
+  }
+
+  @Override
   public Optional<Location> update(Location locationUpdated) {
     if(jpaLocationRepository.existsById(locationUpdated.getId())){
       LocationEntity locationEntity = locationMapper.domainToEntity(locationUpdated, new CycleAvoidingMappingContext());

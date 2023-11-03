@@ -8,6 +8,7 @@ public interface LocationRepository {
   Location save(Location location);
   Optional<Location> findById(Long id);
   List<Location> findAll();
+  List<Location> findPaginated(int page, int size);
   Optional<Location> update(Location locationUpdated);
   Location deleteById(Long id);
   Location assignEmplooyeLocation(Long locationId,Long employeeId);

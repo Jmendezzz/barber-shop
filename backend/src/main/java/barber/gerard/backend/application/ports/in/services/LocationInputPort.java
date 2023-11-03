@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface LocationInputPort {
   Location createLocation(Location location);
   List<Location> getAllLocations();
+  List<Location> getPaginatedLocations(int page, int size);
   Optional<Location> getLocationById(Long id);
   Optional<Location> updateLocation(Location locationUpdated);
   Location deleteLocationById(Long id);

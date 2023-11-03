@@ -38,13 +38,21 @@ public class LocationController {
   }
 
   @GetMapping("")
-  public ResponseEntity<List<LocationDTO>> getAllLocations(){
-    List<LocationDTO> locations =  locationMapper.entityListToDTOList(locationInputPort.getAllLocations());
+  public ResponseEntity<List<LocationDTO>> getAllLocations(@RequestParam Optional<Integer> page, @RequestParam Optional<Integer> size){
+    List<LocationDTO> locations;
+
+    if(page.isPresent() && size.isPresent()){
+      locations = locationMapper.entityListToDTOList(locationInputPort.getPaginatedLocations(page.get(), size.get()));
+    }else{
+      locations =  locationMapper.entityListToDTOList(locationInputPort.getAllLocations());
+    }
+
     return new ResponseEntity<>(
             locations,
             HttpStatus.OK
     );
   }
+
 
   @GetMapping("/{id}")
   public ResponseEntity<LocationDTO> getLocationById(@PathVariable Long id){
