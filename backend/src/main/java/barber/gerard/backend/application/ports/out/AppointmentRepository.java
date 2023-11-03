@@ -10,6 +10,7 @@ public interface AppointmentRepository {
   Appointment save(Appointment appointment);
   Optional<Appointment> findById(Long id);
   List<Appointment> findAll();
+  List<Appointment> findPaginated(int page, int size);
   Optional<Appointment> update(Appointment appointment);
   Appointment delete(Long id);
   <T> List<Appointment> findByAnyField (String fieldName, T fieldValue);

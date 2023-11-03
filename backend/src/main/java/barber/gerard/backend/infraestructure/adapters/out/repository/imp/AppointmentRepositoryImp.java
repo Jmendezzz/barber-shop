@@ -43,6 +43,15 @@ public class AppointmentRepositoryImp implements AppointmentRepository {
   }
 
   @Override
+  public List<Appointment> findPaginated(int page, int size) {
+    List<AppointmentEntity> appointmentEntities =  entityManager.createQuery("SELECT a FROM AppointmentEntity a", AppointmentEntity.class)
+                        .setFirstResult((page-1)*size)
+                        .setMaxResults(size)
+                        .getResultList();
+    return appointmentMapper.entityListToDomainList(appointmentEntities);
+  }
+
+  @Override
   public Optional<Appointment> update(Appointment appointment) {
     if(jpaAppointmentRepository.existsById(appointment.getId())) {
       AppointmentEntity appointmentEntity = appointmentMapper.domainToEntity(appointment);

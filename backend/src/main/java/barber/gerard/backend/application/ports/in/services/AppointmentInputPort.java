@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface AppointmentInputPort {
   Appointment createAppointment(Appointment appointment);
   List<Appointment> getAllAppointments();
+  List<Appointment> getPaginatedAppointments(int page, int size);
   Optional<Appointment> getAppointmentById(Long id);
   Optional<Appointment> updateAppointment(Appointment appointmentUpdated);
   Appointment deleteAppointmentById(Long id);

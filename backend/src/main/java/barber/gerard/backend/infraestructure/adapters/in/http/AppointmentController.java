@@ -36,8 +36,15 @@ public class AppointmentController {
     );
   }
   @GetMapping("")
-  public ResponseEntity<List<AppointmentDTO>> getAllAppointments(){
-    List<Appointment> appointments = appointmentInputPort.getAllAppointments();
+  public ResponseEntity<List<AppointmentDTO>> getAllAppointments(@RequestParam Optional<Integer> page,
+                                                                 @RequestParam Optional<Integer> size){
+    List<Appointment> appointments;
+
+    if(page.isPresent() && size.isPresent()){
+      appointments = appointmentInputPort.getPaginatedAppointments(page.get(), size.get());
+    }else{
+      appointments = appointmentInputPort.getAllAppointments();
+    }
 
     return new ResponseEntity<>(
             appointmentMapper.domainListToAppointmentDTOList(appointments),
