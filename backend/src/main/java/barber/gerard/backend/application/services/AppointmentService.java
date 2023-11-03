@@ -32,6 +32,11 @@ public class AppointmentService implements AppointmentInputPort {
   }
 
   @Override
+  public List<Appointment> getPaginatedAppointments(int page, int size) {
+    return appointmentRepository.findPaginated(page,size);
+  }
+
+  @Override
   public Optional<Appointment> getAppointmentById(Long id) {
     return appointmentRepository.findById(id);
   }

@@ -38,7 +38,8 @@ public class LocationController {
   }
 
   @GetMapping("")
-  public ResponseEntity<List<LocationDTO>> getAllLocations(@RequestParam Optional<Integer> page, @RequestParam Optional<Integer> size){
+  public ResponseEntity<List<LocationDTO>> getAllLocations(@RequestParam Optional<Integer> page,
+                                                           @RequestParam Optional<Integer> size){
     List<LocationDTO> locations;
 
     if(page.isPresent() && size.isPresent()){
