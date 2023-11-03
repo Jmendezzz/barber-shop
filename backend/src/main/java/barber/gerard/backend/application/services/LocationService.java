@@ -24,6 +24,12 @@ public class LocationService implements LocationInputPort {
   }
 
   @Override
+  public List<Location> getPaginatedLocations(int page, int size) {
+    return locationRepository.findPaginated(page,size);
+  }
+
+
+  @Override
   public Optional<Location> getLocationById(Long id) {
     return locationRepository.findById(id);
   }
