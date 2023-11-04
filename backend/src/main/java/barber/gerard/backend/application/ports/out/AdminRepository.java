@@ -9,7 +9,7 @@ public interface AdminRepository {
   Admin save(Admin admin);
   Optional<Admin> findById(Long id);
   List<Admin> findAll();
+  List<Admin> findAllPaginated(Integer page, Integer size);
   Optional<Admin> update(Admin adminUpdated);
   Admin deleteById(Long id);
-
 }
