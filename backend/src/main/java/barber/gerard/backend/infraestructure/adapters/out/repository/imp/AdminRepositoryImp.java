@@ -60,6 +60,15 @@ public class AdminRepositoryImp implements AdminRepository {
   }
 
   @Override
+  public List<Admin> findAllPaginated(Integer page, Integer size) {
+    List<Admin> admins = adminMapper.userListToAdminList(userRepository.findPaginatedByRole(Role.ADMIN, page, size));
+    admins.parallelStream()
+            .forEach(admin->admin.setManagedLocation(getAdminLocation(admin)));
+
+    return admins;
+  }
+
+  @Override
   public Optional<Admin> update(Admin adminUpdated) {
     if(userRepository.existsById(adminUpdated.getId())){
       Optional<User> userUpdated = userRepository.update(adminMapper.adminToUser(adminUpdated));

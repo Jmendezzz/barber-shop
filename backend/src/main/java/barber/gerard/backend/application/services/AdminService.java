@@ -35,6 +35,11 @@ public class AdminService implements AdminInputPort {
   }
 
   @Override
+  public List<Admin> getPaginatedAdmins(Integer page, Integer size) {
+    return adminRepository.findAllPaginated(page, size);
+  }
+
+  @Override
   public Optional<Admin> getAdminById(Long id) {
     return adminRepository.findById(id);
   }

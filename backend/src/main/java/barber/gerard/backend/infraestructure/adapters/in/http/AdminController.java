@@ -37,8 +37,16 @@ public class AdminController {
   }
 
   @GetMapping("")
-  public ResponseEntity<List<PublicAdminInfoDTO>> getAllAdmins(){
-    List<PublicAdminInfoDTO> admins = adminMapper.domainListToPublicAdminInfoDTOList(adminInputPort.getAllAdmins());
+  public ResponseEntity<List<PublicAdminInfoDTO>> getAllAdmins(@RequestParam Optional<Integer> page,
+                                                               @RequestParam Optional<Integer> size){
+    List<PublicAdminInfoDTO> admins;
+
+    if(page.isPresent() && size.isPresent()){
+      admins = adminMapper.domainListToPublicAdminInfoDTOList(adminInputPort.getPaginatedAdmins(page.get(), size.get()));
+    }else{
+      admins = adminMapper.domainListToPublicAdminInfoDTOList(adminInputPort.getAllAdmins());
+    }
+
     return new ResponseEntity<>(
             admins,
             HttpStatus.OK);
