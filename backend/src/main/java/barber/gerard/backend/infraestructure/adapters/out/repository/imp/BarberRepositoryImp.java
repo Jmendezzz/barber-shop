@@ -66,6 +66,18 @@ public class BarberRepositoryImp implements BarberRepository {
     }
 
     @Override
+    public List<Barber> findPaginated(int page, int size) {
+        List<Barber> barbers = barberMapper.usertListToBarberList(userRepository.findPaginatedByRole(Role.BARBER,page,size));
+        barbers.parallelStream()
+                .forEach(barber ->{
+                            barber.setLocation(getBarberLocation(barber));
+                            barber.setRating(getBarberRating(barber.getId()));
+                        }
+                );
+        return barbers;
+    }
+
+    @Override
     public Optional<Barber> update(Barber barberUpdated) {
         if (userRepository.existsById(barberUpdated.getId())){
             Barber barber = userRepository.update(barberMapper.userToBarber(barberUpdated))

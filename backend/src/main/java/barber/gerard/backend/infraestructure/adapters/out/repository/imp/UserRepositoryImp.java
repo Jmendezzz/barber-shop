@@ -81,4 +81,16 @@ public class UserRepositoryImp implements UserRepository {
       return Optional.empty();
     }
   }
+
+  @Override
+  public List<User> findPaginatedByRole(Role role, int page, int size) {
+    return entityManager.createQuery("SELECT u FROM UserEntity u WHERE u.role = :role", UserEntity.class)
+            .setParameter("role", role)
+            .setFirstResult((page-1) * size)
+            .setMaxResults(size)
+            .getResultList()
+            .stream()
+            .map(userEntity -> userMapper.entityToDomain(userEntity))
+            .toList();
+  }
 }

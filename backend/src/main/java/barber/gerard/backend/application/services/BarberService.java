@@ -30,6 +30,11 @@ public class BarberService implements BarberInputPort {
     }
 
     @Override
+    public List<Barber> getPaginatedBarbers(int page, int size) {
+        return barberRepository.findPaginated(page,size);
+    }
+
+    @Override
     public Optional<Barber> getBarberById(Long id) {
         return barberRepository.findById(id);
     }
