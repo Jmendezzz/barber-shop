@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 import static barber.gerard.backend.infraestructure.commons.exceptions.messages.BarberExceptionMessage.BARBER_NOT_FOUND;
 
@@ -37,8 +38,15 @@ public class BarberController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<PublicBarberInfoDTO>> getAllBarbers(){
-        List<PublicBarberInfoDTO> barbers = barberMapper.domainListToPublicBarberInfoDTOList(barberInputPort.getAllBarbers());
+    public ResponseEntity<List<PublicBarberInfoDTO>> getAllBarbers(@RequestParam Optional<Integer> page, @RequestParam Optional<Integer> size){
+        List<PublicBarberInfoDTO> barbers;
+
+        if(page.isPresent() && size.isPresent())
+            barbers = barberMapper.domainListToPublicBarberInfoDTOList(barberInputPort.getPaginatedBarbers(page.get(), size.get()));
+        else {
+            barbers = barberMapper.domainListToPublicBarberInfoDTOList(barberInputPort.getAllBarbers());
+        }
+        
         return new ResponseEntity<>(
                 barbers,
                 HttpStatus.OK);

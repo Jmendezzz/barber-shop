@@ -9,6 +9,7 @@ public interface BarberRepository {
     Barber save(Barber barber);
     Optional<Barber> findById(Long id);
     List<Barber> findAll();
+    List<Barber> findPaginated(int page, int size);
     Optional<Barber> update(Barber barberUpdated);
     Barber deleteById(Long id);
 }

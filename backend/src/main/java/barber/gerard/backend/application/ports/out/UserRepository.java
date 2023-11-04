@@ -15,4 +15,5 @@ public interface UserRepository {
   boolean existsById(Long id);
   Optional<User> findByAnyField(String fieldName, String fieldValue);
 
+  List<User> findPaginatedByRole(Role role, int page, int size);
 }
