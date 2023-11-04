@@ -36,12 +36,22 @@ public class CustomerController {
                 HttpStatus.CREATED);
     }
     @GetMapping("")
-    public ResponseEntity<List<PublicCustomerInfoDTO>> getAllCustomers(){
-        List<PublicCustomerInfoDTO> customers = customerMapper.domainListToPublicCustomerInfoDTOList(customerInputPort.getAllCustomers());
+    public ResponseEntity<List<PublicCustomerInfoDTO>> getAllCustomers(@RequestParam Optional<Integer> page,
+                                                                       @RequestParam Optional<Integer> size) {
+
+        List<Customer> customers;
+
+        if (page.isPresent() && size.isPresent()) {
+            customers = customerInputPort.getPaginatedCustomers(page.get(), size.get());
+        } else {
+            customers = customerInputPort.getAllCustomers();
+        }
+
         return new ResponseEntity<>(
-                customers,
+                customerMapper.domainListToPublicCustomerInfoDTOList(customers),
                 HttpStatus.OK);
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<PublicCustomerInfoDTO> getCustomerById(@PathVariable Long id){

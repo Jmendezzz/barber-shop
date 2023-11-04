@@ -56,6 +56,14 @@ public class CustomerRepositoryImp implements CustomerRepository {
     }
 
     @Override
+    public List<Customer> findAllPaginated(Integer page, Integer size) {
+        List<Customer> customers = customerMapper.usetListToCustomerList(userRepository.findPaginatedByRole(Role.CUSTOMER,page,size));
+        customers.parallelStream()
+                .forEach(c->c.setPoints(getCustomerPoints(c)));
+        return customers;
+    }
+
+    @Override
     public Optional<Customer> update(Customer customerUpdated) {
         if(userRepository.existsById(customerUpdated.getId())){
             Customer customer = customerMapper.userToCustomer(userRepository.update(customerUpdated).get());

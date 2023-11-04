@@ -29,6 +29,11 @@ public class CustomerService implements CustomerInputPort {
     }
 
     @Override
+    public List<Customer> getPaginatedCustomers(Integer page, Integer size) {
+        return customerRepository.findAllPaginated(page, size);
+    }
+
+    @Override
     public Optional<Customer> updateCustomer(Customer customerUpdated) {
         return customerRepository.update(customerUpdated);
     }

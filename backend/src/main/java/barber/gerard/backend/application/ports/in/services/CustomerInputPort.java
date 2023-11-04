@@ -9,6 +9,7 @@ public interface CustomerInputPort {
     Optional<Customer> getCustomerById(Long id);
     Customer createCustomer(Customer customer);
     List<Customer> getAllCustomers();
+    List<Customer> getPaginatedCustomers(Integer page, Integer size);
     Optional<Customer> updateCustomer(Customer customerUpdated);
     Customer deleteCustomerById(Long id);
 }
