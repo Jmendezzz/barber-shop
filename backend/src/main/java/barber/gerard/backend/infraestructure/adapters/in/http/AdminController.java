@@ -42,7 +42,7 @@ public class AdminController {
     List<PublicAdminInfoDTO> admins;
 
     if(page.isPresent() && size.isPresent()){
-      admins = adminMapper.domainListToPublicAdminInfoDTOList(adminInputPort.getPaginatedAdmins(page.get(), size.get()));
+      admins = adminMapper.domainListToPublicAdminInfoDTOList(adminInputPort.getAllPaginatedAdmins(page.get(), size.get()));
     }else{
       admins = adminMapper.domainListToPublicAdminInfoDTOList(adminInputPort.getAllAdmins());
     }

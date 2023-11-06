@@ -20,6 +20,11 @@ public class CutServiceService implements CutServiceInputPort {
     public List<CutService> getAllCutServices() {return cutServiceRepository.findAll();}
 
     @Override
+    public List<CutService> getAllCutServicesPaginated(int page, int size) {
+        return cutServiceRepository.findPaginated(page,size);
+    }
+
+    @Override
     public Optional<CutService> getCutServiceById(Long id) {return cutServiceRepository.findById(id);}
 
     @Override
