@@ -6,6 +6,8 @@ import barber.gerard.backend.domain.models.Appointment;
 import barber.gerard.backend.application.ports.in.services.AppointmentInputPort;
 import barber.gerard.backend.application.ports.out.AppointmentRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,7 @@ public class AppointmentService implements AppointmentInputPort {
   private AppointmentRepository appointmentRepository;
   private AppointmentConstraint appointmentConstraint;
   @Override
+  @CacheEvict(value = "appointments", allEntries = true)
   public Appointment createAppointment(Appointment appointment) {
     appointmentConstraint.validateAppointmentDateTime(appointment.getDate());
 
@@ -27,26 +30,31 @@ public class AppointmentService implements AppointmentInputPort {
   }
 
   @Override
+  @Cacheable("appointments")
   public List<Appointment> getAllAppointments() {
     return appointmentRepository.findAll();
   }
 
   @Override
+  @Cacheable("appointments")
   public List<Appointment> getPaginatedAppointments(int page, int size) {
     return appointmentRepository.findPaginated(page,size);
   }
 
   @Override
+  @Cacheable("appointments")
   public Optional<Appointment> getAppointmentById(Long id) {
     return appointmentRepository.findById(id);
   }
 
   @Override
+  @CacheEvict(value = "appointments", allEntries = true)
   public Optional<Appointment> updateAppointment(Appointment appointmentUpdated) {
     return appointmentRepository.update(appointmentUpdated);
   }
 
   @Override
+  @CacheEvict(value = "appointments", allEntries = true)
   public Appointment deleteAppointmentById(Long id) {
     return appointmentRepository.delete(id);
   }
@@ -62,6 +70,7 @@ public class AppointmentService implements AppointmentInputPort {
   }
 
   @Override
+  @CacheEvict(value = "appointments", allEntries = true)
   public Appointment acceptAppointment(Appointment appointment) {
     appointmentConstraint.doesAppointmentExist(appointment.getId());
 
@@ -71,12 +80,14 @@ public class AppointmentService implements AppointmentInputPort {
   }
 
   @Override
+  @CacheEvict(value = "appointments", allEntries = true)
   public Appointment rejectAppointment(Appointment appointment) {
     appointmentConstraint.doesAppointmentExist(appointment.getId());
 
     appointment.setStatus(Status.REJECTED);
     return appointmentRepository.update(appointment).get();
   }
+
 
   private List<Appointment> getAppointmentsToCancel(){
     List<Appointment> appointments = appointmentRepository.findByAnyField("status", Status.BOOKED);
