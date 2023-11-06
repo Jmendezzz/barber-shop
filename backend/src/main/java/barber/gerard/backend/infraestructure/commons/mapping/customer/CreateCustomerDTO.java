@@ -1,9 +1,6 @@
 package barber.gerard.backend.infraestructure.commons.mapping.customer;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
@@ -22,7 +19,7 @@ public record CreateCustomerDTO(
         @NotBlank(message = CELLPHONE_NUMBER_NOT_NULL)
         @Size(min = 10, max = 10, message = CELLPHONE_NUMBER_SIZE)
         String cellphoneNumber,
-        @NotBlank(message = BIRTHDAY_NOT_NULL)
+        @NotNull(message = BIRTHDAY_NOT_NULL)
         @Past(message = BIRTHDAY_NOT_FUTURE)
         LocalDate birthday,
         @NotBlank(message = EMAIL_NOT_NULL)
