@@ -42,7 +42,7 @@ public class BarberController {
         List<PublicBarberInfoDTO> barbers;
 
         if(page.isPresent() && size.isPresent())
-            barbers = barberMapper.domainListToPublicBarberInfoDTOList(barberInputPort.getPaginatedBarbers(page.get(), size.get()));
+            barbers = barberMapper.domainListToPublicBarberInfoDTOList(barberInputPort.getAllPaginatedBarbers(page.get(), size.get()));
         else {
             barbers = barberMapper.domainListToPublicBarberInfoDTOList(barberInputPort.getAllBarbers());
         }

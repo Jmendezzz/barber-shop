@@ -32,7 +32,13 @@ public class CutServiceController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<CutService>> getAllCutServices(){
+    public ResponseEntity<List<CutService>> getAllCutServices(@RequestParam Optional<Integer> page,
+                                                              @RequestParam Optional<Integer> size){
+        List<CutService> cutServices;
+        if(page.isPresent() && size.isPresent()){
+            cutServices = cutServiceInputPort.getAllCutServicesPaginated(page.get(), size.get());
+        }
+
         return new ResponseEntity<>(
                 cutServiceInputPort.getAllCutServices(),
                 HttpStatus.OK

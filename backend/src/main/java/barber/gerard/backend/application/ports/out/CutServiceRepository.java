@@ -10,6 +10,8 @@ public interface CutServiceRepository {
     CutService save(CutService cutService);
     Optional<CutService> findById(Long id);
     List<CutService> findAll();
+    List<CutService> findPaginated(int page, int size);
     Optional<CutService> update(CutService cutService);
     CutService deleteById(Long id);
+
 }

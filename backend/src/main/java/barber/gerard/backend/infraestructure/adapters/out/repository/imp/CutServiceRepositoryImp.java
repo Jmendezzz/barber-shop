@@ -5,6 +5,8 @@ import barber.gerard.backend.infraestructure.adapters.out.repository.JpaCutServi
 import barber.gerard.backend.infraestructure.entities.CutServiceEntity;
 import barber.gerard.backend.infraestructure.commons.mapping.cutService.CutServiceMapper;
 import barber.gerard.backend.application.ports.out.CutServiceRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +18,8 @@ import java.util.Optional;
 public class CutServiceRepositoryImp implements CutServiceRepository {
     private JpaCutServiceRepository jpaCutServiceRepository;
     private CutServiceMapper cutServiceMapper;
+    @PersistenceContext
+    private EntityManager entityManager;
     @Override
     public CutService save(CutService cutService) {
         CutServiceEntity cutServiceEntity = cutServiceMapper.domainToEntity(cutService);
@@ -34,6 +38,18 @@ public class CutServiceRepositoryImp implements CutServiceRepository {
     @Override
     public List<CutService> findAll() {
         return cutServiceMapper.entityListToDomainList(jpaCutServiceRepository.findAll());
+    }
+
+    @Override
+    public List<CutService> findPaginated(int page, int size) {
+        return entityManager
+                .createQuery("SELECT c FROM CutServiceEntity c", CutServiceEntity.class)
+                .setFirstResult((page-1)*size)
+                .setMaxResults(size)
+                .getResultList()
+                .stream()
+                .map(cutServiceEntity -> cutServiceMapper.entityToDomain(cutServiceEntity))
+                .toList();
     }
 
     @Override

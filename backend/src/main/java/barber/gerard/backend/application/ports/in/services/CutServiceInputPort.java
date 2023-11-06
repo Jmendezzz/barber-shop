@@ -9,7 +9,9 @@ import java.util.Optional;
 public interface CutServiceInputPort {
     CutService createCutService(CutService cutService);
     List<CutService> getAllCutServices();
+    List<CutService> getAllCutServicesPaginated(int page, int size);
     Optional<CutService> getCutServiceById(Long id);
     Optional<CutService> updateCutService(CutService cutService);
     CutService deleteCutServiceById(Long id);
+
 }
