@@ -1,5 +1,6 @@
 import { Client } from "./Client"
-export interface Opinion{
+import { EntityWithId } from "./EntityWithId"
+export interface Opinion extends EntityWithId{
     client: Client
     opinion: string
 }
