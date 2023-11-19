@@ -1,5 +1,5 @@
 import video from "../../../assets/videos/main-video.mp4";
-import { Location } from "./Location";
+import { Locations } from "./Locations";
 import { Opinions } from "./Opinions";
 export const Home = () => {
   return (
@@ -31,7 +31,7 @@ export const Home = () => {
         </div>
 
         <div className="snap-center">
-          <Location/>
+          <Locations/>
         </div>
         <div className="snap-start">
           <Opinions/>

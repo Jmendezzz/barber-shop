@@ -10,6 +10,7 @@ import { Footer } from "../Footer";
 
 const opinions: Array<Opinion> = [
   {
+    id: 1,
     client: {
       profileImage: firstClient,
       fullName: "Juan Gerardo",
@@ -18,6 +19,7 @@ const opinions: Array<Opinion> = [
       "¡La Barbería de Gerard es simplemente excepcional! Cada vez que entro, me siento transportado a la época dorada de la barbería. Los barberos son verdaderos artistas, dominan a la perfección los cortes clásicos y siempre logran que me vea elegante y sofisticado. ¡No puedo recomendarlos lo suficiente!",
   },
   {
+    id: 2,
     client: {
       profileImage: secondClient,
       fullName: "Lucas Lautaro",
@@ -26,6 +28,7 @@ const opinions: Array<Opinion> = [
       "Si buscas una experiencia de barbería auténtica, no puedes dejar de visitar la Barbería de Gerard. Sus sedes son como oasis de tradición en medio de la modernidad. Cada detalle, desde la música hasta el aroma a cuero, te hace sentir como si estuvieras en otra época. Los barberos son verdaderos maestros y siempre me sorprenden con cortes de cabello impecables. ¡Sin duda, la mejor barbería en la ciudad!",
   },
   {
+    id: 3,
     client: {
       profileImage: thirdClient,
       fullName: "Jhon Alexander",
