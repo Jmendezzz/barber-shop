@@ -1,5 +1,4 @@
 import { Opinion } from "../../../interfaces/Opinion";
-import { motion } from "framer-motion";
 
 export const OpinionItem = (opinion:Opinion)=>{
     return(
