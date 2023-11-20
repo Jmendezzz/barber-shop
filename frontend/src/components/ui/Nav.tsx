@@ -10,12 +10,12 @@ export const Nav = () => {
         <div className="flex items-center justify-evenly gap-x-10 w-[50%] [&>li>a]:transition-all">
           <li className="w-32">
 
-            <NavLink to={"/"} className=" hover:border-b-4 border-transparent hover:border-y-yellow-300 cursor-pointer">
+            <NavLink to={"/"} className=" hover:border-b-4 border-transparent hover:border-y-yellow-300 cursor-pointer" hrefLang="home">
               INICIO
             </NavLink>
           </li>
           <li className="w-32">
-            <a className=" hover:border-b-4 border-transparent hover:border-y-yellow-300 cursor-pointer">
+            <a className=" hover:border-b-4 border-transparent hover:border-y-yellow-300 cursor-pointer" href="#locations">
               Sedes
             </a>
           </li>

@@ -48,7 +48,7 @@ const locations: Array<Location> = [
 
 export const Locations = () => {
   return (
-    <section className="h-screen w-screen text-white font-bebas overflow-hidden flex flex-col gap-9 justify-center items-center relative">
+    <section className="h-screen w-screen text-white font-bebas overflow-hidden flex flex-col gap-9 justify-center items-center relative" id="locations">
       <div className="z-10">
         <h2 className="text-5xl">Nuestras sedes</h2>
       </div>

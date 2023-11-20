@@ -1,15 +1,34 @@
-import background from "../../assets/images/barbers-background.jpg"
+import background from "../../assets/images/barbers-background.jpg";
 import { Barber } from "../../interfaces/Barber";
-import {BarberCard} from "./BarberCard";
+import { BarberCard } from "./BarberCard";
 import firstBarber from "../../assets/images/barber-1.jpg";
-
+import { motion } from "framer-motion";
 const barbers: Array<Barber> = [
   {
-    fullName : 'Olmay Barber',
-    image : firstBarber,
-    stars : 5
-  }
-]
+    id: 1,
+    fullName: "Olmay Barber",
+    image: firstBarber,
+    stars: 5,
+  },
+  {
+    id: 2,
+    fullName: "Olmay Barber",
+    image: firstBarber,
+    stars: 5,
+  },
+  {
+    id: 3,
+    fullName: "Olmay Barber",
+    image: firstBarber,
+    stars: 5,
+  },
+  {
+    id: 4,
+    fullName: "Olmay Barber",
+    image: firstBarber,
+    stars: 5,
+  },
+];
 
 export const Barbers = () => {
   return (
@@ -17,15 +36,42 @@ export const Barbers = () => {
       <div className="z-10">
         <h2 className="text-5xl">Nuestros barberos</h2>
       </div>
-      <section className="flex flex-wrap-gap-3 justify-around z-10" >
-        {barbers.map((b)=>(
-          <BarberCard barber={b}    />
 
+      <motion.section
+        className="flex flex-wrap gap-10 justify-around z-10"
+        variants={{
+          visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+              delayChildren: 0.1,
+              staggerChildren: 0.1,
+            },
+          },
+        }}
+        initial="hidden"
+        animate="visible"
+      >
+        {barbers.map((b) => (
+          <motion.div
+            key={b.id}
+            variants={{
+              hidden: { x: -100, opacity: 0},
+              visible: {
+                x: 0,
+                opacity: 1,
+              }
+            }}
+          >
+            <BarberCard barber={b} />
+          </motion.div>
         ))}
-
-      </section>
+      </motion.section>
       <div className="absolute h-screen w-screen top-0 bottom-0">
-        <img className="w-full h-full object-cover object-center" src={background}/>
+        <img
+          className="w-full h-full object-cover object-center"
+          src={background}
+        />
       </div>
     </section>
   );

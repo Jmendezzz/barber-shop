@@ -3,7 +3,7 @@ import { Locations } from "./Locations";
 import { Opinions } from "./Opinions";
 export const Home = () => {
   return (
-    <section className="h-screen w-screen text-white font-bebas bg-black overflow-x-hidden relative">
+    <section className="h-screen w-screen text-white font-bebas bg-black overflow-x-hidden relative" id="home">
       <main className="snap-y snap-mandatory relative h-screen w-screen overflow-auto overflow-x-hidden">
         <div className="h-full flex flex-col justify-center items-center relative snap-center">
           <header className="z-20  text-5xl flex justify-center">
