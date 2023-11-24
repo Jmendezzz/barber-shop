@@ -24,8 +24,8 @@ interface CarouselProps<T extends EntityWithId> {
 
   
     return (
-      <div className="relative h-3/5 w-3/5 z-10 flex justify-center">
-        <CarouselItem  renderItem={renderItem} isRight={isRight} item={items[currentIndex]} />
+      <div className="relative h-3/5 w-[90%] laptop:w-3/5 z-10 flex justify-center items-center">
+          <CarouselItem  renderItem={renderItem} isRight={isRight} item={items[currentIndex]} />
         <AiOutlineLeft
           onClick={handleLeftClick}
           className="absolute top-2/4 left-0 text-yellow-300 text-5xl cursor-pointer font-extrabold transition-transform hover:scale-125 hover:-translate-z-1"

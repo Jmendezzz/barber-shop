@@ -39,10 +39,10 @@ const opinions: Array<Opinion> = [
 ];
 export const Opinions = () => {
   return (
-    <section className="h-[120vh] w-screen text-white font-bebas overflow-hidden flex flex-col gap-9 justify-center items-center relative select-none" >
-      <div className="h-[90%] w-screen text-white font-bebas overflow-hidden flex flex-col gap-9 justify-center items-center relative" >
+    <section className="h-screen w-screen text-white font-bebas overflow-hidden flex flex-col gap-9 justify-center items-center relative select-none" >
+      <div className="h-[100%] w-screen text-white font-bebas overflow-hidden flex flex-col gap-9 justify-center items-center relative" >
         <div className=" z-10">
-          <h2 className="text-5xl">Opiniones de nuestros clientes</h2>
+          <h2 className="text-5xl text-center">Opiniones de nuestros clientes</h2>
         </div>
         <Carousel items={opinions} renderItem={OpinionItem} />
 
@@ -55,7 +55,6 @@ export const Opinions = () => {
 
       </div>
 
-      <Footer />
     </section>
   );
 };
