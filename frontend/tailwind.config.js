@@ -7,11 +7,16 @@ export default {
   ],
   theme: {
     extend: {
-
       fontFamily: {
         bebas: ['Bebas Neue', 'sans-serif'],
         workSans: ['Work Sans', 'sans-serif']
       }
+    },
+    screens: {	
+      mobile: '375px',
+      tablet: '768px',
+      laptop: '1024px',
+      desktop: '1440px'
     }
   },
   plugins: []

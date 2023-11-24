@@ -19,7 +19,7 @@ export const LocationItem = (location:Location)=>{
           className="h-full w-[90%] object-cover object-center select-none"
           src={location.image}
           alt="Location"
-          loading="eager"
+          loading="lazy"
         />
         <div className="absolute bottom-0 h-40 bg-black w-[90%] opacity-90 min-h-30">
           <div className="p-5 text-justify w-full">

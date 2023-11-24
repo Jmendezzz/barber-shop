@@ -12,7 +12,7 @@ export const CarouselItem = <T extends EntityWithId>({renderItem,isRight,item}:C
 
     return(
         <motion.div
-        className="relative h-full w-[90%] flex justify-center items-center gap-10"
+        className=""
         key={item.id}
         initial={{x: isRight ? 200 : -200}}
         animate={{x:0}}

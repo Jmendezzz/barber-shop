@@ -57,6 +57,7 @@ export const Locations = () => {
 
       <div className="absolute h-screen w-screen top-0 bottom-0">
         <img
+          loading="lazy"
           className="h-full w-full object-center object-cover opacity-50"
           src={backgroundImage}
           alt="Background"
