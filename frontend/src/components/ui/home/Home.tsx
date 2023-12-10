@@ -1,5 +1,4 @@
 import video from "../../../assets/videos/main-video.mp4";
-import { Locations } from "./Locations";
 import { Opinions } from "./Opinions";
 import { History } from "./History";
 export const Home = () => {

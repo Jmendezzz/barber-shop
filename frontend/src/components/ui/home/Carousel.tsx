@@ -24,15 +24,16 @@ interface CarouselProps<T extends EntityWithId> {
 
   
     return (
-      <div className="relative h-3/5 w-[90%] laptop:w-3/5 z-10 flex justify-center items-center">
-          <CarouselItem  renderItem={renderItem} isRight={isRight} item={items[currentIndex]} />
+      <div className="flex gap-2 h-3/5 w-[90%] z-10 justify-center items-center">
         <AiOutlineLeft
           onClick={handleLeftClick}
-          className="absolute top-2/4 left-0 text-yellow-300 text-5xl cursor-pointer font-extrabold transition-transform hover:scale-125 hover:-translate-z-1"
+          className="z-10 block text-yellow-300 text-5xl cursor-pointer font-extrabold transition-transform hover:scale-125 hover:-translate-z-1"
         />
+          <CarouselItem  renderItem={renderItem} isRight={isRight} item={items[currentIndex]} />
+
         <AiOutlineRight
           onClick={handleRightClick}
-          className="absolute top-2/4 right-0 text-yellow-300 text-5xl cursor-pointer font-extrabold transition-transform hover:scale-125 hover:-translate-z-1 select-none"
+          className="<-10 block text-yellow-300  text-5xl cursor-pointer font-extrabold transition-transform hover:scale-125 hover:-translate-z-1 select-none"
         />
       </div>
     );
