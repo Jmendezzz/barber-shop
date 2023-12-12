@@ -9,10 +9,11 @@ export default {
     extend: {
       fontFamily: {
         bebas: ['Bebas Neue', 'sans-serif'],
-        workSans: ['Work Sans', 'sans-serif']
+        workSans: ['Work Sans', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif']
       }
     },
-    screens: {	
+    screens: {   	
       mobile: '375px',
       tablet: '768px',
       laptop: '1024px',

@@ -1,5 +1,7 @@
 import { Location } from "../../interfaces/Location";
 import { LocationItem } from "./LocationItem";
+import whiteTie from "../../assets/images/white-tie.png";
+import { LocationDescriptionItem } from "./LocationDescriptionItem";
 const locations: Array<Location> = [
   {
     id: 1,
@@ -42,29 +44,47 @@ const locations: Array<Location> = [
       "Ubicada en el corazón del innovador Silicon Valley, nuestra sede moderna combina la estética de alta tecnología con servicios de barbería de vanguardia. Nuestro equipo de barberos expertos está al tanto de las últimas tendencias en cortes de cabello y estilos modernos.",
   },
 ];
+
+const locationDescriptions = [
+  {
+    image: whiteTie,
+    tittle: "Elegancia",
+    description:
+      "Nuestras sedes fusionan la elegancia clásica con un toque moderno, creando un ambiente distinguido y acogedor.",
+  },
+  {
+    image: whiteTie,
+    tittle: "Ubicación",
+    description:
+      "Estamos ubicados estratégicamente en las principales ciudades del mundo.",
+  },
+];
 export const Locations = () => {
   return (
-    <section className="flex flex-col items-center justify-center h-auto w-screen bg-black">
-      <div className="p-40">
-      <header className="text-white flex flex-col items-center ">
-        <h1 className="text-5xl font-bebas">Nuestras Sedes</h1>
-        <p>
-          Embárcate en un viaje por el mundo de la elegancia masculina con
-          Gerard's Barber Shop. Nuestras sedes, meticulosamente diseñadas,
-          fusionan la esencia clásica de la barbería con toques vanguardistas.
-          Desde la vibrante energía de nuestras ubicaciones hasta la atención
-          personalizada que ofrecemos, cada visita es una experiencia que va más
-          allá de un simple corte de pelo. ¡Descubre la sofisticación en cada
-          detalle con nosotros!
-        </p>
-      </header>
-      <section className="h-[65%] w-full flex flex-col items-center">
-        {locations.map((location) => (
-          <LocationItem key={location.id} location={location} />
-        ))}
-      </section>
+    <section className="flex justify-center h-auto laptop:h-screen w-screen bg-slate-900 ">
+      <div className="flex flex-col items-center justify-center pt-40 w-[70%] gap-10">
+        <header className="text-white flex flex-col items-center text-center gap-10">
+          <h1 className="text-5xl font-bebas">Nuestras Sedes</h1>
+          <p className="w-[60%] text-justify text-xl font-poppins">
+            Embárcate en un viaje por el mundo de la elegancia masculina con
+            Gerard's Barber Shop. Nuestras sedes, meticulosamente diseñadas,
+            fusionan la esencia clásica de la barbería con toques vanguardistas.
+          </p>
+        </header>
+        <section className="flex w-full flex-wrap justify-evenly">
+          {locationDescriptions.map((locationDescription) => (
+            <LocationDescriptionItem
+              key={locationDescription.tittle}
+              locationDescription={locationDescription}
+            />
+          ))}
+        </section>
+        <section className="h-[65%] w-full flex flex-col items-center">
+          {locations.map((location) => (
+            <LocationItem key={location.id} location={location} />
+          ))}
+        </section>
       </div>
-      
     </section>
   );
 };
