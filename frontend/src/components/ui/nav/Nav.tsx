@@ -1,10 +1,10 @@
-import logo from "../../assets/images/GerardBarberShopLogo.png";
+import logo from "../../../assets/images/GerardBarberShopLogo.png";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import {NavLink} from "react-router-dom";
 
 export const Nav = () => {
   return (
-    <nav className="h-28 fixed z-30 w-full ">
+    <nav className="h-28 fixed top-0 z-30 w-full ">
       <ul className="list-none flex  w-full  text-white text-3xl font-bebas  ">
         <div className="flex-grow w-96"></div>
         <div className="flex items-center justify-evenly gap-x-10 w-[50%] [&>li>a]:transition-all">
@@ -15,9 +15,9 @@ export const Nav = () => {
             </NavLink>
           </li>
           <li className="w-32">
-            <a className=" hover:border-b-4 border-transparent hover:border-y-yellow-300 cursor-pointer" href="#locations">
+            <NavLink  to="/locations" className=" hover:border-b-4 border-transparent hover:border-y-yellow-300 cursor-pointer">
               Sedes
-            </a>
+            </NavLink>
           </li>
 
           <li>
