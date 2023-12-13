@@ -1,4 +1,4 @@
-import logo from "../../assets/images/GerardBarberShopLogo.png";
+import logo from "../../../assets/images/GerardBarberShopLogo.png";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import {NavLink} from "react-router-dom";
 

@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./components/ui/home/Home";
-import { Nav } from "./components/ui/Nav";
+import { Nav } from "./components/ui/nav/Nav";
 import { Barbers } from "./components/barber/Barbers";
 import { Locations } from "./components/locations/Locations";
 const App = () => {

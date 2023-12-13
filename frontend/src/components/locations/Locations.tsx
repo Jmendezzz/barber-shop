@@ -2,6 +2,7 @@ import { Location } from "../../interfaces/Location";
 import { LocationItem } from "./LocationItem";
 import whiteTie from "../../assets/images/white-tie.png";
 import { LocationDescriptionItem } from "./LocationDescriptionItem";
+import { Link } from "react-router-dom";
 const locations: Array<Location> = [
   {
     id: 1,
@@ -36,7 +37,7 @@ const locations: Array<Location> = [
   {
     id: 4,
     image:
-      "https://freshchalk-assets.imgix.net/categories/barber-4d98c304b78acce94cb12f8745a93ecdb9c421b151c6ef99b202643db7ee040d.jpg?auto=format&ar=1%3A1&fit=max",
+      "https://assets-global.website-files.com/644a9d9ce529ef8812f82a28/647fb85c69e95444243ef9bd_Henley%27s%20Gentlemen%27s%20Grooming%20-%20Barbershop%20and%20Mens%20Grooming.webp",
     country: "Estados Unidos",
     city: "San Francisco",
     direction: "101 Innovation Road, Silicon Valley",
@@ -50,7 +51,7 @@ const locationDescriptions = [
     image: whiteTie,
     tittle: "Elegancia",
     description:
-      "Nuestras sedes fusionan la elegancia clásica con un toque moderno, creando un ambiente distinguido y acogedor.",
+      "Nuestras sedes fusionan la elegancia clásica con un toque moderno.",
   },
   {
     image: whiteTie,
@@ -58,31 +59,44 @@ const locationDescriptions = [
     description:
       "Estamos ubicados estratégicamente en las principales ciudades del mundo.",
   },
+  {
+    image: whiteTie,
+    tittle: "Tecnología",
+    description:
+      "En nuestras sedes, la tecnología se fusiona con la elegancia y el vanguardismo",
+  },
 ];
 export const Locations = () => {
   return (
-    <section className="flex justify-center h-auto laptop:h-screen w-screen bg-slate-900 ">
+    <section className="flex justify-center h-auto w-full bg-slate-900 ">
       <div className="flex flex-col items-center justify-center pt-40 w-[70%] gap-10">
         <header className="text-white flex flex-col items-center text-center gap-10">
-          <h1 className="text-5xl font-bebas">Nuestras Sedes</h1>
-          <p className="w-[60%] text-justify text-xl font-poppins">
+          <h1 className="text-5xl font-bebas">Sedes</h1>
+          <p className="w-[60%] text-center text-xl font-poppins">
             Embárcate en un viaje por el mundo de la elegancia masculina con
             Gerard's Barber Shop. Nuestras sedes, meticulosamente diseñadas,
             fusionan la esencia clásica de la barbería con toques vanguardistas.
           </p>
         </header>
-        <section className="flex w-full flex-wrap justify-evenly">
+        <section className="flex w-full flex-wrap justify-center gap-14">
           {locationDescriptions.map((locationDescription) => (
             <LocationDescriptionItem
-              key={locationDescription.tittle}
+            key={locationDescription.tittle}
               locationDescription={locationDescription}
             />
           ))}
         </section>
-        <section className="h-[65%] w-full flex flex-col items-center">
-          {locations.map((location) => (
-            <LocationItem key={location.id} location={location} />
-          ))}
+        <section className="h-[65%] w-[70%] flex flex-col items-center gap-10 ">
+          <header>
+            <h2 className="text-5xl font-bebas text-white">Ubicaciones</h2>
+          </header>
+          <div className="flex justify-center gap-10 flex-wrap">
+            {locations.map((location) => (
+              <Link to={"/barbers"} key={location.id}>
+                <LocationItem key={location.id} location={location} />
+              </Link>
+            ))}
+          </div>
         </section>
       </div>
     </section>
