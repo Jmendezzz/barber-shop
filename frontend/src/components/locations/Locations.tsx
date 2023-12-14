@@ -69,7 +69,7 @@ const locationDescriptions = [
 export const Locations = () => {
   return (
     <section className="flex justify-center h-auto w-full bg-slate-900 ">
-      <div className="flex flex-col items-center justify-center pt-40 w-[70%] gap-10">
+      <div className="flex flex-col items-center justify-center pt-40 w-[70%] gap-10 pb-10">
         <header className="text-white flex flex-col items-center text-center gap-10">
           <h1 className="text-5xl font-bebas">Sedes</h1>
           <p className="w-[60%] text-center text-xl font-poppins">

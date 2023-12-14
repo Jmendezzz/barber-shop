@@ -42,7 +42,7 @@ export const Opinions = () => {
     <section className="h-screen w-screen text-white font-bebas overflow-hidden flex flex-col gap-9 justify-center items-center relative select-none" >
       <div className="h-[100%] w-screen text-white font-bebas overflow-hidden flex flex-col gap-9 justify-center items-center relative" >
         <div className=" z-10">
-          <h2 className="text-5xl text-center">Opiniones de nuestros clientes</h2>
+          <h2 className="text-5xl text-center text-yellow-300">Opiniones de nuestros clientes</h2>
         </div>
         <Carousel items={opinions} renderItem={OpinionItem} />
 
