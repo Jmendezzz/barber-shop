@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useNavBarContext } from '../context/NavBarContext';
 import MenuMobileItem from './MenuMobileItem';
-import {HiUserCircle } from 'react-icons/hi';
+import { HiUserCircle } from 'react-icons/hi';
 
 function MenuMobile() {
   const { isMenuOpened } = useNavBarContext();
@@ -21,38 +21,34 @@ function MenuMobile() {
             <MenuHeader>
               <MenuMobileItem>
                 <MenuMobileItem.Label>
-                  <HiUserCircle fontSize={"40px"}/>
+                  <HiUserCircle fontSize={'40px'} />
                   <label>Inicia sesión/Registrate</label>
                 </MenuMobileItem.Label>
                 <MenuMobileItem.Icon />
               </MenuMobileItem>
             </MenuHeader>
 
-            <MenuMobileItem>
+            <MenuMobileItem key="loginItem">
               <MenuMobileItem.Label>
                 <label>Sedes</label>
               </MenuMobileItem.Label>
               <MenuMobileItem.Icon />
             </MenuMobileItem>
 
-
-            <MenuMobileItem>
+            <MenuMobileItem key="barberItem">
               <MenuMobileItem.Label>
                 <label>Barberos</label>
               </MenuMobileItem.Label>
               <MenuMobileItem.Icon />
             </MenuMobileItem>
 
-            <MenuMobileItem>
+            <MenuMobileItem key="servicesItem">
               <MenuMobileItem.Label>
                 <label>Servicios</label>
               </MenuMobileItem.Label>
               <MenuMobileItem.Icon />
             </MenuMobileItem>
-
           </StyledList>
-
-
         </StyledMenu>
       )}
     </AnimatePresence>
@@ -60,8 +56,12 @@ function MenuMobile() {
 }
 const StyledMenu = styled(motion.div)`
   width: 100%;
-  background: rgb(54,67,96);
-background: radial-gradient(circle, rgba(54,67,96,1) 12%, rgba(15,23,42,1) 100%);
+  background: rgb(15, 23, 42);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 1) 47%,
+    rgba(30, 41, 59, 1) 100%
+  );
   position: fixed;
   display: flex;
   padding: 30px 10px;
@@ -77,8 +77,7 @@ const StyledList = styled.ul`
 
 const MenuHeader = styled.header`
   font-size: 20px;
-  padding-bottom:40px;
+  padding-bottom: 40px;
 `;
-
 
 export default MenuMobile;

@@ -1,8 +1,9 @@
+import HeroSection from "../ui/HeroSection"
 
 
 function Home() {
   return (
-    <div>Home</div>
+    <HeroSection/>
   )
 }
 
