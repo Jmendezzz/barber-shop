@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import Logo from './Logo';
-import { HiMenu } from 'react-icons/hi';
 import { device } from '../styles/devices';
 import { useNavBarContext } from '../context/NavBarContext';
-import MenuMobile from './MenuMobile';
+import Hamburger from 'hamburger-react';
 
 function NavMobile() {
-  const { toggleMenu} = useNavBarContext();
+  const { toggleMenu, isMenuOpened} = useNavBarContext();
 
   return (
     <>
@@ -16,21 +15,18 @@ function NavMobile() {
             <Logo />
           </li>
           <li>
-            <HiMenu onClick={toggleMenu} />
+            <Hamburger toggled={isMenuOpened} onToggle={toggleMenu} color='white' hideOutline={false} />
           </li>
         </StyledList>
       </StyledNav>
-
-   
-      <MenuMobile /> 
     </>
   );
 }
 
 const StyledNav = styled.nav`
-  position:fixed;
+  position:sticky;
   width: 100%;
-  height: 78px;
+  padding:12px 5px;
   display: flex;
   align-items: center;
   background-color: var(--primary-color);
