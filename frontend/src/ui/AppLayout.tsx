@@ -9,6 +9,7 @@ const StyledAppLayout = styled.div`
 `;
 const Main = styled.main`
     padding:4px;
+    height:200vh;
 `
 
 function AppLayout() {
