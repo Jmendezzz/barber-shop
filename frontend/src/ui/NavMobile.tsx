@@ -31,7 +31,6 @@ const StyledNav = styled.nav`
   align-items: center;
   background-color: var(--primary-color);
   z-index:10000;
-
   & svg {
     width: 2.4rem;
     height: 2.4rem;

@@ -4,6 +4,7 @@ export const GlobalStyles = createGlobalStyle`
     :root{
         --primary-color: #0f172a;
         --secondary-color: #1e293b;
+        --contrast-color: #ffe815;
         //Box shadow
         --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04); 
         --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06);
@@ -40,10 +41,10 @@ export const GlobalStyles = createGlobalStyle`
         cursor: not-allowed;
         }
         body {
-        font-family: "Poppins", sans-serif;
+        font-family: "Inter", sans-serif;
         transition: color 0.3s, background-color 0.3s;
         min-height: 100vh;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         }
         p,
         h1,
@@ -54,6 +55,7 @@ export const GlobalStyles = createGlobalStyle`
         h6 {
         overflow-wrap: break-word;
         hyphens: auto;
+        color:white
         }
 
         a {

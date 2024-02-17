@@ -8,7 +8,6 @@ const StyledAppLayout = styled.div`
   height: 100vh;
 `;
 const Main = styled.main`
-    padding:4px;
     height:200vh;
 `
 
