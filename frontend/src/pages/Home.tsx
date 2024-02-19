@@ -1,10 +1,13 @@
-import HeroSection from "../ui/HeroSection"
-
+import HeroSection from '../ui/HeroSection';
+import ServicesSection from '../ui/ServicesSection';
 
 function Home() {
   return (
-    <HeroSection/>
-  )
+    <>
+      <HeroSection />
+      <ServicesSection/>
+    </>
+  );
 }
 
-export default Home
+export default Home;

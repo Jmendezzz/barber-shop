@@ -15,7 +15,7 @@ const MenuItemRow = styled(motion.li)`
 const StyledLabel = styled(motion.div)`
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
 `;
 
 function MenuMobileItem({
@@ -37,7 +37,7 @@ function MenuMobileItem({
 function Icon() {
   return <HiOutlineChevronRight />;
 }
-function Label({ children }: { children: ReactElement | ReactElement[] }) {
+function Label({ children }: { children: ReactElement | ReactElement[] | string }) {
   return <StyledLabel as="label">{children}</StyledLabel>;
 }
 

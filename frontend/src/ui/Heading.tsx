@@ -2,16 +2,15 @@ import styled, { css } from 'styled-components';
 
 interface Props {
   type?: string;
+  position?: 'right' | 'center' | 'left';
 }
 
-//We use as in order to change the semantic tag in HTML so this will be render
-// like: <h1> <h1/> depending on the value that has the prop 'as'.
 
 const Heading = styled.h1<Props>`
   ${(props) =>
     props.as === 'h1' &&
     css`
-      font-size: 40px;
+      font-size: 5rem;
     `}
 
   ${(props) =>
@@ -32,15 +31,16 @@ const Heading = styled.h1<Props>`
       font-size: 3rem;
       text-align: center;
     `}
-
-  font-weight:600;
-  text-transform:uppercase;
-  & span{
-    color:var(--contrast-color);
-    }  `;
+    text-align:${(props) => props.position};
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 300;
+    & span{
+        color:var(--contrast-color);
+        }  `;
 
 Heading.defaultProps={
-    as:"h1"
+    as:"h1",
+    position:'left'
 }
 
 export default Heading;
