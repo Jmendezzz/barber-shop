@@ -30,21 +30,21 @@ function MenuMobile() {
 
             <MenuMobileItem key="loginItem">
               <MenuMobileItem.Label>
-                <label>Sedes</label>
+                Sedes
               </MenuMobileItem.Label>
               <MenuMobileItem.Icon />
             </MenuMobileItem>
 
             <MenuMobileItem key="barberItem">
               <MenuMobileItem.Label>
-                <label>Barberos</label>
+                Barberos
               </MenuMobileItem.Label>
               <MenuMobileItem.Icon />
             </MenuMobileItem>
 
             <MenuMobileItem key="servicesItem">
               <MenuMobileItem.Label>
-                <label>Servicios</label>
+                Servicios
               </MenuMobileItem.Label>
               <MenuMobileItem.Icon />
             </MenuMobileItem>
@@ -64,7 +64,8 @@ const StyledMenu = styled(motion.div)`
   );
   position: fixed;
   display: flex;
-  padding: 30px 10px;
+  padding: 30px 20px;
+  z-index:100000;
 `;
 
 const StyledList = styled.ul`
@@ -73,10 +74,11 @@ const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  font-size:30px;
 `;
 
 const MenuHeader = styled.header`
-  font-size: 20px;
+  font-size: 18px !important; 
   padding-bottom: 40px;
 `;
 

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { device } from './devices';
 
 export const GlobalStyles = createGlobalStyle`
     :root{
@@ -35,6 +36,8 @@ export const GlobalStyles = createGlobalStyle`
 
         button {
         cursor: pointer;
+        font-family: "Bebas Neue", sans-serif;
+
         }
 
         *:disabled {
@@ -44,8 +47,23 @@ export const GlobalStyles = createGlobalStyle`
         font-family: "Inter", sans-serif;
         transition: color 0.3s, background-color 0.3s;
         min-height: 100vh;
-        font-size: 1.4rem;
+        font-size: 1.rem;
+        overflow-x:hidden;
+     
         }
+        main{
+            overflow-x:hidden;
+
+        }
+        
+        @media (max-width: ${device.laptop}) {
+            main{
+                padding-top:85px;
+                outline:0;
+            }
+            
+        }
+
         p,
         h1,
         h2,

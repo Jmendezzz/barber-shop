@@ -24,7 +24,8 @@ function NavMobile() {
 }
 
 const StyledNav = styled.nav`
-  position:sticky;
+  position:fixed;
+  top:0;
   width: 100%;
   padding:12px 5px;
   display: flex;
