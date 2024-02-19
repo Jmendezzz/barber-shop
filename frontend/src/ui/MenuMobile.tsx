@@ -12,9 +12,9 @@ function MenuMobile() {
       {isMenuOpened && (
         <StyledMenu
           key="mobileMenu"
-          initial={{ height: '0vh' }}
-          animate={{ height: '100vh', y: 80 }}
-          exit={{ height: '0vh', y: 0 }}
+          initial={{ height: '0vh'}}
+          animate={{ height: '100vh',}}
+          exit={{ height: '0vh', display:'hidden' }}
           transition={{ ease: 'easeOut', duration: 0.2 }}
         >
           <StyledList>
@@ -65,6 +65,7 @@ const StyledMenu = styled(motion.div)`
   position: fixed;
   display: flex;
   padding: 30px 20px;
+  top:80px;
   z-index:100000;
 `;
 
