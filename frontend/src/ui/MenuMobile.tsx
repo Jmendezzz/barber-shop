@@ -12,10 +12,10 @@ function MenuMobile() {
       {isMenuOpened && (
         <StyledMenu
           key="mobileMenu"
-          initial={{ height: '0vh'}}
-          animate={{ height: '100vh',}}
-          exit={{ height: '0vh', display:'hidden' }}
-          transition={{ ease: 'easeOut', duration: 0.2 }}
+          initial={{ height: '0'}}
+          animate={{ height: '100%',}}
+          exit={{ height:'0' }}
+          transition={{ ease: 'linear', duration: 0.12}}
         >
           <StyledList>
             <MenuHeader>

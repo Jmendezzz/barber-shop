@@ -12,11 +12,11 @@ function ServicesSection() {
       </Heading>
 
       <Bento>
-        <BentoItem gridColumn='span 2'  title='Corte de pelo'/>
-        <BentoItem gridColumn='span 1'  title='Barba'/>
-        <BentoItem gridColumn='span 1'  title='Facial'/>
-        <BentoItem gridColumn='span 1 / span 2'  title='Lmao'/>
-        <BentoItem gridColumn='span 2'  title='Lmao 2'/>
+        <BentoItem gridColumn='span 2' gridRow='span 1' imgSrc='haircut.jpg'  title='Corte de pelo'/>
+        <BentoItem gridColumn='2' gridRow='2'   title='Faciales' imgSrc='facials.jpg'/>
+        <BentoItem gridColumn='1' gridRow='span 2 / span 3' imgSrc='beardcut.jpg' title='Barba'/>
+        <BentoItem gridColumn='2' gridRow='3' imgSrc='tinte.jpg'  title='Tinte' />
+        <BentoItem gridColumn='span 2' gridRow='span 1' imgSrc='design.jpg' title='Diseño' />
       </Bento>
 
     </StyledSection>
