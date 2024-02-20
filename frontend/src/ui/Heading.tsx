@@ -31,6 +31,7 @@ const Heading = styled.h1<Props>`
       font-size: 3rem;
       text-align: center;
     `}
+    z-index:1000;
     text-align:${(props) => props.position};
     font-family: "Bebas Neue", sans-serif;
     font-weight: 300;

@@ -10,9 +10,9 @@ function Bento({children}:{children:ReactElement | ReactElement[]}) {
 const BentoStyled = styled.section`
     width:100%;
     display:grid;
-    grid-template-columns: repeat(2, 1fr); 
-    grid-auto-rows:20rem;
-    gap:20px;
+    grid-template-columns: repeat(2, 1fr); //minmax
+    grid-template-rows:repeat(4, 12rem);
+    gap:10px;
 
     `
 
