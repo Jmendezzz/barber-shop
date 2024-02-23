@@ -18,7 +18,7 @@ function BentoItem({ title, gridColumn, gridRow, imgSrc }: Props) {
   );
 }
 const StyledImg = styled.div<{ imgSrc: string }>`
-  transition: all 1s;
+  transition: all 0.5s;
   background-image: url(${(props) => props.imgSrc});
   position: absolute;
   top:0;
@@ -49,7 +49,7 @@ const BentoItemStyled = styled.article<{
     padding: 0 10px;
   }
   &:hover div {
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
   outline:none;
 `;
