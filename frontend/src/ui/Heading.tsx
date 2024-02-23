@@ -16,7 +16,7 @@ const Heading = styled.h1<Props>`
   ${(props) =>
     props.as === 'h2' &&
     css`
-      font-size: 2rem;
+      font-size: 3rem;
     `}
 
   ${(props) =>
@@ -28,7 +28,7 @@ const Heading = styled.h1<Props>`
     ${(props) =>
     props.as === 'h4' &&
     css`
-      font-size: 3rem;
+      font-size: 1rem;
       text-align: center;
     `}
     z-index:1000;
