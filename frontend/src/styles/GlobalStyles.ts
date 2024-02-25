@@ -67,8 +67,8 @@ export const GlobalStyles = createGlobalStyle`
         }
         main{
             overflow-x:hidden;
-
         }
+     
         
         @media (max-width: ${device.laptop}) {
             main{

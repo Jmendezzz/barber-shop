@@ -14,8 +14,8 @@ const sizes = {
     text-align: center;
   `,
   medium: css`
-    font-size: 1.4rem;
-    padding: 1rem 1.6rem;
+    font-size: 1.3rem;
+    padding: 0.8rem 1.3rem;
     font-weight: 500;
   `,
   large: css`
@@ -29,6 +29,12 @@ const types = {
   filled: css`
     background-color: var(--contrast-color);
     border: none;
+    color: var(--primary-color);
+    border:2px solid var(--contrast-color);
+    &:hover {
+      background-color: transparent;
+      color: var(--contrast-color);
+    }
 
   `,
   unfilled: css`
@@ -36,7 +42,10 @@ const types = {
     border:2px solid var(--contrast-color);
     &:hover{
         background-color: var(--contrast-color);
+        color: var(--primary-color);
+
     }
+    color: var(--color-grey-50);
   `
 };
 
@@ -46,8 +55,9 @@ const Button = styled.button<ButtonProps>`
 
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);
-  color:white;
-  letter-spacing:1.2px;
+  letter-spacing:0.4px;
+  transition: background-color 0.2s ease-in-out;
+  display: block;
 
 `;
 
