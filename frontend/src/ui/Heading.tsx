@@ -35,6 +35,7 @@ const Heading = styled.h1<Props>`
     text-align:${(props) => props.position};
     font-family: "Bebas Neue", sans-serif;
     font-weight: 300;
+    color: var(--color-grey-50);
     & span{
         color:var(--contrast-color);
         }  `;
