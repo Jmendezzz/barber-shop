@@ -26,7 +26,7 @@ const StyledImg = styled.div<{ imgSrc: string }>`
   width:100%;
   height:100%;
   background-size: cover;
-  background-position: center;
+    background-position: center;
   border:none;
   outline:none;
 `;
@@ -41,6 +41,7 @@ const BentoItemStyled = styled.article<{
   height: 100%;
   justify-content: end;
   backdrop-filter: blur(12px);
+  border-radius: var(--border-radius-lg);
  
   ${(props) => `grid-column:${props.gridColumn}`};
   ${(props) => `grid-row:${props.gridRow}`};

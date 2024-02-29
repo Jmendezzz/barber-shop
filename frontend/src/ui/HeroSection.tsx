@@ -4,6 +4,7 @@ import Heading from './Heading';
 import Row from './Row';
 import Button from './Button';
 import Wave from 'react-wavify';
+import { device } from '../styles/devices';
 
 function HeroSection() {
   return (
@@ -13,15 +14,15 @@ function HeroSection() {
           <Heading>
             Expertos en <span>barbería</span>
           </Heading>
-          <ParagraphStyled>
+          <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore
-          </ParagraphStyled>
+          </p>
         </Row>
 
         <Row center={true} gap={0}>
           <div>
-            <Button size="medium" type="unfilled">
+            <Button size="large" type="unfilled">
               AGENDA TU CITA
             </Button>
           </div>
@@ -45,17 +46,23 @@ function HeroSection() {
     </HeroSectionStyled>
   );
 }
-
-const ParagraphStyled = styled.p`
-  font-size: 20px;
-`;
 const StyledImg = styled.img`
   max-height: 300px;
   min-height: 190px;
+
   max-width: 320px;
   min-width: 150px;
+
   position:relative;
   top:60px;
+
+  @media (min-width:${device.laptop}) {
+    max-height: 500px;
+    min-height: 350px;
+
+    max-width: 400px;
+    min-width: 200px;
+  }
 `;
 const HeroSectionStyled = styled(Section)`
   background: rgb(10, 16, 29);
