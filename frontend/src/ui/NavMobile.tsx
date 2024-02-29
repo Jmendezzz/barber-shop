@@ -12,7 +12,7 @@ function NavMobile() {
       <StyledNav>
         <StyledList>
           <li>
-            <Logo />
+            <Logo size='sm' />
           </li>
           <li>
             <Hamburger toggled={isMenuOpened} onToggle={toggleMenu} color='white' hideOutline={false} />
@@ -27,7 +27,7 @@ const StyledNav = styled.nav`
   position:fixed;
   top:0;
   width: 100%;
-  padding:12px 5px;
+  padding:15px 5px;
   display: flex;
   align-items: center;
   background-color: var(--primary-color);
@@ -41,7 +41,7 @@ const StyledNav = styled.nav`
     cursor: pointer;
   }
 
-  @media (min-width: ${device.laptop}) {
+  @media (min-width: ${device.desktop}) {
     display: none;
   }
 `;

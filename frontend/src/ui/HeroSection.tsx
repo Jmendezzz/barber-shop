@@ -14,10 +14,10 @@ function HeroSection() {
           <Heading>
             Expertos en <span>barbería</span>
           </Heading>
-          <ParagraphStyled>
+          <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore
-          </ParagraphStyled>
+          </p>
         </Row>
 
         <Row center={true} gap={0}>
@@ -46,10 +46,6 @@ function HeroSection() {
     </HeroSectionStyled>
   );
 }
-
-const ParagraphStyled = styled.p`
-  font-size: 20px;
-`;
 const StyledImg = styled.img`
   max-height: 300px;
   min-height: 190px;

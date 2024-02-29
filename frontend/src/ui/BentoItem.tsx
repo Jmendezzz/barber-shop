@@ -26,7 +26,7 @@ const StyledImg = styled.div<{ imgSrc: string }>`
   width:100%;
   height:100%;
   background-size: cover;
-    background-position: top;
+    background-position: center;
   border:none;
   outline:none;
 `;
