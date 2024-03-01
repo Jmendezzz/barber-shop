@@ -37,8 +37,8 @@ export const GlobalStyles = createGlobalStyle`
         --color-grey-900: #111827;
 
     }
-            ::-webkit-scrollbar {
-        width: 10px;
+        ::-webkit-scrollbar {
+            width: 15px;
         }
 
         /* Track */
@@ -48,7 +48,7 @@ export const GlobalStyles = createGlobalStyle`
 
         /* Handle */
         ::-webkit-scrollbar-thumb {
-        background: #888; 
+        background: var(--contrast-color); 
         }
 
         /* Handle on hover */

@@ -5,7 +5,7 @@ const Section = styled.section`
     min-height:'768px';
     padding:50px 10px;
     @media (min-width: ${device.desktop}){
-        padding:50px 12rem;
+        padding:50px 15rem;
         }
 `
 
