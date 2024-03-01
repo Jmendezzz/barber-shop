@@ -57,11 +57,11 @@ const StyledImg = styled.img`
   top:60px;
 
   @media (min-width:${device.laptop}) {
-    max-height: 500px;
-    min-height: 350px;
+    max-height: 800px;
+    min-height: 450px;
 
-    max-width: 400px;
-    min-width: 200px;
+    max-width: 600px;
+    min-width: 300px;
   }
 `;
 const HeroSectionStyled = styled(Section)`
