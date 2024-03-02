@@ -66,7 +66,7 @@ const StyledImg = styled.img`
 `;
 const HeroSectionStyled = styled(Section)`
   background: rgb(10, 16, 29);
-  padding-bottom:0px;
+  padding-bottom:0;
   background: linear-gradient(
     180deg,
     rgba(10, 16, 29, 1) 47%,
