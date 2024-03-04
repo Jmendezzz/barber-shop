@@ -5,29 +5,41 @@ import Row from './Row';
 import Button from './Button';
 import Wave from 'react-wavify';
 import { device } from '../styles/devices';
+import { motion } from 'framer-motion';
 
 function HeroSection() {
   return (
     <HeroSectionStyled>
       <Row gap={4}>
-        <Row as={'header'}>
-          <Heading>
-            Expertos en <span>barbería</span>
-          </Heading>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore
-          </p>
-        </Row>
+        <motion.div
+          initial={{ x: -150, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ ease: 'easeIn', duration: 0.2}}
+        >
+          <Row as={'header'}>
+            <Heading>
+              Expertos en <span>barbería</span>
+            </Heading>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore
+            </p>
+          </Row>
+        </motion.div>
 
         <Row center={true} gap={0}>
-          <div>
+          <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration:1.4}}>
             <Button size="large" type="unfilled">
               AGENDA TU CITA
             </Button>
-          </div>
+          </motion.div>
           <Footer>
-            <StyledImg src="hero-image.png" />
+            <StyledImg
+              src="hero-image.png"
+              initial={{ y: 130, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ ease: 'easeOut', duration: 0.5 }}
+            />
             <Wave
               fill="#1e293b"
               paused={false}
@@ -38,7 +50,6 @@ function HeroSection() {
                 speed: 0.12,
                 points: 3,
               }}
-              
             />
           </Footer>
         </Row>
@@ -46,17 +57,17 @@ function HeroSection() {
     </HeroSectionStyled>
   );
 }
-const StyledImg = styled.img`
+const StyledImg = styled(motion.img)`
   max-height: 300px;
   min-height: 190px;
 
   max-width: 320px;
   min-width: 150px;
 
-  position:relative;
-  top:60px;
+  position: relative;
+  top: 60px;
 
-  @media (min-width:${device.laptop}) {
+  @media (min-width: ${device.laptop}) {
     max-height: 800px;
     min-height: 450px;
 
@@ -66,7 +77,7 @@ const StyledImg = styled.img`
 `;
 const HeroSectionStyled = styled(Section)`
   background: rgb(10, 16, 29);
-  padding-bottom:0px;
+  padding-bottom: 0;
   background: linear-gradient(
     180deg,
     rgba(10, 16, 29, 1) 47%,
@@ -84,13 +95,11 @@ const Footer = styled.footer`
 
   & svg {
     bottom: 0;
-    width:100vw;
-    z-index:1000;
-    border:0;
-  
+    width: 100vw;
+    z-index: 1000;
+    border: 0;
   }
-  & div{
-    
+  & div {
   }
 `;
 
