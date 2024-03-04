@@ -13,7 +13,7 @@ function MenuMobile() {
         <StyledMenu
           key="mobileMenu"
           initial={{ height: '0'}}
-          animate={{ height: '100%',}}
+          animate={{ height: '100%'}}
           exit={{ height:'0' }}
           transition={{ ease: 'linear', duration: 0.12}}
         >
