@@ -1,14 +1,14 @@
 import NavBarContextProvider from "../context/NavBarContext";
+import MenuMobile from "./MenuMobile";
 import NavDesktop from "./NavDesktop";
-import NavMobileMenu from "./NavMobileMenu";
 
 
 
 function NavBar() {
   return (
     <NavBarContextProvider>
-        <NavMobileMenu/>
         <NavDesktop/>
+        <MenuMobile/>
     </NavBarContextProvider>
   )
 }
