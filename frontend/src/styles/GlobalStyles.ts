@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { device } from './devices';
 
 export const GlobalStyles = createGlobalStyle`
     :root{
@@ -87,14 +86,6 @@ export const GlobalStyles = createGlobalStyle`
             overflow-x:hidden;
         }
      
-        
-        @media (max-width: ${device.desktop}) {
-            main{
-                padding-top:85px;
-                outline:0;
-            }
-            
-        }
 
         p,
         h1,
