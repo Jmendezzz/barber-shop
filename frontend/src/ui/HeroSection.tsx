@@ -99,8 +99,6 @@ const Footer = styled.footer`
     z-index: 1000;
     border: 0;
   }
-  & div {
-  }
 `;
 
 export default HeroSection;

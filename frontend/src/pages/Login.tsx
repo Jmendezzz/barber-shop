@@ -1,87 +1,96 @@
 import styled from 'styled-components';
 import Section from '../ui/Section';
+import Logo from '../ui/Logo';
 import Heading from '../ui/Heading';
+import Wave from 'react-wavify';
+import Row from '../ui/Row';
+import { device } from '../styles/devices';
 import Form from '../ui/Form';
 import Input from '../ui/Input';
-import Row from '../ui/Row';
-import Logo from '../ui/Logo';
-import LoginFormRow from '../ui/LoginFormRow';
 import Button from '../ui/Button';
-import { device } from '../styles/devices';
-import GoogleSvg from '../ui/GoogleSvg';
+import LooginFooter from '../ui/LooginFooter';
 
 function Login() {
   return (
-    <StyledSection>
-      <header>
+    <LoginSection>
+      <LoginHeader>
         <Logo size="lg" />
-        <Heading as="h2" position="center">
-          Bienvenido de nuevo
+        <Heading as="h1" style={{ textAlign: 'center' }}>
+          <span>Bienvenido </span>
+          de vuelta
         </Heading>
-      </header>
-      <LoginRow type="horizontal">
-        <FormRow>
-          <Form>
-            <StyledRow center={true}>
-              <Heading as="h3" position="center">
-                Inicia Sesión
-              </Heading>
-              <LoginFormRow>
-                <Input placeholder="Usuario" type="text" />
-              </LoginFormRow>
+      </LoginHeader>
+      <Row style={{ zIndex: 1000, position: 'relative' }}>
+        <Form>
+          <Input type="email" placeholder="Correo electronico" />
+          <Input type="password" placeholder="Contraseña" />
+          <LoginOptions >
+            <div className='flex items justify-center'>
+              <input type="checkbox" />
+              <span className='text-xs text-white'> Mantener sesión iniciada</span>
+            </div>
+            <a href="#" className='underline text-white text-xs'>
+              Recuperar contraseña
+            </a>
+          </LoginOptions>
+          <Button type="filled">Iniciar sesión</Button>
+          <LooginFooter />
+        </Form>
+      </Row>
 
-              <LoginFormRow>
-                <Input placeholder="Contraseña" type="password" />
-              </LoginFormRow>
-              <Button>Iniciar Sesión</Button>
-            </StyledRow>
-          </Form>
-        </FormRow>
-      </LoginRow>
-
-      <GoogleButton type="unfilled" size="medium">
-        <GoogleSvg /> Inicia sesión con Google
-      </GoogleButton>
-    </StyledSection>
+      <BackGroundWaved>
+        <Wave
+          fill="#1e293b"
+          paused={false}
+          style={{ display: 'block' }}
+          options={{ height: 30, amplitude: 15, speed: 0.2, points: 3 }}
+        />
+        <StyledWave />
+      </BackGroundWaved>
+    </LoginSection>
   );
 }
 
-const StyledSection = styled(Section)`
-  padding-top: 2rem;
+const LoginSection = styled(Section)`
   background-color: var(--primary-color);
-  height: 100vh;
+  height: 100vw;
+`;
+const LoginHeader = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
-  & span {
-    color: var(--color-grey-50);
-    font-size: 1.2rem;
-    margin: 1rem 0;
-  }
+  gap: 2rem;
 `;
 
-const StyledRow = styled(Row)`
-  justify-content: center;
-  width: 100%;
-`;
+const StyledWave = styled.div`
+  height: 100%;
 
-const FormRow = styled.div`
-  width: 50%;
-
-  @media (min-width: ${device.tablet}) {
-    width: 30rem;
-  }
-`;
-
-const GoogleButton = styled(Button)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-`;
-
-const LoginRow = styled(Row)`
   background-color: var(--secondary-color);
+`;
+
+const BackGroundWaved = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  height: 70%;
+  gap: 0;
+  margin:0;
+  padding:0;
+  display:flex;
+  overflow: hidden;
+
+  @media (min-width: ${device.desktop}) {
+    display: none;
+  }
+`;
+const LoginOptions = styled.footer`
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 0.8rem;
 `
+
 
 export default Login;
