@@ -96,7 +96,8 @@ export const GlobalStyles = createGlobalStyle`
         h6 {
         overflow-wrap: break-word;
         hyphens: auto;
-        color:white
+        color:white;
+        line-height: 1.1;
         }
 
         a {

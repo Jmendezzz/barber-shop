@@ -10,6 +10,7 @@ const Row = styled.div<Props>`
   ${(props) => props.type === 'horizontal' && css`
     justify-content:space-around;
     align-items:center;
+    gap:${props.gap}rem;
     ${props.center && css`justify-content:center;` }
   `}
   ${(props) => props.type === 'vertical' && css`

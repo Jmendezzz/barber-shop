@@ -3,7 +3,6 @@ import { GlobalStyles } from "./styles/GlobalStyles"
 import AppLayout from "./ui/AppLayout"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
-
 function App() {
  return(
   <>
