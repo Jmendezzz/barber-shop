@@ -1,7 +1,7 @@
-import GoogleSvg from "./GoogleSvg";
-import Row from "./Row";
+import GoogleSvg from "../GoogleSvg";
+import Row from "../Row";
 
-function LooginFooter() {
+function LoginFooter() {
   return (
     <Row center={true}>
         <Row type="horizontal" center={true} gap={1}>
@@ -21,4 +21,4 @@ function LooginFooter() {
   );
 }
 
-export default LooginFooter;
+export default LoginFooter;

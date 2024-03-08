@@ -21,13 +21,13 @@ function MenuMobile() {
           <StyledList>
             <MenuHeader>
               <MenuMobileItem>
-                <MenuMobileItem.Label>
-                  <Link to={'/login'}>
+                <Link to={'/login'}>
+                  <MenuMobileItem.Label>
                     <HiUserCircle fontSize={'40px'} />
-                    <label >Inicia sesión/Registrate</label>
-                    
-                  </Link>
-                </MenuMobileItem.Label>
+                    <label>Inicia sesión/Registrate</label>
+                  </MenuMobileItem.Label>
+                </Link>
+
                 <MenuMobileItem.Icon />
               </MenuMobileItem>
             </MenuHeader>
