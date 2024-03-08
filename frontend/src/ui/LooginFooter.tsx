@@ -10,7 +10,7 @@ function LooginFooter() {
             Registrate
         </a>
         </Row>
-        <p className="font-bebasNeue">ó continua con:</p>
+        <p className="font-bebasNeue text-3xl">ó continua con:</p>
         <div className="border rounded-full p-2 bg-gray-900 cursor-pointer">
         <GoogleSvg/>
 
