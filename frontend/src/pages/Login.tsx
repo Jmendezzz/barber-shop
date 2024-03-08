@@ -9,6 +9,7 @@ import Form from '../ui/Form';
 import Input from '../ui/Input';
 import Button from '../ui/Button';
 import LooginFooter from '../ui/LooginFooter';
+import { motion } from 'framer-motion';
 
 function Login() {
   return (
@@ -38,7 +39,7 @@ function Login() {
         </Form>
       </Row>
 
-      <BackGroundWaved>
+      <BackGroundWaved initial={{height:0}} animate={{height:"70%"}}>
         <Wave
           fill="#1e293b"
           paused={false}
@@ -53,7 +54,7 @@ function Login() {
 
 const LoginSection = styled(Section)`
   background-color: var(--primary-color);
-  height: 100vw;
+  height: 100vh;
 `;
 const LoginHeader = styled.header`
   display: flex;
@@ -68,17 +69,15 @@ const StyledWave = styled.div`
   background-color: var(--secondary-color);
 `;
 
-const BackGroundWaved = styled.div`
+const BackGroundWaved = styled(motion.div)`
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 0;
-  height: 70%;
   gap: 0;
   margin:0;
   padding:0;
-  display:flex;
   overflow: hidden;
 
   @media (min-width: ${device.desktop}) {
