@@ -7,15 +7,21 @@ const MenuItemRow = styled(motion.li)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  &:hover {
+  & label:hover {
+    color: var(--contrast-color);
+    cursor: pointer;
+  }
+  & label:hover + svg {
+    transform: scale(1.2);
+    transition: transform 0.3s ease-in-out; 
     color: var(--contrast-color);
   }
-  cursor: pointer;
-`;
+    `;
 const StyledLabel = styled(motion.div)`
   display: flex;
   align-items: center;
   gap: 3px;
+
 `;
 
 function MenuMobileItem({
