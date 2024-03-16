@@ -11,7 +11,7 @@ function Login() {
   return (
     <LoginSection>
       <LoginRow>
-        <div className='flex flex-col items-center m-auto px-5'>
+        <div className='flex flex-col items-center m-auto px-5 relative z-50'>
           <HeadingLogo
             direction="column"
             span="Bienvenido"
