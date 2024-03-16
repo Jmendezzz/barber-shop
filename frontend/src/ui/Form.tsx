@@ -6,6 +6,7 @@ const Form = styled.form`
   padding: 1rem 1.2rem;
   display:flex;
   flex-direction: column;
+  width: 100%;
   gap: 1.3rem;
 
 `;

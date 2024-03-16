@@ -24,7 +24,6 @@ const StyledHeader = styled.header<{direction:'row' | 'column'}>`
   flex-direction: ${(props) => props.direction};
   justify-content: center;
   align-items: center;
-
   gap: 2rem;
 `;
 export default HeadingLogo;
