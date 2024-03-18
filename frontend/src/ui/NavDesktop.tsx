@@ -4,6 +4,7 @@ import { HiUser } from 'react-icons/hi';
 import { device } from '../styles/devices';
 import Hamburger from 'hamburger-react';
 import { useNavBarContext } from '../context/NavBarContext';
+import { Link } from 'react-router-dom';
 
 function NavDesktop() {
   const { toggleMenu, isMenuOpened } = useNavBarContext();
@@ -25,7 +26,9 @@ function NavDesktop() {
       </StyledUl>
 
       <SideDiv content="flex-end">
-        <HiUser size="2rem" color="white" />
+        <Link to="/login">
+          <HiUser size="2rem" color="white" />
+        </Link>
       </SideDiv>
 
       <StyledHamburger>
@@ -41,7 +44,7 @@ function NavDesktop() {
 }
 
 const StyledNav = styled.nav`
-    display: flex;
+  display: flex;
 
   @media (min-width: ${device.desktop}) {
     padding: 0 20px;
