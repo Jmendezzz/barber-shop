@@ -3,6 +3,7 @@ import { GlobalStyles } from "./styles/GlobalStyles"
 import AppLayout from "./ui/AppLayout"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
+import Register from "./pages/Register"
 function App() {
  return(
   <>
@@ -10,6 +11,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route element={<Login/>} path="/login"/>
+      <Route element={<Register />} path="/register" />
       <Route element={<AppLayout/>}>
         <Route element={<Home/>} index path="/"/>
       </Route>
