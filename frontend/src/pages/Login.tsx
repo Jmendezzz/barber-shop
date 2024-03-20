@@ -11,8 +11,9 @@ function Login() {
   return (
     <LoginSection>
       <LoginRow>
-        <div className='flex flex-col items-center m-auto px-5 relative z-50'>
+        <div className='flex flex-col justify-between px-5 relative z-50'>
           <HeadingLogo
+            heading="h1"
             direction="column"
             span="Bienvenido"
             title=" de vuelta"
@@ -36,7 +37,7 @@ const LoginSection = styled(Section)`
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
 `;
 
 const LoginRow = styled(Row)`

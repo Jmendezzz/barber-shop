@@ -1,9 +1,15 @@
 import styled from "styled-components";
 import Section from "../ui/Section";
+import HeadingLogo from "../ui/HeadingLogo";
+
+import GoBackButton from "../ui/GoBackButton";
 
 function Register() {
   return (
-    <RegisterSection>Register</RegisterSection>
+    <RegisterSection>
+      <GoBackButton/>
+      <HeadingLogo heading="h1" direction="column" title="tu experiencia aquí" span="Comienza"/>
+    </RegisterSection>
   )
 }
 
@@ -15,7 +21,8 @@ const RegisterSection = styled(Section)`
   );
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
 `;
+
 export default Register
