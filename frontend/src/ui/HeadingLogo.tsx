@@ -6,13 +6,14 @@ interface Props {
   direction: 'row' | 'column';
   span?: string;
   title: string;
+  heading: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
-function HeadingLogo({ direction, title, span }: Props) {
+function HeadingLogo({ direction, title, span, heading }: Props) {
   return (
     <StyledHeader direction={direction}>
       <Logo size="lg" />
-      <Heading as="h1" style={{ textAlign: 'center' }}>
-        <span>{span}</span>
+      <Heading as={heading} style={{ textAlign: 'center' }}>
+        <span>{span} </span>
         {title}
       </Heading>
     </StyledHeader>
