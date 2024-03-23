@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import Button from '../../ui/Button';
-import GoogleSvg from '../../ui/GoogleSvg';
 import Row from '../../ui/Row';
+import EmailRegisterForm from './EmailRegisterForm';
 
 function RegisterForm() {
   const [isEmailRegister, setIsEmailRegister] = useState(false);
 
-  if(isEmailRegister) return;
+  if(isEmailRegister) {
+    return(
+      <EmailRegisterForm/>
+    )
+  }
 
   return (
     <Row>
