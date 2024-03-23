@@ -26,6 +26,7 @@ const RegisterSection = styled(Section)`
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  gap: 1rem 
 `;
 
 export default Register

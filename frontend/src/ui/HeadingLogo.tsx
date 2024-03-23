@@ -23,8 +23,8 @@ function HeadingLogo({ direction, title, span, heading }: Props) {
 const StyledHeader = styled.header<{direction:'row' | 'column'}>`
   display: flex;
   flex-direction: ${(props) => props.direction};
-  justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
+  padding:0rem;
 `;
 export default HeadingLogo;

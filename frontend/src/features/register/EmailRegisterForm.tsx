@@ -14,16 +14,18 @@ function EmailRegisterForm() {
         <Input type="email" placeholder="Correo electronico" />
         <Input type="text" placeholder="Número de celular" />
         <Input type="password" placeholder="Contraseña" />
-        <Heading position="left" as="h4">
-          Fecha de nacimiento
-        </Heading>
-        <div className="flex gap-2">
-          <Input type="text" placeholder="Día" />
-          <Input type="text" placeholder="Mes" />
-          <Input type="text" placeholder="Año" />
+        <div>
+          <Heading position="left" as="h4">
+            Fecha de nacimiento
+          </Heading>
+          <div className="flex gap-2">
+            <Input type="text" placeholder="Día" />
+            <Input type="text" placeholder="Mes" />
+            <Input type="text" placeholder="Año" />
+          </div>
         </div>
-      </Form>
         <Button>Registrarse</Button>
+      </Form>
     </div>
   );
 }

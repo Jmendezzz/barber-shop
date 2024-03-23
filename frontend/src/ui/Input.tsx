@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 const Input = styled.input`
-  border: 1px solid var(--color-grey-300);
+  border: 2px solid var(--color-grey-500);
   background-color: transparent;
   display: block;
   width: 100%;
@@ -15,6 +15,9 @@ const Input = styled.input`
   &::placeholder {
     color: var(--color-grey-500);
     font-size: 1rem;
+  }
+  &:focus {
+    border-color: var(--color-grey-300);
   }
 `;
 
