@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { device } from './devices';
 
 export const GlobalStyles = createGlobalStyle`
     :root{
@@ -93,7 +94,15 @@ export const GlobalStyles = createGlobalStyle`
         color:white;
         line-height: 1.1;
         }
-
+        h1,
+        h2,
+        h3,
+        h4{
+            line-height: 1;
+            @media (min-width: ${device.desktop}){
+                line-height: 1.2;
+            }
+        }
         a {
         color: inherit;
         text-decoration: none;
