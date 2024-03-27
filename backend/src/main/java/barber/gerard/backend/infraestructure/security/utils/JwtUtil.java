@@ -48,8 +48,6 @@ public class JwtUtil {
               .withNotBefore(new Date(System.currentTimeMillis())) // Time before which the token must not be accepted for processing
               .sign(algorithm);
 
-
-
     return jwtToken;
   }
 
