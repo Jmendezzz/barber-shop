@@ -1,13 +1,18 @@
 package barber.gerard.backend.infraestructure.security.utils;
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -46,5 +51,30 @@ public class JwtUtil {
 
 
     return jwtToken;
+  }
+
+  public DecodedJWT validateToken(String token) {
+    try{
+      Algorithm algorithm = Algorithm.HMAC256(key);
+
+      JWTVerifier verifier = JWT.require(algorithm)
+                .withIssuer(userGenerator)
+                .build();
+
+      return verifier.verify(token);
+    }catch (JWTVerificationException exception){
+      throw new JWTVerificationException("Invalid token");
+    }
+  }
+
+  public String extractUsername(DecodedJWT decodedJWT) {
+    return decodedJWT.getSubject(); // Remember that the subject is the username owner of the token, in this case.
+  }
+
+  public Claim extractClaim(DecodedJWT decodedJWT, String claim) {
+    return decodedJWT.getClaim(claim);
+  }
+  public Map<String, Claim> extractAllClaims(DecodedJWT decodedJWT) {
+    return decodedJWT.getClaims();
   }
 }
