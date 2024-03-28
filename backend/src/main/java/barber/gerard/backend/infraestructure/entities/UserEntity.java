@@ -23,7 +23,7 @@ public class UserEntity {
   private String firstName;
   @Column(length = 50, nullable = false)
   private String lastName;
-  @Column(length = 14, nullable = false)
+  @Column(length = 14)
   private String nid;
   @Column(length = 20, nullable = false)
   private String cellphoneNumber;

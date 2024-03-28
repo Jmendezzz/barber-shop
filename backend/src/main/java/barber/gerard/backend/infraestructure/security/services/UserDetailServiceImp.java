@@ -1,9 +1,13 @@
 package barber.gerard.backend.infraestructure.security.services;
 
+import barber.gerard.backend.application.ports.in.constraints.UserConstraint;
 import barber.gerard.backend.application.ports.out.UserRepository;
+import barber.gerard.backend.domain.enums.Role;
 import barber.gerard.backend.domain.models.User;
 import barber.gerard.backend.infraestructure.commons.mapping.auth.AuthLoginRequest;
+import barber.gerard.backend.infraestructure.commons.mapping.auth.AuthMapper;
 import barber.gerard.backend.infraestructure.commons.mapping.auth.AuthResponse;
+import barber.gerard.backend.infraestructure.commons.mapping.auth.AuthSignUpRequest;
 import barber.gerard.backend.infraestructure.security.utils.JwtUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -11,6 +15,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,6 +34,10 @@ public class UserDetailServiceImp implements UserDetailsService {
   private final JwtUtil jwtUtil;
 
   private PasswordEncoder passwordEncoder;
+
+  private final UserConstraint userConstraint;
+
+  private final AuthMapper authMapper;
 
 
   @Override
@@ -66,5 +76,23 @@ public class UserDetailServiceImp implements UserDetailsService {
   }
 
     return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
+  }
+
+  public AuthResponse signUp(AuthSignUpRequest authSignUpRequest){
+    User user = authMapper.signUpRequestToUser(authSignUpRequest);
+    user.setRole(Role.CUSTOMER);
+
+    userConstraint.validateUserEmail(user.getEmail());
+    userConstraint.validateCellphone(user.getCellphoneNumber());
+
+    User userCreated = userRepository.save(user);
+
+    List<GrantedAuthority> role = new ArrayList<>();
+    role.add(new SimpleGrantedAuthority("ROLE".concat(userCreated.getRole().name())));
+
+    Authentication authentication = new UsernamePasswordAuthenticationToken(userCreated.getEmail(), userCreated.getPassword(), role);
+
+    String token = jwtUtil.generateToken(authentication);
+    return new AuthResponse(user.getEmail(),"User created",token,true);
   }
 }

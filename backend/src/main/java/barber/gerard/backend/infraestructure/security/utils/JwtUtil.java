@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 
 @Component
 public class JwtUtil {
-  @Value("${security.jwt.key }")
+  @Value("${security.jwt.key}")
   private String key;
 
-  @Value("${security.jwt.userGenerator}")
+  @Value("${security.jwt.user.generator}")
   private String userGenerator;
 
   @Value("${security.jwt.expiration}")
