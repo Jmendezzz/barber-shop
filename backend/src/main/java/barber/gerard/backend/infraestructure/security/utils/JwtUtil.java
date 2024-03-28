@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 
 @Component
 public class JwtUtil {
-  @Value("${security.jwt.key }")
+  @Value("${security.jwt.key}")
   private String key;
 
-  @Value("${security.jwt.userGenerator}")
+  @Value("${security.jwt.user.generator}")
   private String userGenerator;
 
   @Value("${security.jwt.expiration}")
@@ -47,8 +47,6 @@ public class JwtUtil {
               .withJWTId(UUID.randomUUID().toString()) // Unique identifier for the token
               .withNotBefore(new Date(System.currentTimeMillis())) // Time before which the token must not be accepted for processing
               .sign(algorithm);
-
-
 
     return jwtToken;
   }

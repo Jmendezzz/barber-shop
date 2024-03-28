@@ -7,8 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface JpaUserRepository extends JpaRepository<UserEntity,Long> {
   @Query("SELECT u FROM UserEntity u WHERE u.role = :rol")
   List<UserEntity> findByRole(@Param("rol") Role rol);
+
+  Optional<UserEntity> findByEmail(String email);
 }

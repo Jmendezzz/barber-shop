@@ -15,4 +15,5 @@ public interface UserRepository {
   List<User> findByRole(Role role);
   boolean existsById(Long id);
   Optional<User> findByAnyField(String fieldName, String fieldValue);
+  Optional<User> findByEmail(String email);
 }

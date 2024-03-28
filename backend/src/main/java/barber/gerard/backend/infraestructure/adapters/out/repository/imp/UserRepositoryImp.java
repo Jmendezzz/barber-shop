@@ -10,6 +10,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
@@ -22,9 +23,12 @@ public class UserRepositoryImp implements UserRepository {
   @PersistenceContext
   private EntityManager entityManager;
 
+  private PasswordEncoder passwordEncoder;
+
   @Override
   public User save(User user) {
     UserEntity userEntity = userMapper.domainToEntity(user);
+    userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
     UserEntity userSaved = jpaUserRepository.save(userEntity);
     return userMapper.entityToDomain(userSaved);
   }
@@ -80,6 +84,12 @@ public class UserRepositoryImp implements UserRepository {
     }catch (NoResultException e) {
       return Optional.empty();
     }
+  }
+
+  @Override
+  public Optional<User> findByEmail(String email) {
+    return jpaUserRepository.findByEmail(email)
+            .map(userEntity -> userMapper.entityToDomain(userEntity));
   }
 
   @Override
