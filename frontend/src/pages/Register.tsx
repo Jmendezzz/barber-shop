@@ -3,7 +3,7 @@ import Section from "../ui/Section";
 import HeadingLogo from "../ui/HeadingLogo";
 
 import GoBackButton from "../ui/GoBackButton";
-import RegisterForm from "../features/register/RegisterForm";
+import RegisterForm from "../features/signup/RegisterForm";
 
 function Register() {
   return (
