@@ -11,6 +11,7 @@ const Input = styled.input`
   box-shadow: var(--shadow-sm);
   color: var(--color-grey-300);
   outline: none;
+  position:relative;
   font-size: 1rem;
   &::placeholder {
     color: var(--color-grey-500);
@@ -18,6 +19,9 @@ const Input = styled.input`
   }
   &:focus {
     border-color: var(--color-grey-300);
+  }
+  &:-webkit-autofill{
+    background-color: transparent;
   }
 `;
 
