@@ -16,7 +16,7 @@ function LoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, touchedFields}
+    formState: { errors}
   } = useForm<FormFields>({mode:'onTouched'}); //Handle Submit validates the form and sends the data to the submitHandler function
   const submitHandler: SubmitHandler<FormFields> = ({ email, password }) => {
     console.log(email, password);
@@ -24,7 +24,7 @@ function LoginForm() {
 
   return (
     <Form onSubmit={handleSubmit(submitHandler)}>
-      <FormRow error={errors.email} touched={touchedFields.email}>
+      <FormRow error={errors.email}>
         <Input
           {...register('email',{
             required: 'El correo electrónico es requerido',
