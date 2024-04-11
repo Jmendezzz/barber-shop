@@ -21,12 +21,13 @@ const RegisterSection = styled(Section)`
     rgba(10, 16, 29, 1) 47%,
     rgba(14, 14, 14, 1) 100%
   );
-  height: 100vh;
+  height:100vh;
+  overflow:auto;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 1rem 
+  gap: 1rem;
 `;
 
 export default Register

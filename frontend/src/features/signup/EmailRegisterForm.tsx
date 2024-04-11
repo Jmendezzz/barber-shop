@@ -2,10 +2,11 @@ import Input from '../../ui/Input';
 import Heading from '../../ui/Heading';
 import Form from '../../ui/Form';
 import Button from '../../ui/Button';
+import Row from '../../ui/Row';
 
 function EmailRegisterForm() {
   return (
-    <div>
+    <Row>
       <Form>
         <div className="flex gap-2">
           <Input type="text" placeholder="Nombre" />
@@ -26,7 +27,7 @@ function EmailRegisterForm() {
         </div>
         <Button>Registrarse</Button>
       </Form>
-    </div>
+    </Row>
   );
 }
 
