@@ -4,6 +4,8 @@ import Form from '../../ui/Form';
 import Button from '../../ui/Button';
 import Row from '../../ui/Row';
 import { useForm } from 'react-hook-form';
+import { HiArrowLeft } from 'react-icons/hi';
+import styled from 'styled-components';
 
 interface FormFields {
   firstName: string;
@@ -13,7 +15,7 @@ interface FormFields {
   password: string;
 }
 
-function EmailRegisterForm() {
+function EmailRegisterForm({setEmailRegister}: {setEmailRegister: (value: boolean) => void}){
   const { register, handleSubmit } = useForm<FormFields>({ mode: 'onTouched' });
 
   const submitHandler = (data: FormFields) => {
@@ -22,6 +24,7 @@ function EmailRegisterForm() {
 
   return (
     <Row>
+      <BackButton onClick={()=> setEmailRegister(false)}/>
       <Form onSubmit={handleSubmit(submitHandler)}>
         <div className="flex gap-2">
           <Input
@@ -81,5 +84,15 @@ function EmailRegisterForm() {
     </Row>
   );
 }
+
+
+const BackButton = styled(HiArrowLeft)`
+  position: absolute;
+  font-size: 1.5rem;
+  cursor: pointer;
+  top: 1rem;
+  left: 1rem;
+  color:var(--contrast-color);
+`;
 
 export default EmailRegisterForm;

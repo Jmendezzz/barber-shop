@@ -8,7 +8,7 @@ function RegisterForm() {
 
   if(isEmailRegister) {
     return(
-      <EmailRegisterForm/>
+      <EmailRegisterForm setEmailRegister={setIsEmailRegister}/>
     )
   }
 
