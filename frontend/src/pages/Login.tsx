@@ -11,7 +11,7 @@ function Login() {
   return (
     <LoginSection>
       <LoginRow>
-        <div className='flex flex-col justify-between px-5 relative z-50'>
+        <div className='flex flex-col justify-between px-5 relative z-50 p-10'>
           <HeadingLogo
             heading="h1"
             direction="column"
