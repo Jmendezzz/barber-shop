@@ -5,6 +5,7 @@ import { device } from '../styles/devices';
 import Hamburger from 'hamburger-react';
 import { useNavBarContext } from '../context/NavBarContext';
 import { Link } from 'react-router-dom';
+import { HOME_ROUTE, LOGIN_ROUTE } from '../constants/routes';
 
 function NavDesktop() {
   const { toggleMenu, isMenuOpened } = useNavBarContext();
@@ -19,14 +20,17 @@ function NavDesktop() {
       </SideDiv>
 
       <StyledUl>
-        <li>Inicio</li>
+        <Link to={HOME_ROUTE}>
+          <li>Inicio</li>
+
+        </Link>
         <li>Nosotros</li>
         <li>Reservas</li>
         <li>Contacto</li>
       </StyledUl>
 
       <SideDiv content="flex-end">
-        <Link to="/login">
+        <Link to={LOGIN_ROUTE}>
           <HiUser size="2rem" color="white" />
         </Link>
       </SideDiv>
@@ -46,7 +50,7 @@ function NavDesktop() {
 const StyledNav = styled.nav`
   display: flex;
 
-  @media (min-width: ${device.desktop}) {
+  @media (min-width: ${device.laptop}) {
     padding: 0 20px;
     height: 20rem;
   }
@@ -69,7 +73,7 @@ const StyledNav = styled.nav`
 `;
 
 const StyledUl = styled.ul`
-  @media (min-width: ${device.desktop}) {
+  @media (min-width: ${device.laptop}) {
     display: flex;
   }
 
@@ -95,7 +99,7 @@ const SideDiv = styled.div<{ content: string }>`
   display: none;
   justify-content: ${(props) => props.content};
 
-  @media (min-width: ${device.desktop}) {
+  @media (min-width: ${device.laptop}) {
     display: flex;
     flex: 1;
   }
@@ -103,7 +107,7 @@ const SideDiv = styled.div<{ content: string }>`
 
 const StyledHamburger = styled.div`
   display: inline-block;
-  @media (min-width: ${device.desktop}) {
+  @media (min-width: ${device.laptop}) {
     display: none;
     visibility: hidden;
   }

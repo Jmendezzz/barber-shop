@@ -4,6 +4,7 @@ import AppLayout from "./ui/AppLayout"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
+import NotFoundError from "./ui/NotFoundError"
 function App() {
  return(
   <>
@@ -14,8 +15,10 @@ function App() {
       <Route element={<Register />} path="/register" />
       <Route element={<AppLayout/>}>
         <Route element={<Home/>} index path="/"/>
+        <Route element ={<NotFoundError/>} path="/*"/>
       </Route>
     </Routes>
+
   </BrowserRouter>
   </>
 
